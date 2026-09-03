@@ -15,245 +15,352 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Schibsted+Grotesk:ital,wght@0,400..800;1,400..700&display=swap">
 <style>
+/* ─────────────────────────────────────────────
+   Proyecto Empatados · 5K
+   Tokens
+   ───────────────────────────────────────────── */
 :root{
+  /* color */
   --olive:#504D13;
-  --olive-deep:#3A380D;
-  --sage:#8E8B4E;
+  --olive-2:#5A5718;
+  --olive-3:#45420F;
+  --sage:#918E55;
   --pink:#FFDEE4;
-  --pink-dim:#DCBCC4;
-  --sand:#F1E7D8;
-  --pad:20px;
+  --pink-2:#D8B9C1;
+  --sand:#EFE5D6;
+  --ink-on-pink:#3F3D0E;
+  --ink-on-pink-2:#6E6B27;
+
+  /* espaciado — escala de 4 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px;
+  --s6:32px; --s7:44px; --s8:64px; --s9:88px;
+
+  /* medidas */
+  --pad:22px;
   --maxw:520px;
+  --rail-x:11px;          /* centro del punto, desde el borde del contenido */
+  --dot:22px;
+
   --ease:cubic-bezier(.16,1,.3,1);
 }
-*{box-sizing:border-box}
+
+/* ─── reset ─── */
+*,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 html,body{margin:0;padding:0}
+h1,h2,h3,p,figure,figcaption{margin:0}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0}
+a{color:inherit}
+
 body{
   background:var(--olive);
   color:var(--pink);
   font-family:"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  font-size:15.5px;
-  line-height:1.55;
-  letter-spacing:.002em;
+  font-size:16px;
+  line-height:1.62;
+  font-synthesis-weight:none;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-img{max-width:100%;display:block}
-a{color:inherit}
-p{margin:0}
-h1,h2,h3{margin:0;text-wrap:balance;font-family:"Fraunces",Georgia,"Times New Roman",serif;font-variation-settings:"SOFT" 40,"WONK" 1;font-weight:600;line-height:1.06}
 ::selection{background:var(--pink);color:var(--olive)}
-:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:8px}
+:focus-visible{outline:2px solid var(--pink);outline-offset:4px;border-radius:6px}
 
+/* ─── tipografía ─── */
+.display,h1,h2,h3{
+  font-family:"Fraunces",Georgia,"Times New Roman",serif;
+  font-variation-settings:"SOFT" 40,"WONK" 1;
+  font-weight:600;
+  text-wrap:balance;
+}
+h1{font-size:clamp(26px,7.2vw,34px);line-height:1.22;letter-spacing:-.012em;font-weight:500}
+h2{font-size:clamp(28px,8vw,36px);line-height:1.18;letter-spacing:-.018em;font-weight:500}
+h3{font-size:20px;line-height:1.3;letter-spacing:-.008em}
+.eyebrow{
+  font-family:"Schibsted Grotesk",sans-serif;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  line-height:1.4;color:var(--pink-2);
+}
+.lede{color:var(--pink-2);font-size:15.5px;line-height:1.6}
+
+/* grano */
 body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.045;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode:overlay;
 }
 
 .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
-.eyebrow{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--pink-dim);font-weight:700;margin:0}
 
-/* progreso */
-.progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:50}
+/* ─── progreso ─── */
+.progress{position:fixed;inset:0 0 auto;height:2px;z-index:50;pointer-events:none}
 .progress i{display:block;height:100%;width:0;background:var(--pink)}
 
-/* HERO */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-block:40px 26px;overflow:hidden}
-.hero-media{position:absolute;inset:-8% 0 0;z-index:0;will-change:transform}
-.hero-media img{width:100%;height:116%;object-fit:cover;filter:grayscale(1) contrast(1.05);opacity:.3;transform:scale(1.1);animation:heroZoom 2.8s var(--ease) forwards}
-@keyframes heroZoom{to{transform:scale(1)}}
-.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(80,77,19,.7),rgba(80,77,19,.88) 45%,var(--olive) 94%)}
-.hero-inner{position:relative;z-index:1}
-.logo{width:min(42vw,150px);margin-bottom:auto}
+/* ─── HERO ─── */
+.hero{
+  position:relative;min-height:100svh;overflow:hidden;
+  display:flex;flex-direction:column;
+  padding-block:var(--s7) var(--s6);
+}
+.hero-bg{position:absolute;inset:-8% 0 0;z-index:0;will-change:transform}
+.hero-bg img{
+  width:100%;height:118%;object-fit:cover;
+  filter:grayscale(1) contrast(1.08);opacity:.42;
+  transform:scale(1.09);animation:heroIn 3s var(--ease) forwards;
+}
+@keyframes heroIn{to{transform:scale(1)}}
+.hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(80,77,19,.62) 0%,rgba(80,77,19,.55) 26%,rgba(80,77,19,.88) 62%,var(--olive) 94%);
+}
+.hero-inner{position:relative;z-index:1;flex:1;display:flex;flex-direction:column}
+.logo{width:min(40vw,146px);margin-bottom:auto}
 
-.lockup{display:flex;align-items:flex-end;gap:11px;margin:8px 0 14px}
+.hero-copy{display:flex;flex-direction:column;gap:var(--s4);padding-top:var(--s5)}
+.lockup{display:flex;align-items:baseline;gap:var(--s3);flex-wrap:wrap}
 .bignum{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 60,"WONK" 1;
-  font-weight:800;font-size:clamp(62px,22vw,116px);line-height:.76;letter-spacing:-.045em;
-  margin:0 0 -.04em -.03em;flex:none;
+  font-weight:800;font-size:clamp(72px,22vw,120px);line-height:.86;letter-spacing:-.04em;
+  margin-left:-.03em;
 }
-.lockup .side{display:flex;flex-direction:column;gap:3px;padding-bottom:.45em;min-width:0}
+.lockup .side{display:flex;flex-direction:column;gap:2px}
 .lockup .side i{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 80,"WONK" 1;
-  font-style:italic;font-weight:600;font-size:clamp(17px,4.8vw,24px);line-height:1;color:var(--sand);white-space:nowrap;
+  font-style:italic;font-weight:600;font-size:clamp(19px,5.4vw,26px);line-height:1.15;
+  color:var(--sand);white-space:nowrap;
 }
-.lockup .side b{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-dim);font-weight:700;white-space:nowrap}
-
-.hero h1{font-size:clamp(23px,6.4vw,32px);font-weight:500;letter-spacing:-.015em}
 .hero h1 i{font-style:italic;color:var(--sand)}
-.hero .lede{margin-top:11px;color:var(--pink-dim);max-width:32ch;font-size:14.5px}
+.hero .lede{max-width:31ch}
 
-.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}
-.meta span{border:1px solid rgba(255,222,228,.3);border-radius:999px;padding:5px 12px;font-size:12px}
-.meta span b{font-weight:700}
-
-/* botones */
-.cta{
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  background:var(--pink);color:var(--olive);font-weight:700;font-size:15.5px;letter-spacing:-.005em;
-  padding:14px 20px;border-radius:999px;text-decoration:none;width:100%;
-  box-shadow:0 8px 26px rgba(0,0,0,.26);
-  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+.meta{display:flex;flex-wrap:wrap;gap:var(--s2);list-style:none;padding:0;margin:0}
+.meta li{
+  border:1px solid rgba(255,222,228,.28);border-radius:999px;
+  padding:6px 13px;font-size:12.5px;line-height:1.4;color:var(--pink-2);
 }
-.cta:active{transform:scale(.985)}
-.cta .arw{transition:transform .45s var(--ease)}
-.cta:hover{transform:translateY(-2px)}
-.cta:hover .arw{transform:translateX(3px)}
-.cta-row{margin-top:20px}
-.ghost{display:block;text-align:center;margin-top:11px;font-size:13px;color:var(--pink-dim);text-decoration:none}
+.meta li b{color:var(--pink);font-weight:700}
 
-/* marquesina */
-.ribbon{background:var(--pink);color:var(--olive);overflow:hidden;padding-block:8px}
-.ribbon-track{display:flex;width:max-content;animation:slide 30s linear infinite}
-.ribbon-track span{font-family:"Fraunces",serif;font-variation-settings:"SOFT" 60,"WONK" 1;font-weight:700;font-size:12.5px;padding-inline:14px;white-space:nowrap}
+/* ─── botones ─── */
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:var(--s2);
+  background:var(--pink);color:var(--ink-on-pink);
+  font-weight:700;font-size:16px;line-height:1;letter-spacing:-.005em;
+  padding:17px var(--s5);border-radius:999px;text-decoration:none;
+  box-shadow:0 6px 22px rgba(0,0,0,.22);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.cta:active{transform:translateY(0) scale(.99)}
+.cta .arw{transition:transform .5s var(--ease)}
+.cta:hover .arw{transform:translateX(3px)}
+.hero-actions{display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s2)}
+.ghost{
+  align-self:center;font-size:13.5px;line-height:1.4;color:var(--pink-2);
+  text-decoration:none;border-bottom:1px solid rgba(255,222,228,.25);padding-bottom:2px;
+}
+.ghost:hover{color:var(--pink);border-color:var(--pink)}
+
+/* ─── marquesina ─── */
+.ribbon{background:var(--pink);color:var(--ink-on-pink);overflow:hidden;padding-block:9px}
+.ribbon-track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.ribbon-track span{
+  font-family:"Fraunces",serif;font-variation-settings:"SOFT" 60,"WONK" 1;
+  font-weight:700;font-size:12.5px;line-height:1.4;padding-inline:13px;white-space:nowrap;
+}
 @keyframes slide{to{transform:translateX(-50%)}}
 
-/* datos */
-.facts{padding-block:36px 4px}
-.facts h2{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;font-family:"Schibsted Grotesk",sans-serif;color:var(--sage);font-weight:700;margin-bottom:12px}
-.fact-list{display:grid;border-top:1px solid rgba(255,222,228,.16)}
-.fact{display:flex;gap:11px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,222,228,.16)}
-.fact svg{flex:none;width:15px;height:15px;margin-top:4px;color:var(--sage)}
-.fact p{font-size:14.5px;line-height:1.5}
+/* ─── secciones ─── */
+.section{padding-block:var(--s8)}
+.section-head{display:flex;flex-direction:column;gap:var(--s3);margin-bottom:var(--s6)}
+.section-head h2 i{font-style:italic;color:var(--sand)}
+
+/* datos rápidos */
+.facts{display:grid;gap:0;border-top:1px solid rgba(255,222,228,.14)}
+.fact{
+  display:grid;grid-template-columns:18px 1fr;column-gap:var(--s3);align-items:start;
+  padding-block:var(--s4);border-bottom:1px solid rgba(255,222,228,.14);
+}
+.fact svg{width:17px;height:17px;margin-top:5px;color:var(--sage)}
+.fact p{font-size:15px;line-height:1.55;color:var(--pink-2)}
 .fact p b{color:var(--sand);font-weight:600}
 
-/* pasos */
-.steps{padding-block:40px 4px;position:relative}
-.steps-head{margin-bottom:28px}
-.steps-head h2{font-size:clamp(28px,8vw,38px);margin-top:7px;font-weight:500;letter-spacing:-.02em}
-.steps-head h2 i{font-style:italic;color:var(--sand)}
-
-.rail{position:absolute;left:calc(var(--pad) + 10px);top:0;bottom:90px;width:2px;background:rgba(255,222,228,.15);z-index:0}
-.rail i{position:absolute;top:0;left:0;width:100%;height:0;background:var(--pink)}
-
-.step{position:relative;padding-left:38px;padding-bottom:40px}
-.dot{
-  position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;
-  background:var(--olive);border:1.5px solid rgba(255,222,228,.32);
-  display:grid;place-items:center;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;
-  color:var(--pink-dim);
-  transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease),transform .5s var(--ease);
+/* ─── pasos ─── */
+.steps{position:relative;padding-block:var(--s8) var(--s6)}
+.step-list{position:relative}
+.rail{
+  position:absolute;left:calc(var(--rail-x) - 1px);
+  top:11px;bottom:calc(var(--s8) + 11px);width:2px;
+  background:rgba(255,222,228,.13);z-index:0;
 }
-.step.on .dot{background:var(--pink);color:var(--olive);border-color:var(--pink);transform:scale(1.1)}
-.step h3{font-size:19px;font-weight:600;letter-spacing:-.01em}
-.step .body{margin-top:7px;color:var(--pink-dim);font-size:14.5px;line-height:1.55}
-.step .body b{color:var(--sand);font-weight:600}
+.rail i{position:absolute;inset:0 auto auto 0;width:100%;height:0;background:var(--pink)}
+
+.step:last-child{padding-bottom:0}
+.step{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:var(--dot) 1fr;column-gap:var(--s4);
+  padding-bottom:var(--s8);
+}
+.dot{
+  grid-column:1;width:var(--dot);height:var(--dot);border-radius:50%;
+  background:var(--olive);border:1.5px solid rgba(255,222,228,.3);
+  display:grid;place-items:center;
+  font-family:"Schibsted Grotesk",sans-serif;
+  font-size:10px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;
+  color:var(--pink-2);margin-top:3px;
+  transition:background .55s var(--ease),color .55s var(--ease),border-color .55s var(--ease);
+}
+.step.on .dot{background:var(--pink);color:var(--ink-on-pink);border-color:var(--pink)}
+.st{grid-column:2;display:flex;flex-direction:column;gap:var(--s3);min-width:0}
+.st p{font-size:15px;line-height:1.6;color:var(--pink-2)}
+.st p b{color:var(--sand);font-weight:600}
 
 .tip{
-  margin-top:11px;display:flex;gap:8px;align-items:flex-start;
-  background:rgba(255,222,228,.06);border:1px solid rgba(255,222,228,.14);
-  border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.45;color:var(--pink-dim);
+  display:grid;grid-template-columns:16px 1fr;column-gap:var(--s2);align-items:start;
+  background:rgba(255,222,228,.055);border:1px solid rgba(255,222,228,.13);
+  border-radius:12px;padding:var(--s3) var(--s3);
 }
+.tip svg{width:15px;height:15px;margin-top:4px;color:var(--pink-2)}
+.tip p{font-size:13.5px;line-height:1.5}
 .tip b{color:var(--pink);font-weight:700}
 
 /* capturas */
 .shot{
-  margin-top:13px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,222,228,.18);
-  background:var(--olive-deep);display:block;width:100%;padding:0;color:inherit;text-align:left;
-  cursor:zoom-in;font:inherit;-webkit-tap-highlight-color:transparent;
-  transition:border-color .4s var(--ease),box-shadow .6s var(--ease);
+  display:block;width:100%;text-align:left;cursor:zoom-in;
+  border:1px solid rgba(255,222,228,.16);border-radius:12px;overflow:hidden;
+  background:var(--olive-3);-webkit-tap-highlight-color:transparent;
+  transition:border-color .4s var(--ease),transform .5s var(--ease);
 }
-.shot.on{border-color:rgba(255,222,228,.42);box-shadow:0 14px 34px rgba(0,0,0,.26)}
-.shot .bar{display:flex;align-items:center;gap:5px;padding:7px 10px;background:rgba(255,222,228,.08)}
-.shot .bar i{width:6px;height:6px;border-radius:50%;background:rgba(255,222,228,.3);display:block}
-.shot .bar em{margin-left:auto;font-style:normal;font-size:9.5px;letter-spacing:.12em;color:var(--pink-dim);text-transform:uppercase}
-.shot .frame{display:block;overflow:hidden;background:#fff}
-.shot .frame img{width:100%;transform-origin:var(--fx,50% 42%);transition:transform 1.2s var(--ease)}
-.shot.on .frame img{transform:scale(1.36)}
-.shot .cap{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--pink-dim);padding:9px 10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
-.shot .cap svg{width:12px;height:12px;flex:none}
+.shot:hover{border-color:rgba(255,222,228,.36);transform:translateY(-2px)}
+.shot:active{transform:translateY(0)}
+.shot .bar{display:flex;align-items:center;gap:5px;padding:8px 11px;background:rgba(255,222,228,.07)}
+.shot .bar i{width:6px;height:6px;border-radius:50%;background:rgba(255,222,228,.26)}
+.shot .bar em{
+  margin-left:auto;font-style:normal;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pink-2);line-height:1;
+}
+.shot img{width:100%;background:#fff}
+.shot .cap{
+  display:flex;align-items:center;gap:7px;padding:11px;
+  font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+  line-height:1;color:var(--pink-2);
+}
+.shot .cap svg{width:13px;height:13px;flex:none}
 
-/* paso clave */
-.step.key .card{background:var(--pink);color:var(--olive);border-radius:18px;padding:18px 16px;box-shadow:0 14px 36px rgba(0,0,0,.28)}
-.step.key .card .flag{display:inline-block;background:var(--olive);color:var(--pink);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:5px 10px;border-radius:999px;margin-bottom:10px}
-.step.key .card h3{color:var(--olive)}
-.step.key .card .body{color:#6A6720}
-.step.key .card .body b{color:var(--olive)}
-.step.key .dot{background:var(--pink);color:var(--olive);border-color:var(--pink)}
-.step.key .shot{border-color:rgba(80,77,19,.22)}
-.step.key .shot .bar{background:rgba(80,77,19,.1)}
-.step.key .shot .bar i{background:rgba(80,77,19,.28)}
-.step.key .shot .bar em,.step.key .shot .cap{color:#6A6720}
+/* paso destacado */
+.step.key .card{
+  background:var(--pink);color:var(--ink-on-pink);
+  border-radius:18px;padding:var(--s5) var(--s4);
+  display:flex;flex-direction:column;gap:var(--s3);
+  box-shadow:0 16px 40px rgba(0,0,0,.24);
+}
+.step.key .flag{
+  align-self:flex-start;background:var(--olive);color:var(--pink);
+  font-family:"Schibsted Grotesk",sans-serif;
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;line-height:1;
+  padding:7px 11px;border-radius:999px;
+}
+.step.key h3{color:var(--ink-on-pink)}
+.step.key .card p{color:var(--ink-on-pink-2)}
+.step.key .card p b{color:var(--ink-on-pink)}
+.step.key .dot{background:var(--pink);color:var(--ink-on-pink);border-color:var(--pink)}
+.step.key .shot{border-color:rgba(63,61,14,.18);background:rgba(63,61,14,.06)}
+.step.key .shot .bar{background:rgba(63,61,14,.09)}
+.step.key .shot .bar i{background:rgba(63,61,14,.24)}
+.step.key .shot .bar em,.step.key .shot .cap{color:var(--ink-on-pink-2)}
 
-/* cierre */
-.outro{padding-block:14px 70px;text-align:center}
-.outro .heart{width:56px;margin:0 auto 16px;opacity:.9}
-.outro h2{font-size:clamp(25px,7.2vw,34px);font-weight:500;letter-spacing:-.02em}
+/* ─── cierre ─── */
+.outro{
+  padding-block:var(--s6) var(--s9);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s4);
+}
+.outro .mark{width:52px;color:var(--pink);opacity:.9;margin-bottom:var(--s1)}
 .outro h2 i{font-style:italic;color:var(--sand)}
-.outro p{margin-top:11px;color:var(--pink-dim);max-width:30ch;margin-inline:auto;font-size:14.5px}
-.outro .cta{margin-top:22px}
-.outro .sig{margin-top:22px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sage)}
+.outro p{color:var(--pink-2);max-width:29ch;font-size:15px}
+.outro .cta{margin-top:var(--s3);width:100%}
+.outro .sig{
+  margin-top:var(--s4);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sage);line-height:1.6;
+}
 
-/* barra fija */
+/* ─── barra fija ─── */
 .dock{
-  position:fixed;left:0;right:0;bottom:0;z-index:40;
-  padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
-  background:linear-gradient(180deg,rgba(80,77,19,0),rgba(80,77,19,.94) 38%,var(--olive));
-  transform:translateY(130%);transition:transform .6s var(--ease);
+  position:fixed;inset:auto 0 0;z-index:40;
+  padding:var(--s3) var(--pad) calc(var(--s3) + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg,rgba(80,77,19,0),rgba(80,77,19,.95) 40%,var(--olive));
+  transform:translateY(130%);transition:transform .65s var(--ease);
 }
 .dock.show{transform:translateY(0)}
 .dock .inner{max-width:var(--maxw);margin-inline:auto}
-.dock .cta{padding:13px 20px;font-size:15px}
+.dock .cta{padding:14px var(--s5);font-size:15.5px;width:100%}
 
-/* lightbox */
-.lb{position:fixed;inset:0;z-index:70;background:rgba(28,27,6,.97);display:none;overscroll-behavior:contain}
-.lb.open{display:block;animation:fade .3s var(--ease)}
+/* ─── lightbox ─── */
+.lb{position:fixed;inset:0;z-index:70;background:rgba(26,25,5,.97);display:none;overscroll-behavior:contain}
+.lb.open{display:block;animation:fade .28s var(--ease)}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 .lb .stage{
-  position:absolute;inset:calc(56px + env(safe-area-inset-top)) 0 calc(70px + env(safe-area-inset-bottom));
+  position:absolute;inset:calc(58px + env(safe-area-inset-top)) 0 calc(74px + env(safe-area-inset-bottom));
   overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;display:flex;
 }
 .lb img{max-width:100%;height:auto;margin:auto;background:#fff;border-radius:6px}
 .lb.zoom img{max-width:none;width:1150px;margin:auto 0;border-radius:0}
-.lb .close{position:absolute;top:calc(10px + env(safe-area-inset-top));right:12px;background:var(--pink);color:var(--olive);border:0;border-radius:999px;width:38px;height:38px;font-size:20px;cursor:pointer;line-height:1;z-index:2}
-.lb .cap{position:absolute;top:calc(18px + env(safe-area-inset-top));left:var(--pad);right:60px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-dim);font-weight:700;margin:0}
-.lb .swipe{position:absolute;bottom:calc(66px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-dim);opacity:0;transition:opacity .5s var(--ease);pointer-events:none;margin:0}
-.lb.zoom .swipe{opacity:.8}
-.lb .tools{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px;padding-inline:var(--pad)}
-.lb .tools button{
-  background:rgba(255,222,228,.1);border:1px solid rgba(255,222,228,.3);color:var(--pink);
-  font:inherit;font-size:13px;font-weight:600;padding:9px 17px;border-radius:999px;cursor:pointer;transition:background .3s var(--ease);
+.lb .cap{
+  position:absolute;top:calc(20px + env(safe-area-inset-top));left:var(--pad);right:62px;
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  line-height:1.4;color:var(--pink-2);
 }
-.lb .tools button[aria-pressed="true"]{background:var(--pink);color:var(--olive);border-color:var(--pink)}
+.lb .close{
+  position:absolute;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:2;
+  width:38px;height:38px;border-radius:999px;background:var(--pink);color:var(--ink-on-pink);
+  font-size:19px;line-height:1;cursor:pointer;
+}
+.lb .swipe{
+  position:absolute;inset:auto 0 calc(66px + env(safe-area-inset-bottom));text-align:center;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-2);
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.lb.zoom .swipe{opacity:.75}
+.lb .tools{
+  position:absolute;inset:auto 0 calc(16px + env(safe-area-inset-bottom));
+  display:flex;justify-content:center;gap:var(--s2);padding-inline:var(--pad);
+}
+.lb .tools button{
+  border:1px solid rgba(255,222,228,.28);background:rgba(255,222,228,.08);color:var(--pink);
+  font-size:13px;font-weight:600;line-height:1;padding:11px 18px;border-radius:999px;cursor:pointer;
+  transition:background .3s var(--ease),color .3s var(--ease);
+}
+.lb .tools button[aria-pressed="true"]{background:var(--pink);color:var(--ink-on-pink);border-color:var(--pink)}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+/* ─── entrada ─── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
 .rv.in{opacity:1;transform:none}
-.stg>*{opacity:0;transform:translateY(14px)}
-.stg.in>*{opacity:1;transform:none;transition:opacity .75s var(--ease),transform .75s var(--ease)}
-.stg.in>*:nth-child(1){transition-delay:.04s}
-.stg.in>*:nth-child(2){transition-delay:.11s}
-.stg.in>*:nth-child(3){transition-delay:.18s}
-.stg.in>*:nth-child(4){transition-delay:.25s}
-.stg.in>*:nth-child(5){transition-delay:.32s}
-.stg.in>*:nth-child(6){transition-delay:.39s}
-.stg.in>*:nth-child(7){transition-delay:.46s}
+.stg>*{opacity:0;transform:translateY(12px)}
+.stg.in>*{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.stg.in>*:nth-child(1){transition-delay:.05s}
+.stg.in>*:nth-child(2){transition-delay:.12s}
+.stg.in>*:nth-child(3){transition-delay:.19s}
+.stg.in>*:nth-child(4){transition-delay:.26s}
+.stg.in>*:nth-child(5){transition-delay:.33s}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
   .rv,.stg>*{opacity:1;transform:none}
-  .hero-media img,.shot.on .frame img{transform:none}
+  .hero-bg img{transform:none}
 }
 
-/* pantallas grandes */
-@media (min-width:700px){
-  :root{--pad:28px;--maxw:600px}
-  body{font-size:17px;line-height:1.6}
-  .logo{width:180px}
-  .hero .lede{font-size:16px}
-  .meta span{font-size:13px;padding:6px 14px}
-  .cta{font-size:17px;padding:16px 26px}
-  .step{padding-left:52px;padding-bottom:52px}
-  .dot{width:28px;height:28px;font-size:11.5px}
-  .rail{left:calc(var(--pad) + 13px)}
-  .step h3{font-size:24px}
-  .step .body,.fact p,.outro p{font-size:16px}
-  .tip{font-size:14px;padding:12px 14px}
-  .step.key .card{padding:24px 22px;border-radius:22px}
-  .facts{padding-block:56px 8px}
-  .steps{padding-block:60px 8px}
+/* ─── pantallas medianas y grandes ─── */
+@media (min-width:600px){
+  :root{--pad:32px;--maxw:600px;--dot:28px;--rail-x:14px}
+  body{font-size:17px}
+  .logo{width:170px}
+  .lede{font-size:17px}
+  .meta li{font-size:13.5px;padding:7px 15px}
+  h3{font-size:23px}
+  .st p,.fact p,.outro p{font-size:16.5px}
+  .tip p{font-size:15px}
+  .dot{font-size:12px}
+  .step.key .card{padding:var(--s6) var(--s5);border-radius:22px}
+  .section,.steps{padding-block:var(--s9)}
+  .cta{font-size:17px;padding:18px var(--s6)}
+  .outro .cta{width:auto;min-width:260px}
 }
 </style>
 </head>
@@ -262,22 +369,25 @@ body::after{
 <div class="progress"><i id="pbar"></i></div>
 
 <header class="hero">
-  <div class="hero-media" id="heroMedia">
-    <img src="assets/hero.jpg" alt="Corredores en la carrera" fetchpriority="high">
-  </div>
-  <div class="wrap hero-inner stg" id="heroText">
+  <div class="hero-bg" id="heroBg"><img src="assets/hero.jpg" alt="Corredores durante una carrera" fetchpriority="high"></div>
+  <div class="wrap hero-inner">
     <img class="logo" src="assets/logo.png" alt="Proyecto Empatados">
-    <p class="eyebrow">Corre con propósito</p>
-    <p class="lockup"><span class="bignum">5K</span><span class="side"><i>Give&nbsp;Miami</i><b>Fundraising</b></span></p>
-    <h1>Guía para inscribirte, <i>paso a paso</i>.</h1>
-    <p class="lede">Nueve pasos, tres minutos. Al final corres con el equipo de Proyecto Empatados.</p>
-    <div class="meta">
-      <span><b>Miami</b></span>
-      <span><b>15</b> de noviembre</span>
-    </div>
-    <div class="cta-row">
-      <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Abrir el link de inscripción <span class="arw">→</span></a>
-      <a class="ghost" href="#pasos">o mira primero los 9 pasos ↓</a>
+    <div class="hero-copy stg" id="heroCopy">
+      <p class="eyebrow">Corre con propósito</p>
+      <p class="lockup">
+        <span class="bignum">5K</span>
+        <span class="side"><i>Give&nbsp;Miami</i></span>
+      </p>
+      <h1>Guía para inscribirte, <i>paso a paso</i>.</h1>
+      <ul class="meta">
+        <li><b>Miami</b></li>
+        <li><b>15</b> de noviembre</li>
+        <li>9 pasos · 3 minutos</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Abrir el link de inscripción <span class="arw" aria-hidden="true">→</span></a>
+        <a class="ghost" href="#pasos">Ver los 9 pasos</a>
+      </div>
     </div>
   </div>
 </header>
@@ -289,155 +399,181 @@ body::after{
   </div>
 </div>
 
-<section class="facts wrap">
-  <h2>Antes de empezar</h2>
-  <div class="fact-list stg">
+<section class="section wrap">
+  <div class="section-head rv">
+    <p class="eyebrow">Antes de empezar</p>
+    <h2>Lo que <i>necesitas saber</i></h2>
+  </div>
+  <div class="facts rv">
     <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 12h16M13 5l7 7-7 7"/></svg>
-      <p>Puedes <b>correr o caminar</b>. Los dos suman igual.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      <p>Puedes <b>correr o caminar</b>. Las dos formas suman igual.</p>
     </div>
     <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-6.6-4.3-6.6-9.4a3.8 3.8 0 0 1 6.6-2.5 3.8 3.8 0 0 1 6.6 2.5c0 5.1-6.6 9.4-6.6 9.4z"/></svg>
       <p>Los <b>niños también participan</b>.</p>
     </div>
     <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M16 19v-2a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v2M9.5 7.5a3 3 0 1 0 0 .01M19 8v6M22 11h-6"/></svg>
-      <p>Puedes inscribir a <b>varias personas</b> en la misma transacción.</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 19v-1.8a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V19M9.5 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM19 8.5v5M21.5 11h-5"/></svg>
+      <p>Puedes inscribir a <b>varias personas</b> en una misma transacción.</p>
     </div>
     <div class="fact">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
-      <p>Lo importante: seleccionar el equipo <b>Proyecto Empatados</b> (paso 4).</p>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6.5 9.5 17 4 11.5"/></svg>
+      <p>Lo esencial: seleccionar el equipo <b>Proyecto Empatados</b> en el paso 4.</p>
     </div>
   </div>
 </section>
 
 <section class="steps wrap" id="pasos">
-  <div class="rail" aria-hidden="true"><i id="railFill"></i></div>
-
-  <div class="steps-head rv">
+  <div class="section-head rv">
     <p class="eyebrow">Proceso de registración</p>
     <h2>Paso <i>a paso</i></h2>
   </div>
 
-  <article class="step rv">
-    <span class="dot">01</span>
-    <h3>Crea tu cuenta</h3>
-    <p class="body">Entra al link de inscripción y llena tu información personal. Vas a crear una cuenta con tu <b>email</b> y una contraseña que recuerdes fácilmente.</p>
-    <div class="tip"><span>💡</span><p><b>Ojo:</b> la contraseña necesita mínimo 8 caracteres y cumplir dos de estas: una mayúscula, una minúscula o un número.</p></div>
-    <button class="shot" data-src="assets/pasos/paso-01.jpg" style="--fx:26% 56%">
-        <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-01.jpg" alt="Formulario de datos personales y creación de cuenta" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
-      </button>
-  </article>
+  <div class="step-list">
+  <div class="rail" aria-hidden="true"><i id="railFill"></i></div>
 
   <article class="step rv">
-    <span class="dot">02</span>
-    <h3>Elige para quién es el ticket</h3>
-    <p class="body">Selecciona si el ticket es para ti o para otra persona, y si vas a <b>correr o caminar</b>. Aquí mismo puedes agregar a <b>más participantes</b> en la misma transacción.</p>
-    <button class="shot" data-src="assets/pasos/paso-02.jpg" style="--fx:26% 46%">
+    <span class="dot" aria-hidden="true">01</span>
+    <div class="st">
+      <h3>Crea tu cuenta</h3>
+      <p>Entra al link de inscripción y llena tu información personal. Vas a crear una cuenta con tu <b>email</b> y una contraseña que recuerdes fácilmente.</p>
+      <div class="tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18h5M10 21h4M12 3a6 6 0 0 1 3.6 10.8c-.5.4-.8 1-.8 1.6h-5.6c0-.6-.3-1.2-.8-1.6A6 6 0 0 1 12 3z"/></svg>
+        <p><b>Ojo:</b> la contraseña necesita mínimo 8 caracteres y cumplir dos de estas: una mayúscula, una minúscula o un número.</p>
+      </div>
+      <button class="shot" data-src="assets/pasos/paso-01.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-02.jpg" alt="Selección del tipo de participante y de participantes adicionales" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
-      </button>
-  </article>
-
-  <article class="step rv">
-    <span class="dot">03</span>
-    <h3>Firma el consentimiento</h3>
-    <p class="body">Lee y firma el consentimiento de participación para continuar.</p>
-    <button class="shot" data-src="assets/pasos/paso-03.jpg" style="--fx:30% 56%">
-        <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-03.jpg" alt="Pantalla de firma del consentimiento" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
-      </button>
-  </article>
-
-  <article class="step key rv">
-    <span class="dot">04</span>
-    <div class="card">
-      <span class="flag">El paso más importante</span>
-      <h3>Selecciona el equipo Proyecto Empatados</h3>
-      <p class="body">En la sección de equipos elige <b>“Proyecto Empatados”</b>. Así formas parte de nuestro grupo y tu ayuda llega al lugar adecuado.</p>
-      <button class="shot" data-src="assets/pasos/paso-04.jpg" style="--fx:28% 46%">
-        <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-04.jpg" alt="Sección de equipos con Proyecto Empatados" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-01.jpg" alt="Formulario de datos personales y creación de cuenta" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
     </div>
   </article>
 
   <article class="step rv">
-    <span class="dot">05</span>
-    <h3>Confirma que quedó seleccionado</h3>
-    <p class="body">Una vez elegida la fundación como equipo, debería verse <b>así</b> en tu pantalla.</p>
-    <button class="shot" data-src="assets/pasos/paso-05.jpg" style="--fx:28% 44%">
+    <span class="dot" aria-hidden="true">02</span>
+    <div class="st">
+      <h3>Elige para quién es el ticket</h3>
+      <p>Selecciona si el ticket es para ti o para otra persona, y si vas a <b>correr o caminar</b>. Aquí mismo puedes agregar a <b>más participantes</b> en la misma transacción.</p>
+      <button class="shot" data-src="assets/pasos/paso-02.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-05.jpg" alt="Confirmación del equipo seleccionado" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-02.jpg" alt="Selección del tipo de participante y de participantes adicionales" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
+    </div>
   </article>
 
   <article class="step rv">
-    <span class="dot">06</span>
-    <h3>Responde unas preguntas</h3>
-    <p class="body">Aquí eliges la <b>talla de tu t-shirt</b> y agregas tu <b>contacto de emergencia</b>.</p>
-    <button class="shot" data-src="assets/pasos/paso-06.jpg" style="--fx:28% 50%">
+    <span class="dot" aria-hidden="true">03</span>
+    <div class="st">
+      <h3>Firma el consentimiento</h3>
+      <p>Lee y firma el consentimiento de participación para poder continuar.</p>
+      <button class="shot" data-src="assets/pasos/paso-03.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-06.jpg" alt="Preguntas: talla de camisa y contacto de emergencia" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-03.jpg" alt="Pantalla de firma del consentimiento" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
+    </div>
+  </article>
+
+  <article class="step key rv">
+    <span class="dot" aria-hidden="true">04</span>
+    <div class="st">
+      <div class="card">
+        <span class="flag">El paso más importante</span>
+        <h3>Selecciona el equipo Proyecto Empatados</h3>
+        <p>En la sección de equipos elige <b>“Proyecto Empatados”</b>. Así formas parte de nuestro grupo y tu ayuda llega al lugar adecuado.</p>
+        <button class="shot" data-src="assets/pasos/paso-04.jpg">
+          <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
+          <img src="assets/pasos/paso-04.jpg" alt="Sección de equipos con Proyecto Empatados seleccionado" loading="lazy">
+          <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
+        </button>
+      </div>
+    </div>
   </article>
 
   <article class="step rv">
-    <span class="dot">07</span>
-    <h3>Agrega el método de pago</h3>
-    <p class="body">Completa los datos de tu tarjeta para procesar la inscripción.</p>
-    <button class="shot" data-src="assets/pasos/paso-07.jpg" style="--fx:28% 46%">
+    <span class="dot" aria-hidden="true">05</span>
+    <div class="st">
+      <h3>Confirma que quedó seleccionado</h3>
+      <p>Una vez elegida la fundación como equipo, debería verse <b>así</b> en tu pantalla.</p>
+      <button class="shot" data-src="assets/pasos/paso-05.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-07.jpg" alt="Formulario de método de pago" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-05.jpg" alt="Confirmación del equipo seleccionado" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
+    </div>
   </article>
 
   <article class="step rv">
-    <span class="dot">08</span>
-    <h3>Verifica una última vez</h3>
-    <p class="body">En la página de pago, más abajo, puedes <b>confirmar de nuevo</b> que seleccionaste la fundación correcta antes de finalizar.</p>
-    <button class="shot" data-src="assets/pasos/paso-08.jpg" style="--fx:30% 58%">
+    <span class="dot" aria-hidden="true">06</span>
+    <div class="st">
+      <h3>Responde unas preguntas</h3>
+      <p>Aquí eliges la <b>talla de tu t-shirt</b> y agregas tu <b>contacto de emergencia</b>.</p>
+      <button class="shot" data-src="assets/pasos/paso-06.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-08.jpg" alt="Resumen de pago con la fundación seleccionada" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-06.jpg" alt="Preguntas sobre talla de camisa y contacto de emergencia" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
+    </div>
   </article>
 
   <article class="step rv">
-    <span class="dot">09</span>
-    <h3>¡Listo! Revisa tu email</h3>
-    <p class="body">Al realizar el pago recibes la confirmación e, inmediatamente, un <b>email con toda la información</b> sobre ese día.</p>
-    <button class="shot" data-src="assets/pasos/paso-09.jpg" style="--fx:30% 40%">
+    <span class="dot" aria-hidden="true">07</span>
+    <div class="st">
+      <h3>Agrega el método de pago</h3>
+      <p>Completa los datos de tu tarjeta para procesar la inscripción.</p>
+      <button class="shot" data-src="assets/pasos/paso-07.jpg">
         <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
-        <span class="frame"><img src="assets/pasos/paso-09.jpg" alt="Pantalla de confirmación del registro" loading="lazy"></span>
-        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar y leer</span>
+        <img src="assets/pasos/paso-07.jpg" alt="Formulario de método de pago" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
       </button>
+    </div>
   </article>
+
+  <article class="step rv">
+    <span class="dot" aria-hidden="true">08</span>
+    <div class="st">
+      <h3>Verifica una última vez</h3>
+      <p>En la página de pago, más abajo, puedes <b>confirmar de nuevo</b> que seleccionaste la fundación correcta antes de finalizar.</p>
+      <button class="shot" data-src="assets/pasos/paso-08.jpg">
+        <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
+        <img src="assets/pasos/paso-08.jpg" alt="Resumen de pago con la fundación seleccionada" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
+      </button>
+    </div>
+  </article>
+
+  <article class="step rv">
+    <span class="dot" aria-hidden="true">09</span>
+    <div class="st">
+      <h3>Listo. Revisa tu email</h3>
+      <p>Al realizar el pago recibes la confirmación e, inmediatamente, un <b>email con toda la información</b> sobre ese día.</p>
+      <button class="shot" data-src="assets/pasos/paso-09.jpg">
+        <span class="bar"><i></i><i></i><i></i><em>runsignup.com</em></span>
+        <img src="assets/pasos/paso-09.jpg" alt="Pantalla de confirmación del registro" loading="lazy">
+        <span class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M11 8.5v5M8.5 11h5"/></svg>Toca para ampliar</span>
+      </button>
+    </div>
+  </article>
+  </div>
 </section>
 
 <section class="outro wrap rv">
-  <svg class="heart" viewBox="0 0 100 92" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true">
+  <svg class="mark" viewBox="0 0 100 92" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M50 86C34 74 8 57 8 33 8 19 18 9 30 9c9 0 16 5 20 12 4-7 11-12 20-12 12 0 22 10 22 24 0 24-26 41-42 53z"/>
-    <circle cx="34" cy="46" r="5"/><circle cx="46" cy="41" r="5"/><circle cx="58" cy="41" r="5"/><circle cx="68" cy="48" r="5"/>
-    <path d="M51 54c-7 0-12 5-12 10s5 7 12 7 12-2 12-7-5-10-12-10z"/>
+    <circle cx="34" cy="46" r="4.6"/><circle cx="46" cy="41" r="4.6"/><circle cx="58" cy="41" r="4.6"/><circle cx="68" cy="48" r="4.6"/>
+    <path d="M51 54c-6.6 0-11.6 4.6-11.6 9.6S44.4 71 51 71s11.6-2.4 11.6-7.4S57.6 54 51 54z"/>
   </svg>
   <h2>Muchísimas gracias por <i>apoyar</i> este proyecto</h2>
   <p>Por los animalitos en situación de vulnerabilidad. Nos vemos en la carrera.</p>
-  <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Inscribirme ahora <span class="arw">→</span></a>
+  <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Inscribirme ahora <span class="arw" aria-hidden="true">→</span></a>
   <p class="sig">Proyecto Empatados · Miami</p>
 </section>
 
 <div class="dock" id="dock">
   <div class="inner">
-    <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Inscribirme en el 5K <span class="arw">→</span></a>
+    <a class="cta" href="https://runsignup.com/Race/FL/Miami/givemiami5k" target="_blank" rel="noopener">Inscribirme en el 5K <span class="arw" aria-hidden="true">→</span></a>
   </div>
 </div>
 
@@ -454,72 +590,59 @@ body::after{
 
 <script>
 (function(){
+  'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* entrada del hero */
   requestAnimationFrame(function(){
-    setTimeout(function(){ document.getElementById('heroText').classList.add('in'); }, 90);
+    setTimeout(function(){ document.getElementById('heroCopy').classList.add('in'); }, 80);
   });
 
-  /* reveals */
+  /* apariciones al hacer scroll */
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, {rootMargin:'0px 0px -12% 0px', threshold:.12});
-  document.querySelectorAll('.rv, .stg:not(#heroText)').forEach(function(el){ io.observe(el); });
+  }, {rootMargin:'0px 0px -10% 0px', threshold:.1});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-  /* zoom progresivo de cada captura al pasar por el centro */
-  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
-  function zoomShots(){
-    if(reduce) return;
-    var vh = window.innerHeight, mid = vh * 0.46;
-    shots.forEach(function(sh){
-      var r = sh.getBoundingClientRect(),
-          c = r.top + r.height / 2,
-          band = Math.max(vh * 0.34, r.height * 0.55);
-      sh.classList.toggle('on', Math.abs(c - mid) < band && r.bottom > 0 && r.top < vh);
-    });
-  }
-
-  /* punto activo del paso */
-  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  /* punto del paso activo */
   var ioStep = new IntersectionObserver(function(entries){
     entries.forEach(function(e){ e.target.classList.toggle('on', e.isIntersecting); });
-  }, {rootMargin:'-18% 0px -55% 0px'});
-  steps.forEach(function(s){ ioStep.observe(s); });
+  }, {rootMargin:'-20% 0px -52% 0px'});
+  document.querySelectorAll('.step').forEach(function(s){ ioStep.observe(s); });
 
-  /* scroll: barra de progreso, riel, parallax, dock */
+  /* scroll: progreso, riel, parallax, barra fija */
   var pbar = document.getElementById('pbar'),
       rail = document.querySelector('.rail'),
       fill = document.getElementById('railFill'),
-      media = document.getElementById('heroMedia'),
+      bg   = document.getElementById('heroBg'),
       dock = document.getElementById('dock'),
       endCta = document.querySelector('.outro .cta'),
       endVisible = false,
       ticking = false;
 
-  /* la barra fija se retira cuando el botón final ya está a la vista */
   if(endCta){
     new IntersectionObserver(function(entries){
       endVisible = entries[0].isIntersecting;
       onScroll();
-    }, {rootMargin:'0px 0px -80px 0px'}).observe(endCta);
+    }, {rootMargin:'0px 0px -70px 0px'}).observe(endCta);
   }
 
   function onScroll(){
     var y = window.scrollY || window.pageYOffset,
-        h = document.documentElement.scrollHeight - window.innerHeight;
-    pbar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+        vh = window.innerHeight,
+        max = document.documentElement.scrollHeight - vh;
+
+    pbar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
 
     if(rail){
-      var r = rail.getBoundingClientRect(),
-          p = (window.innerHeight * 0.55 - r.top) / r.height;
-      fill.style.height = Math.max(0, Math.min(1, p)) * 100 + '%';
+      var r = rail.getBoundingClientRect();
+      fill.style.height = Math.max(0, Math.min(1, (vh * 0.55 - r.top) / r.height)) * 100 + '%';
     }
-    if(media && !reduce) media.style.transform = 'translate3d(0,' + (y * 0.22) + 'px,0)';
-    dock.classList.toggle('show', y > window.innerHeight * 0.85 && !endVisible);
-    zoomShots();
+    if(bg && !reduce) bg.style.transform = 'translate3d(0,' + (y * 0.2) + 'px,0)';
+
+    dock.classList.toggle('show', y > vh * 0.8 && !endVisible);
     ticking = false;
   }
   window.addEventListener('scroll', function(){
@@ -528,7 +651,7 @@ body::after{
   window.addEventListener('resize', onScroll);
   onScroll();
 
-  /* lightbox */
+  /* visor de capturas */
   var lb = document.getElementById('lb'),
       lbImg = document.getElementById('lbImg'),
       lbStage = document.getElementById('lbStage'),
@@ -543,14 +666,14 @@ body::after{
     bFit.setAttribute('aria-pressed', zoom ? 'false' : 'true');
     lbStage.scrollLeft = 0; lbStage.scrollTop = 0;
   }
-  function open(src, alt, label){
+  function openLb(src, alt, label){
     lbImg.src = src; lbImg.alt = alt || ''; lbCap.textContent = label || '';
     lb.classList.add('open');
     setMode(true);
     document.body.style.overflow = 'hidden';
     document.getElementById('lbClose').focus();
   }
-  function close(){
+  function closeLb(){
     lb.classList.remove('open'); lbImg.src = '';
     document.body.style.overflow = '';
     if(last) last.focus();
@@ -558,19 +681,20 @@ body::after{
   document.querySelectorAll('.shot').forEach(function(btn){
     btn.addEventListener('click', function(){
       last = btn;
-      var step = btn.closest('.step');
-      var h = step ? step.querySelector('h3') : null;
-      open(btn.dataset.src, btn.querySelector('img').alt, h ? h.textContent : '');
+      var h = btn.closest('.st').querySelector('h3');
+      openLb(btn.dataset.src, btn.querySelector('img').alt, h ? h.textContent : '');
     });
   });
   bZoom.addEventListener('click', function(){ setMode(true); });
   bFit.addEventListener('click', function(){ setMode(false); });
   lbImg.addEventListener('click', function(){ setMode(!lb.classList.contains('zoom')); });
-  document.getElementById('lbClose').addEventListener('click', close);
-  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === lbStage) close(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && lb.classList.contains('open')) close(); });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === lbStage) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && lb.classList.contains('open')) closeLb();
+  });
 
-  /* scroll suave del enlace interno */
+  /* enlaces internos */
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click', function(e){
       var t = document.querySelector(a.getAttribute('href'));
