@@ -222,6 +222,15 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .timeline li.reg::before{border-color:var(--sage);background:var(--sage);box-shadow:none}
 .timeline li.reg p{background:transparent;border:0;padding:3px 0 0;color:var(--ink-2);font-size:13px}
 
+.danger-zone{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:8px}
+.del{height:40px;padding:0 16px;border-radius:12px;border:1px solid rgba(180,71,90,.28);background:transparent;color:#B4475A;font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease)}
+.del:hover{background:rgba(180,71,90,.07)}
+.del.armed{background:#B4475A;color:#fff;border-color:#B4475A;padding:0 20px;animation:arm .35s var(--spring)}
+.del:disabled{opacity:.6}
+@keyframes arm{from{transform:scale(.92)}}
+.del-hint{font-size:11px;color:var(--ink-3);text-align:center;min-height:14px}
+.lead.bye{animation:bye .45s var(--ease) forwards}
+@keyframes bye{to{opacity:0;transform:translateX(-30px);height:0;padding-top:0;padding-bottom:0}}
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 20px);transform:translate(-50%,calc(100% + 60px));background:var(--ink);color:var(--pink);padding:12px 16px 12px 14px;border-radius:14px;font-weight:700;font-size:14px;
   transition:transform .45s var(--spring);z-index:50;white-space:nowrap;display:flex;align-items:center;gap:10px;box-shadow:0 14px 34px -10px rgba(0,0,0,.45)}
 .toast.show{transform:translate(-50%,0)}
@@ -395,7 +404,7 @@ async function load(manual) {
     const d = await api({action:"list", token:S.token});
     const prev = S.seen;
     S.leads = d.leads; S.estados = d.estados;
-    const rows = new Set(S.leads.map(l => l.row));
+    const rows = new Set(S.leads.map(keyOf));
     S.fresh = prev ? new Set([...rows].filter(r => !prev.has(r))) : new Set();
     S.seen = rows;
     render();
@@ -409,6 +418,7 @@ async function load(manual) {
 
 /* ---------- helpers ---------- */
 const byRow = r => S.leads.find(x => x.row === r);
+const keyOf = l => l.email.toLowerCase() + "|" + l.fecha; // identifica al lead aunque cambie su fila en la hoja
 function ago(iso) {
   if (!iso) return "";
   const d = new Date(iso), m = (Date.now() - d) / 6e4;
@@ -483,7 +493,7 @@ function render() {
     const anim = S.firstPaint || S._reflow;
     $("#list").innerHTML = V.map((l, i) => {
       const n = notesOf(l).length, c = colorOf(l.estado);
-      const fresh = S.fresh && S.fresh.has(l.row);
+      const fresh = S.fresh && S.fresh.has(keyOf(l));
       return `<button class="lead${S.open === l.row ? " sel" : ""}${fresh ? " fresh" : ""}" data-row="${l.row}" style="${anim ? `animation-delay:${Math.min(i, 14) * .035}s` : "animation:none"}">
         <span class="av" style="background:${avColor(l.email || l.nombre)}">${esc(initials(l.nombre))}</span>
         <span class="who"><b><span class="nm">${esc(l.nombre)}</span>${fresh ? '<span class="tag new">NUEVO</span>' : ""}${dups[l.email.toLowerCase()] > 1 ? '<span class="tag dup">DUPLICADO</span>' : ""}${n ? `<span class="tag nn">✎ ${n}</span>` : ""}</b>
@@ -537,6 +547,7 @@ function paintDetail(l, keepDraft) {
     <div><div class="composer"><textarea id="nota" rows="1" placeholder="Escribe una nota…" maxlength="1000"></textarea><button id="addNota" aria-label="Guardar nota">${ICONS.send}</button></div>
     <p class="hint">${isDesk() ? "⌘ + Enter para guardar" : "Se guarda con fecha y hora"}</p></div>
     <ul class="timeline" id="tl">${timelineHTML(l, notes, reg)}</ul>
+    <div class="danger-zone"><button class="del" id="delLead"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg><span>Eliminar lead</span></button><p class="del-hint" id="delHint"></p></div>
   </div>`;
   const ta = $("#nota"); ta.value = draft;
   const grow = () => { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 140) + "px"; };
@@ -559,12 +570,33 @@ function closeDetail() {
 
 /* ---------- eventos ---------- */
 document.addEventListener("click", async e => {
-  const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave");
+  const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave,#delLead");
   if (!t) return;
   if (t.dataset.f) { S.filter = t.dataset.f; S._reflow = true; render(); return; }
   if (t.classList.contains("lead")) { openDetail(+t.dataset.row); return; }
   if (t.id === "dClose") { closeDetail(); return; }
   const l = byRow(S.open); if (!l) return;
+  if (t.id === "delLead") {
+    if (!t.classList.contains("armed")) {
+      t.classList.add("armed"); t.querySelector("span").textContent = "Sí, eliminar a " + l.nombre.split(/\s+/)[0];
+      $("#delHint").textContent = "Toca otra vez para confirmar. Quedará en la pestaña «Eliminados» de la hoja.";
+      clearTimeout(t._t); t._t = setTimeout(() => { if (document.body.contains(t)) { t.classList.remove("armed"); t.querySelector("span").textContent = "Eliminar lead"; $("#delHint").textContent = ""; } }, 5000);
+      return;
+    }
+    clearTimeout(t._t); t.disabled = true; t.querySelector("span").textContent = "Eliminando…";
+    try {
+      await api({action:"eliminar", token:S.token, row:l.row, email:l.email});
+      const row = document.querySelector(`.lead[data-row="${l.row}"]`);
+      closeDetail();
+      if (row) { row.classList.add("bye"); await new Promise(r => setTimeout(r, 420)); }
+      S.leads = S.leads.filter(x => x !== l); render();
+      toast(l.nombre + " eliminado");
+      load(); // las filas de la hoja se reacomodan: recarga para tener los números al día
+    } catch (err) {
+      if (err.message !== "SESION") { toast(err.message, false); t.disabled = false; t.classList.remove("armed"); t.querySelector("span").textContent = "Eliminar lead"; $("#delHint").textContent = ""; }
+    }
+    return;
+  }
   if (t.id === "otra") { const r = $("#customRow"); r.hidden = !r.hidden; if (!r.hidden) $("#customIn").focus(); return; }
   if (t.id === "customSave") { const v = $("#customIn").value.replace(/\s+/g, " ").trim(); if (!v) { $("#customIn").focus(); return; } await clasificar(l, v); return; }
   if (t.dataset.estado) { await clasificar(l, t.dataset.estado); return; }
