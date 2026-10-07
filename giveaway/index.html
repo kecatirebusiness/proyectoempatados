@@ -218,6 +218,11 @@ footer a{color:inherit}
         <label for="email">Email</label>
         <svg class="ok" viewBox="0 0 24 24" fill="none" stroke="#504D13" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
       </div>
+      <div class="field" id="f-phone">
+        <input id="phone" name="telefono" type="tel" placeholder=" " autocomplete="tel" inputmode="tel" required maxlength="25">
+        <label for="phone">Teléfono (WhatsApp)</label>
+        <svg class="ok" viewBox="0 0 24 24" fill="none" stroke="#504D13" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
       <!-- honeypot anti-spam -->
       <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
       <p class="err" id="err" role="alert"></p>
@@ -226,7 +231,7 @@ footer a{color:inherit}
         <span id="sendLabel">Continuar</span>
         <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
-      <p class="fine">Usaremos tu email solo para contactarte si ganas.</p>
+      <p class="fine">Usaremos tus datos solo para contactarte si ganas.</p>
     </form>
 
     <!-- PASO 2 -->
@@ -272,6 +277,8 @@ footer a{color:inherit}
 /* ====== CONFIG ====== */
 // Correo que recibe cada registro (FormSubmit). Tras activarlo, reemplazar por el alias que da FormSubmit.
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/info@proyectoempatados.com";
+// URL /exec del Apps Script "Giveaway - Recibir registros" (guarda cada registro en la hoja Leads)
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwust9DBu-ZYQWH7ZMoFVop1q5qeo--RNLdhvvkR1rJsb4kMyB6bFi2lJZAYrQxhKyK/exec";
 const IG_URL = "https://www.instagram.com/proyectoempatados/";
 const STORE = "pe-giveaway";
 
@@ -347,7 +354,8 @@ function live(id, test) {
   const f = $("#f-" + id), i = $("#" + id);
   i.addEventListener("input", () => { f.classList.toggle("valid", test(i.value)); f.classList.remove("bad"); $("#err").textContent = ""; });
 }
-live("name", nameOk); live("email", emailOk);
+const phoneOk = v => { const d = v.replace(/\D/g, ""); return d.length >= 7 && d.length <= 15 && /^[\d+()\s.-]+$/.test(v.trim()); };
+live("name", nameOk); live("email", emailOk); live("phone", phoneOk);
 
 function firstName(n) { return n.trim().split(/\s+/)[0]; }
 function showStep2(name) {
@@ -357,10 +365,11 @@ function showStep2(name) {
 /* ---- paso 1: enviar ---- */
 $("#step1").addEventListener("submit", async e => {
   e.preventDefault();
-  const name = $("#name").value, email = $("#email").value;
+  const name = $("#name").value, email = $("#email").value, phone = $("#phone").value;
   const bad = [];
   if (!nameOk(name)) bad.push(["name", "Escribe tu nombre."]);
   if (!emailOk(email)) bad.push(["email", "Revisa tu email, parece incompleto."]);
+  if (!phoneOk(phone)) bad.push(["phone", "Escribe tu teléfono con código de país, ej. +1 305 555 1234."]);
   if (bad.length) {
     bad.forEach(([id]) => { const f = $("#f-" + id); f.classList.remove("bad"); void f.offsetWidth; f.classList.add("bad"); });
     $("#err").textContent = bad[0][1]; $("#" + bad[0][0]).focus(); return;
@@ -369,12 +378,18 @@ $("#step1").addEventListener("submit", async e => {
 
   const btn = $("#send");
   btn.disabled = true; $("#sendLabel").innerHTML = '<span class="spinner"></span>';
+  // copia a la hoja de Google (no bloquea el flujo si falla)
+  if (SHEET_ENDPOINT) fetch(SHEET_ENDPOINT, {
+    method: "POST", mode: "no-cors", keepalive: true,
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify({nombre: name.trim(), email: email.trim(), telefono: phone.trim(), fuente: "giveaway"})
+  }).catch(() => {});
   try {
     const res = await fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: {"Content-Type": "application/json", "Accept": "application/json"},
       body: JSON.stringify({
-        nombre: name.trim(), email: email.trim(),
+        nombre: name.trim(), email: email.trim(), telefono: phone.trim(),
         _subject: `Nuevo registro giveaway: ${name.trim()}`,
         _template: "table", _captcha: "false",
         fecha: new Date().toLocaleString("es")
