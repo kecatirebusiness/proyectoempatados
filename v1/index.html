@@ -8,14 +8,14 @@
 <meta name="description" content="Desde Miami conectamos personas, recursos e iniciativas para apoyar el bienestar animal en Venezuela y Latinoamérica. Conviértete en Empatado desde $5/mes.">
 <meta property="og:title" content="Proyecto Empatados">
 <meta property="og:description" content="Que sentir empatía por un animal no se quede solamente en sentir. Conviértete en Empatado desde $5/mes.">
-<meta property="og:image" content="https://www.proyectoempatados.com/v1/img/hero.jpg">
+<meta property="og:image" content="https://www.proyectoempatados.com/v1/img/adopciones.jpg">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/giveaway/assets/logo.png">
 <link rel="apple-touch-icon" href="/giveaway/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/hero.jpg">
+<link rel="preload" as="image" href="img/adopciones.jpg">
 <style>
 :root{
   --olive:#504D13;--olive-2:#5A5718;--olive-3:#45420F;--olive-4:#363409;--sage:#918E55;--sage-2:#C9C7A3;
@@ -32,6 +32,7 @@ a{color:inherit}
 .serif{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"WONK" 1}
 .hand{font-family:"Caveat",cursive}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.hide-m{display:none!important}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* ---------- botones ---------- */
@@ -60,10 +61,27 @@ nav .links a:hover{opacity:1}
 nav .btn{height:42px;padding:0 18px;font-size:14px}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:var(--pink);overflow:hidden;background:var(--olive-4)}
-.hero-img{position:absolute;inset:-6% 0 0;background:url(img/hero.jpg) center 30%/cover no-repeat;will-change:transform;transform:scale(1.08)}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(54,52,9,.55) 0%,rgba(54,52,9,.05) 28%,rgba(54,52,9,.35) 52%,rgba(54,52,9,.94) 82%,var(--olive) 100%)}
-.hero-in{position:relative;z-index:2;width:100%;padding:0 var(--pad) calc(env(safe-area-inset-bottom) + 34px);max-width:var(--maxw);margin:0 auto}
+.hero{position:relative;min-height:100svh;color:var(--pink);overflow:hidden;background:radial-gradient(120% 70% at 50% 100%,var(--olive-2),var(--olive) 55%,var(--olive-3));
+  padding:calc(env(safe-area-inset-top) + 84px) 0 36px}
+.hero::after{content:"";position:absolute;inset:0;opacity:.06;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero .glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,222,228,.22),transparent 65%);left:50%;top:58%;transform:translate(-50%,-50%);pointer-events:none;animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.15)}}
+.hero-in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;gap:20px}
+.hero-copy{text-align:left}
+.stack{position:relative;width:min(80%,330px);aspect-ratio:1/1.02;margin:0 auto}
+.stack .sw{position:absolute;width:58%}
+.stack figure{width:100%;aspect-ratio:3/4;border-radius:22px;overflow:hidden;border:5px solid var(--pink);box-shadow:0 30px 50px -22px rgba(0,0,0,.65);background:var(--olive-3)}
+.stack figure img{width:100%;height:100%;object-fit:cover}
+.stack .s1{left:0;top:12%}.stack .s1 figure{transform:rotate(-9deg);animation:bob1 6s ease-in-out infinite}
+.stack .s2{right:0;top:8%}.stack .s2 figure{transform:rotate(8deg);animation:bob2 7s ease-in-out infinite}
+.stack .s3{left:21%;top:0;width:60%;z-index:2}.stack .s3 figure{transform:rotate(-1deg);animation:bob3 6.5s ease-in-out infinite}
+@keyframes bob1{50%{transform:rotate(-11deg) translateY(-8px)}}
+@keyframes bob2{50%{transform:rotate(10deg) translateY(-10px)}}
+@keyframes bob3{50%{transform:rotate(1deg) translateY(-6px)}}
+.stack .heart{z-index:3}
+.stack .heart.a{left:-2%;top:2%;width:30px}
+.stack .heart.b{right:2%;bottom:6%;width:24px;animation-delay:-2s}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;background:rgba(255,222,228,.14);border:1px solid rgba(255,222,228,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{transform:scale(1.7);opacity:.35}}
@@ -71,7 +89,7 @@ nav .btn{height:42px;padding:0 18px;font-size:14px}
 .hero h1 em{font-style:italic;font-weight:400;color:var(--pink-3)}
 .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
 .line > span{display:inline-block}
-.hero p.lede{font-size:17px;color:rgba(255,222,228,.86);max-width:36ch}
+.hero p.lede{font-size:17px;color:rgba(255,222,228,.86);max-width:38ch}
 .hero .ctas{display:flex;flex-direction:column;gap:10px;margin-top:24px}
 .hero .ctas .btn{width:100%}
 .scroll-cue{display:flex;align-items:center;gap:10px;margin-top:22px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,222,228,.7)}
@@ -104,8 +122,8 @@ h2 em{font-style:italic;font-weight:400;color:var(--sage)}
 
 /* quiénes somos */
 .about-grid{display:grid;gap:34px}
-.founder{position:relative;max-width:420px;margin:20px auto 40px;width:92%}
-.founder .blob{position:absolute;inset:6% -4% 4%;border-radius:46% 54% 40% 60%/55% 45% 55% 45%;background:radial-gradient(circle at 30% 30%,var(--pink),var(--pink-3) 60%,#efb3c0);animation:morph 12s ease-in-out infinite}
+.founder{position:relative;max-width:420px;margin:20px auto 10px;width:92%}
+.founder .blob{position:absolute;inset:4% -4% auto;aspect-ratio:1.23;border-radius:46% 54% 40% 60%/55% 45% 55% 45%;background:radial-gradient(circle at 30% 30%,var(--pink),var(--pink-3) 60%,#efb3c0);animation:morph 12s ease-in-out infinite}
 @keyframes morph{50%{border-radius:58% 42% 55% 45%/42% 58% 42% 58%}}
 .founder img{position:relative;width:100%;filter:drop-shadow(0 30px 40px rgba(80,77,19,.25))}
 .pet{position:absolute;font-size:34px;color:#E28A9F;font-weight:700;transform:rotate(-14deg);text-shadow:0 2px 0 #fff}
@@ -113,9 +131,10 @@ h2 em{font-style:italic;font-weight:400;color:var(--sage)}
 .pet.h{right:-6%;top:30%;transform:rotate(12deg)}
 .heart{position:absolute;width:26px;fill:none;stroke:#E28A9F;stroke-width:2;animation:floaty 5s ease-in-out infinite}
 @keyframes floaty{50%{transform:translateY(-10px) rotate(8deg)}}
-.badge-founder{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);background:#fff;border-radius:18px;padding:12px 18px;text-align:center;box-shadow:0 18px 40px -18px rgba(54,52,9,.45);white-space:nowrap}
+.badge-founder{position:relative;display:block;width:max-content;margin:18px auto 0;background:#fff;border-radius:18px;padding:12px 18px;text-align:center;box-shadow:0 18px 40px -18px rgba(54,52,9,.45);white-space:nowrap}
 .badge-founder b{display:block;font:600 19px/1.1 "Fraunces",serif}
 .badge-founder span{font-size:11px;font-weight:800;letter-spacing:.16em;color:var(--sage)}
+.badge-founder em{display:block;font-style:normal;font-size:22px;color:#D9768D;margin-top:2px}
 .stats-mini{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
 .stats-mini div{background:#fff;border:1px solid rgba(80,77,19,.08);border-radius:18px;padding:14px}
 .stats-mini b{display:block;font:650 20px/1.1 "Fraunces",serif;color:var(--olive)}
@@ -148,10 +167,27 @@ h2 em{font-style:italic;font-weight:400;color:var(--sage)}
 .impact .quote{margin-top:40px;font:500 italic clamp(26px,7vw,44px)/1.15 "Fraunces",serif;color:var(--pink);text-wrap:balance}
 .impact .quote b{font-style:normal;font-weight:700}
 
+/* instagram */
+.ig-head{display:flex;flex-direction:column;gap:6px}
+.ig-user{display:inline-flex;align-items:center;gap:12px;margin-top:6px;text-decoration:none}
+.ig-ring{width:52px;height:52px;border-radius:50%;padding:3px;background:conic-gradient(#FEDA75,#FA7E1E,#D62976,#962FBF,#4F5BD5,#FEDA75);flex:none}
+.ig-ring img{width:100%;height:100%;border-radius:50%;background:var(--olive);object-fit:contain;padding:6px;border:2px solid var(--cream)}
+.ig-user b{display:block;font-size:16px}
+.ig-user span{font-size:13px;color:var(--ink-2)}
+.ig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:22px}
+.ig-item{position:relative;display:block;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--cream-2)}
+.ig-item img,.ig-item video{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.ig-item:hover img,.ig-item:hover video{transform:scale(1.05)}
+.ig-type{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff}
+.ig-type svg{width:14px;height:14px}
+.ig-more{display:flex;justify-content:center;margin-top:22px}
+.btn-ig{color:#fff;background:linear-gradient(100deg,#FA7E1E,#D62976 45%,#962FBF 80%,#4F5BD5);box-shadow:0 14px 30px -12px rgba(214,41,118,.55)}
+
 /* fuerza azul */
 .partner{display:grid;gap:28px}
 .partner .photo{position:relative;border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(54,52,9,.6)}
 .partner .photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.partner .cap{margin-top:12px;font-size:14px;font-weight:700;color:var(--ink-2);text-align:center}
 .partner .tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--olive);border-radius:999px;padding:8px 14px;font-size:12px;font-weight:800}
 .partner .mini{position:absolute;right:-6px;top:-18px;width:38%;border-radius:20px;overflow:hidden;border:5px solid var(--cream);transform:rotate(6deg);box-shadow:0 18px 40px -16px rgba(54,52,9,.5)}
 .partner .mini img{aspect-ratio:1;object-fit:cover}
@@ -219,11 +255,10 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   .sec{padding:140px 0}
   nav .links{display:flex}
   nav.top img{width:70px}
-  .hero{align-items:center;min-height:max(100vh,720px)}
-  .hero::before{background:linear-gradient(90deg,var(--olive) 0%,var(--olive) 46%,rgba(80,77,19,.0) 72%),linear-gradient(0deg,var(--olive) 0%,rgba(80,77,19,0) 30%)}
-  .hero-img{inset:110px var(--pad) 70px auto;width:min(44vw,600px);border-radius:36px;background-position:center 35%;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);z-index:1}
-  .hero-in{padding:120px var(--pad) 60px}
-  .hero-in > *{max-width:min(54vw,640px)}
+  .hero{min-height:max(100vh,720px);display:flex;align-items:center;padding-top:110px}
+  .hero-in{grid-template-columns:1.1fr .9fr;align-items:center;gap:60px;width:100%}
+  .stack{width:min(100%,460px)}
+  .hero h1{font-size:clamp(56px,6.2vw,92px)}
   .hero .ctas{flex-direction:row}
   .hero .ctas .btn{width:auto}
   .hero p.lede{font-size:20px}
@@ -235,6 +270,7 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   .gallery .col:nth-child(2),.gallery .col:nth-child(4){margin-top:90px}
   .partner{grid-template-columns:1fr 1fr;align-items:center;gap:70px}
   .team{grid-template-columns:repeat(2,1fr);gap:16px}
+  .ig-grid{grid-template-columns:repeat(4,1fr);gap:14px}
   .tiers{grid-template-columns:repeat(4,1fr)}
   .tier{grid-template-columns:1fr;text-align:center;justify-items:center;padding:28px 22px}
   .tier .ico{grid-row:auto}
@@ -242,6 +278,8 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   .final .ctas{flex-direction:row;max-width:none;justify-content:center}
   .final .ctas .btn{width:auto}
   .dock{display:none}
+  .hide-m{display:flex!important}
+  .show-m{display:none!important}
   footer{padding-bottom:50px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -261,20 +299,32 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <div class="hero-img" id="heroImg" role="img" aria-label="Voluntarias de Proyecto Empatados alimentando perros en la calle"></div>
+  <div class="glow"></div>
   <div class="hero-in">
-    <span class="eyebrow h-in"><i></i>Miami 🇺🇸 → Venezuela 🇻🇪</span>
-    <h1 class="serif" id="heroTitle">
-      <span class="line"><span>Que la empatía</span></span>
-      <span class="line"><span>no se quede</span></span>
-      <span class="line"><span><em>solo en sentir.</em></span></span>
-    </h1>
-    <p class="lede h-in">Trabajamos para mejorar la vida de animales en situación de vulnerabilidad a través de apoyo directo, educación, comunidad y colaboración.</p>
-    <div class="ctas h-in">
+    <div class="hero-copy">
+      <span class="eyebrow h-in"><i></i>Miami 🇺🇸 → Venezuela 🇻🇪</span>
+      <h1 class="serif" id="heroTitle">
+        <span class="line"><span>Que la empatía</span></span>
+        <span class="line"><span>no se quede</span></span>
+        <span class="line"><span><em>solo en sentir.</em></span></span>
+      </h1>
+      <p class="lede h-in">Trabajamos para mejorar la vida de animales en situación de vulnerabilidad a través de apoyo directo, educación, comunidad y colaboración.</p>
+      <div class="ctas h-in hide-m">
+        <a class="btn btn-pink" href="#unete">Conviértete en Empatado <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="https://linktr.ee/proyectoempatados" target="_blank" rel="noopener">Quiero ayudar</a>
+      </div>
+    </div>
+    <div class="stack" id="stack" aria-hidden="true">
+      <div class="sw s1"><figure><img src="img/impacto-3.jpg" alt=""></figure></div>
+      <div class="sw s2"><figure><img src="img/apoyo-animal.jpg" alt=""></figure></div>
+      <div class="sw s3"><figure><img src="img/adopciones.jpg" alt=""></figure></div>
+      <svg class="heart a" viewBox="0 0 24 24"><use href="#heart"/></svg>
+      <svg class="heart b" viewBox="0 0 24 24"><use href="#heart"/></svg>
+    </div>
+    <div class="ctas h-in show-m">
       <a class="btn btn-pink" href="#unete">Conviértete en Empatado <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <a class="btn btn-ghost" href="https://linktr.ee/proyectoempatados" target="_blank" rel="noopener">Quiero ayudar</a>
     </div>
-    <div class="scroll-cue h-in"><span></span>Desliza</div>
   </div>
 </header>
 
@@ -303,11 +353,9 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
     <figure class="founder" id="founder">
       <div class="blob"></div>
       <img src="img/fundadora.webp" alt="Isabella Mundo Barela, fundadora, con Rihanna y Happy" loading="lazy" width="1000" height="810">
-      <span class="pet r hand">Rihanna</span>
-      <span class="pet h hand">Happy</span>
       <svg class="heart" style="left:8%;top:10%" viewBox="0 0 24 24"><use href="#heart"/></svg>
       <svg class="heart" style="right:10%;bottom:34%;animation-delay:-2s" viewBox="0 0 24 24"><use href="#heart"/></svg>
-      <figcaption class="badge-founder"><b>Isabella Mundo Barela</b><span>FUNDADORA</span></figcaption>
+      <figcaption class="badge-founder"><b>Isabella Mundo Barela</b><span>FUNDADORA</span><em class="hand">con Rihanna y Happy 🐾</em></figcaption>
     </figure>
   </div>
 </section>
@@ -318,13 +366,13 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
     <span class="kicker rv">¿Qué hacemos?</span>
     <h2 class="split">Ayuda real, <em>donde más se necesita.</em></h2>
     <div class="cards" id="cards">
-      <article class="card"><div class="ph"><img src="img/apoyo-animal.jpg" alt="Perro comiendo croquetas" loading="lazy"><span class="num">01</span></div>
+      <article class="card"><div class="ph"><img src="img/apoyo-animal.jpg" alt="Perro comiendo croquetas" loading="lazy"></div>
         <div class="tx"><h3>🐾 Apoyo animal</h3><p>Alimentación, atención veterinaria, rescates y ayuda para animales en situaciones vulnerables.</p></div></article>
-      <article class="card"><div class="ph"><img src="img/donaciones.jpg" alt="Maletero lleno de donaciones" loading="lazy"><span class="num">02</span></div>
+      <article class="card"><div class="ph"><img src="img/donaciones.jpg" alt="Maletero lleno de donaciones" loading="lazy"></div>
         <div class="tx"><h3>📦 Donaciones y ayuda comunitaria</h3><p>Recolectamos y canalizamos insumos hacia casos y proyectos que necesitan apoyo.</p></div></article>
-      <article class="card"><div class="ph"><img src="img/adopciones.jpg" alt="Cachorros rescatados" loading="lazy"><span class="num">03</span></div>
+      <article class="card"><div class="ph"><img src="img/adopciones.jpg" alt="Cachorros rescatados" loading="lazy"></div>
         <div class="tx"><h3>🏡 Adopciones responsables</h3><p>Ayudamos a conectar animales que necesitan hogar con familias comprometidas con su bienestar.</p></div></article>
-      <article class="card"><div class="ph"><img src="img/colaboraciones.jpg" alt="Voluntarios en jornada de limpieza" loading="lazy"><span class="num">04</span></div>
+      <article class="card"><div class="ph"><img src="img/colaboraciones.jpg" alt="Voluntarios en jornada de limpieza" loading="lazy"></div>
         <div class="tx"><h3>🤝 Colaboraciones</h3><p>Nos sumamos a iniciativas y organizaciones que ya están haciendo trabajo valioso en sus comunidades.</p></div></article>
     </div>
     <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
@@ -347,12 +395,28 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   </div>
 </section>
 
+<!-- ===== INSTAGRAM ===== -->
+<section class="sec" id="instagram" style="padding-bottom:40px">
+  <div class="wrap">
+    <div class="ig-head">
+      <span class="kicker rv">En Instagram</span>
+      <h2 class="split">Lo que pasa <em>cada semana.</em></h2>
+      <a class="ig-user rv" href="https://www.instagram.com/proyectoempatados/" target="_blank" rel="noopener">
+        <span class="ig-ring"><img src="/giveaway/assets/logo.png" alt=""></span>
+        <span><b>@proyectoempatados</b><span>Rescates, adopciones y amor animal</span></span>
+      </a>
+    </div>
+    <div class="ig-grid" id="igGrid"></div>
+    <div class="ig-more rv"><a class="btn btn-ig" href="https://www.instagram.com/proyectoempatados/" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>Seguir en Instagram</a></div>
+  </div>
+</section>
+
 <!-- ===== FUERZA AZUL ===== -->
 <section class="sec" id="fuerza-azul">
   <div class="wrap partner">
     <div class="photo-wrap rv-img" style="position:relative">
-      <div class="photo"><img src="img/fuerza-azul.jpg" alt="Jornada de limpieza de Fuerza Azul en La Guaira" loading="lazy"><span class="tag">🤝 Aliado · Fuerza Azul</span></div>
-      <div class="mini"><img src="img/fuerza-azul-2.jpg" alt="Voluntarios de Fuerza Azul" loading="lazy"></div>
+      <div class="photo"><img src="img/fuerza-azul.jpg" alt="Jornada de limpieza de Fuerza Azul en La Guaira" loading="lazy"></div>
+      <p class="cap">🤝 Jornadas de Fuerza Azul en La Guaira</p>
     </div>
     <div>
       <span class="kicker rv">Colaboraciones</span>
@@ -460,6 +524,57 @@ function onScroll() {
 }
 addEventListener("scroll", onScroll, {passive: true}); onScroll();
 
+/* ---------- Instagram ----------
+   Feed automático de Behold (behold.so): cada post nuevo de @proyectoempatados aparece aquí solo.
+   Pega aquí el "Feed ID" de Behold. Si está vacío o falla, se muestran fotos propias con link al perfil. */
+const BEHOLD_FEED_ID = "";
+const IG_PROFILE = "https://www.instagram.com/proyectoempatados/";
+const IG_FALLBACK = ["impacto-4", "adopciones", "impacto-3", "impacto-5", "apoyo-animal", "impacto-8", "donaciones", "impacto-2"];
+const icoVideo = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const icoAlbum = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>';
+function igTile(p) {
+  const a = document.createElement("a");
+  a.className = "ig-item"; a.href = p.link; a.target = "_blank"; a.rel = "noopener";
+  if (p.video) {
+    const v = document.createElement("video");
+    Object.assign(v, {muted: true, loop: true, playsInline: true, preload: "none", poster: p.img});
+    v.setAttribute("muted", ""); v.setAttribute("playsinline", ""); v.dataset.src = p.video;
+    a.appendChild(v);
+  } else {
+    const i = new Image(); i.src = p.img; i.alt = p.alt || "Publicación de Instagram de Proyecto Empatados"; i.loading = "lazy"; a.appendChild(i);
+  }
+  if (p.type) { const t = document.createElement("span"); t.className = "ig-type"; t.innerHTML = p.type === "VIDEO" ? icoVideo : icoAlbum; a.appendChild(t); }
+  return a;
+}
+async function loadInstagram() {
+  const grid = $("#igGrid");
+  let posts = [];
+  if (BEHOLD_FEED_ID) {
+    try {
+      const r = await fetch("https://feeds.behold.so/" + BEHOLD_FEED_ID);
+      const d = await r.json();
+      const list = Array.isArray(d) ? d : (d.posts || []);
+      posts = list.slice(0, 8).map(x => {
+        const type = x.mediaType || x.media_type;
+        const big = x.sizes && (x.sizes.large || x.sizes.medium);
+        return {link: x.permalink, type: type === "IMAGE" ? null : type,
+          img: (big && big.mediaUrl) || x.thumbnailUrl || x.thumbnail_url || x.mediaUrl || x.media_url,
+          video: type === "VIDEO" ? (x.mediaUrl || x.media_url) : null,
+          alt: (x.prunedCaption || x.caption || "").slice(0, 120)};
+      }).filter(p => p.img);
+    } catch (e) { posts = []; }
+  }
+  if (!posts.length) posts = IG_FALLBACK.map(n => ({link: IG_PROFILE, img: "img/" + n + ".jpg"}));
+  posts.forEach(p => grid.appendChild(igTile(p)));
+  // los videos se cargan y reproducen solo cuando están en pantalla
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), {threshold: .35});
+  grid.querySelectorAll("video").forEach(v => io.observe(v));
+  if (window.gsap && !reduce) gsap.from(grid.children, {y: 50, opacity: 0, scale: .94, duration: 1, ease: "expo.out", stagger: .07, scrollTrigger: {trigger: grid, start: "top 88%"}});
+}
+
 /* puntos del carrusel */
 const cards = $("#cards"), dots = $$("#dots i");
 cards.addEventListener("scroll", () => {
@@ -479,11 +594,11 @@ if (window.gsap && !reduce) {
 
   // hero
   const tl = gsap.timeline({defaults: {ease: "expo.out"}});
-  tl.from("#heroImg", {scale: 1.35, duration: 2.2, ease: "power3.out"})
-    .from("#heroTitle .line > span", {yPercent: 115, rotate: 4, duration: 1.3, stagger: .12}, .25)
-    .from(".h-in", {y: 26, opacity: 0, duration: 1, stagger: .1}, .6);
-  gsap.to("#heroImg", {yPercent: 14, ease: "none", scrollTrigger: {trigger: ".hero", start: "top top", end: "bottom top", scrub: true}});
-  gsap.to(".hero-in", {yPercent: -18, opacity: .2, ease: "none", scrollTrigger: {trigger: ".hero", start: "top top", end: "bottom top", scrub: true}});
+  tl.from("#heroTitle .line > span", {yPercent: 115, rotate: 4, duration: 1.3, stagger: .12}, .1)
+    .from(".h-in", {y: 26, opacity: 0, duration: 1, stagger: .1}, .45)
+    .from("#stack .sw", {y: 160, opacity: 0, rotate: (i) => [-25, 25, 0][i], scale: .8, duration: 1.4, stagger: .14, ease: "expo.out"}, .35)
+    .from("#stack .heart", {scale: 0, duration: .8, stagger: .15, ease: "back.out(3)"}, 1.1);
+  gsap.to("#stack", {yPercent: -12, ease: "none", scrollTrigger: {trigger: ".hero", start: "top top", end: "bottom top", scrub: true}});
 
   // títulos palabra por palabra
   $$(".split").forEach(h => {
@@ -547,6 +662,7 @@ if (window.gsap && !reduce) {
 
   addEventListener("load", () => ScrollTrigger.refresh());
 }
+loadInstagram().then(() => window.ScrollTrigger && ScrollTrigger.refresh());
 </script>
 </body>
 </html>
