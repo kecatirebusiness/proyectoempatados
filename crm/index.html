@@ -187,7 +187,7 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .actions a.wa svg{color:#25A35A}
 .actions a.off{opacity:.35;pointer-events:none}
 .sec{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:22px 0 10px}
-.stage{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.stage{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}
 .stage button{position:relative;height:58px;border-radius:13px;border:1px solid var(--line-2);background:#fff;font-size:11px;font-weight:800;color:var(--ink-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;transition:transform .3s var(--spring),color .3s,border-color .3s}
 .stage button::before{content:"";position:absolute;inset:0;background:var(--c);transform:scale(0);border-radius:50%;transition:transform .5s var(--ease);z-index:0}
 .stage button > *{position:relative;z-index:1}
@@ -196,6 +196,12 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .stage button.on{color:#fff;border-color:transparent;transform:translateY(-2px)}
 .stage button.on::before{transform:scale(2.2)}
 .stage button.on .dot{background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+.stage button.other{border-style:dashed;color:var(--ink-3)}
+.stage button.other .plus{font-size:16px;line-height:10px;font-weight:700}
+.custom{display:flex;gap:8px;margin-top:8px;animation:rise .35s var(--ease) both}
+.custom input{flex:1;height:44px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface-2);padding:0 14px;font-size:15px;font-weight:600;outline:none}
+.custom input:focus{border-color:var(--olive);background:#fff;box-shadow:0 0 0 4px rgba(80,77,19,.08)}
+.custom button{flex:none;height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--olive);color:var(--pink);font-weight:800;font-size:13px}
 .composer{display:flex;gap:8px;align-items:flex-end;background:var(--surface-2);border:1px solid var(--line-2);border-radius:16px;padding:6px 6px 6px 14px;transition:border-color .2s,box-shadow .2s}
 .composer:focus-within{border-color:var(--olive);box-shadow:0 0 0 4px rgba(80,77,19,.08);background:#fff}
 .composer textarea{flex:1;min-height:40px;max-height:140px;border:0;background:transparent;padding:10px 0;font-size:15px;line-height:1.35;resize:none;outline:none}
@@ -241,7 +247,6 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .kpi b{font-size:28px}
   .live{display:none}
-  .stage{grid-template-columns:repeat(3,1fr)}
   .brand small{max-width:44vw}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
@@ -314,7 +319,8 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwust9DBu-ZYQWH7ZMoFVop1q5qeo--RNLdhvvkR1rJsb4kMyB6bFi2lJZAYrQxhKyK/exec";
 const KEY = "pe-crm-session";
-const COLORS = {Nuevo:"#2F6FDB",Contactado:"#C27C1A",Interesado:"#7C5CE0",Ganador:"#2F855A",Descartado:"#8C8A7A"};
+const COLORS = {Nuevo:"#2F6FDB",Contactado:"#C27C1A",Voluntario:"#2F855A",Sponsor:"#7C5CE0",Donor:"#B4475A"};
+const CUSTOM = ["#0E7C86","#8C6D1F","#A0522D","#5B6C8F","#6B7F3A","#9C4F96"];
 const AV = ["#504D13","#7A7533","#918E55","#B4475A","#C27C1A","#2F855A","#2F6FDB","#7C5CE0"];
 const ICONS = {
   wa:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>',
@@ -411,6 +417,9 @@ function ago(iso) {
 }
 const initials = n => (String(n).trim().split(/\s+/).slice(0,2).map(w => w[0] || "").join("") || "?").toUpperCase();
 const avColor = s => { let h = 0; for (const c of String(s).toLowerCase()) h = (h * 31 + c.charCodeAt(0)) >>> 0; return AV[h % AV.length]; };
+const colorOf = c => { if (COLORS[c]) return COLORS[c]; let h = 0; for (const ch of String(c).toLowerCase()) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return CUSTOM[h % CUSTOM.length]; };
+// sugeridas + las que el equipo haya escrito a mano
+const cats = () => S.estados.concat([...new Set(S.leads.map(l => l.estado).filter(e => e && !S.estados.includes(e)))].sort((a, b) => a.localeCompare(b, "es")));
 const notesOf = l => String(l.notas || "").split("\n").map(s => s.trim()).filter(Boolean);
 const tint = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
 const dupMap = () => S.leads.reduce((m, l) => (m[l.email.toLowerCase()] = (m[l.email.toLowerCase()] || 0) + 1, m), {});
@@ -445,16 +454,19 @@ function render() {
   // pipeline
   const tot = L.length || 1;
   const bar = $("#pipeBar");
-  if (!bar.children.length) bar.innerHTML = S.estados.map(e => `<i style="background:${COLORS[e]}"></i>`).join("");
-  requestAnimationFrame(() => [...bar.children].forEach((seg, i) => { seg.style.width = (L.filter(l => l.estado === S.estados[i]).length / tot * 100) + "%"; }));
-  $("#pipeLegend").innerHTML = S.estados.map(e => `<span><i style="background:${COLORS[e]}"></i>${e} <b class="num">${L.filter(l => l.estado === e).length}</b></span>`).join("");
-  const won = L.filter(l => l.estado === "Ganador").length, worked = L.filter(l => l.estado !== "Nuevo").length;
-  $("#pipeTotal").textContent = L.length ? `${Math.round(worked / tot * 100)}% trabajados · ${won} ganador${won === 1 ? "" : "es"}` : "";
+  const C = cats(), key = C.join("|");
+  if (bar.dataset.k !== key) { bar.dataset.k = key; bar.innerHTML = C.map(e => `<i style="background:${colorOf(e)}"></i>`).join(""); }
+  requestAnimationFrame(() => [...bar.children].forEach((seg, i) => { seg.style.width = (L.filter(l => l.estado === C[i]).length / tot * 100) + "%"; }));
+  $("#pipeLegend").innerHTML = C.map(e => `<span><i style="background:${colorOf(e)}"></i>${esc(e)} <b class="num">${L.filter(l => l.estado === e).length}</b></span>`).join("");
+  const worked = L.filter(l => l.estado !== "Nuevo").length;
+  $("#pipeTotal").textContent = L.length ? `${Math.round(worked / tot * 100)}% ya clasificados` : "";
 
   // filtros
-  const seg = $("#seg"), opts = ["Todos"].concat(S.estados);
-  if (seg.querySelectorAll("button").length !== opts.length) {
-    seg.innerHTML = '<span class="ind" id="ind"></span>' + opts.map(e => `<button data-f="${esc(e)}">${e !== "Todos" ? `<span class="dot" style="background:${COLORS[e]}"></span>` : ""}${esc(e)}<i class="num"></i></button>`).join("");
+  const seg = $("#seg"), opts = ["Todos"].concat(C);
+  if (!opts.includes(S.filter)) S.filter = "Todos";
+  if (seg.dataset.k !== key) {
+    seg.dataset.k = key;
+    seg.innerHTML = '<span class="ind" id="ind"></span>' + opts.map(e => `<button data-f="${esc(e)}">${e !== "Todos" ? `<span class="dot" style="background:${colorOf(e)}"></span>` : ""}${esc(e)}<i class="num"></i></button>`).join("");
   }
   seg.querySelectorAll("button").forEach(b => {
     const e = b.dataset.f; b.classList.toggle("on", e === S.filter);
@@ -470,7 +482,7 @@ function render() {
   } else {
     const anim = S.firstPaint || S._reflow;
     $("#list").innerHTML = V.map((l, i) => {
-      const n = notesOf(l).length, c = COLORS[l.estado] || "#8C8A7A";
+      const n = notesOf(l).length, c = colorOf(l.estado);
       const fresh = S.fresh && S.fresh.has(l.row);
       return `<button class="lead${S.open === l.row ? " sel" : ""}${fresh ? " fresh" : ""}" data-row="${l.row}" style="${anim ? `animation-delay:${Math.min(i, 14) * .035}s` : "animation:none"}">
         <span class="av" style="background:${avColor(l.email || l.nombre)}">${esc(initials(l.nombre))}</span>
@@ -519,7 +531,8 @@ function paintDetail(l, keepDraft) {
       <a href="mailto:${encodeURIComponent(l.email)}">${ICONS.mail}Email</a>
     </div>
     <p class="sec"><span>Clasificación</span></p>
-    <div class="stage">${S.estados.map(e => `<button data-estado="${esc(e)}" class="${l.estado === e ? "on" : ""}" style="--c:${COLORS[e]}"><span class="dot"></span><span>${esc(e)}</span></button>`).join("")}</div>
+    <div class="stage">${cats().map(e => `<button data-estado="${esc(e)}" class="${l.estado === e ? "on" : ""}" style="--c:${colorOf(e)}"><span class="dot"></span><span>${esc(e)}</span></button>`).join("")}<button class="other" id="otra" style="--c:var(--olive)"><span class="plus">+</span><span>Otra…</span></button></div>
+    <div class="custom" id="customRow" hidden><input id="customIn" maxlength="40" placeholder="Escribe una clasificación" autocomplete="off"><button id="customSave">Guardar</button></div>
     <p class="sec"><span>Notas</span><span>${notes.length || ""}</span></p>
     <div><div class="composer"><textarea id="nota" rows="1" placeholder="Escribe una nota…" maxlength="1000"></textarea><button id="addNota" aria-label="Guardar nota">${ICONS.send}</button></div>
     <p class="hint">${isDesk() ? "⌘ + Enter para guardar" : "Se guarda con fecha y hora"}</p></div>
@@ -546,21 +559,15 @@ function closeDetail() {
 
 /* ---------- eventos ---------- */
 document.addEventListener("click", async e => {
-  const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota");
+  const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave");
   if (!t) return;
   if (t.dataset.f) { S.filter = t.dataset.f; S._reflow = true; render(); return; }
   if (t.classList.contains("lead")) { openDetail(+t.dataset.row); return; }
   if (t.id === "dClose") { closeDetail(); return; }
   const l = byRow(S.open); if (!l) return;
-  if (t.dataset.estado) {
-    const nuevo = t.dataset.estado, antes = l.estado; if (nuevo === antes) return;
-    l.estado = nuevo;
-    document.querySelectorAll(".stage button").forEach(b => b.classList.toggle("on", b.dataset.estado === nuevo));
-    render();
-    try { await api({action:"estado", token:S.token, row:l.row, email:l.email, estado:nuevo}); toast("Clasificado como " + nuevo); }
-    catch (err) { if (err.message !== "SESION") { l.estado = antes; render(); paintDetail(l, true); toast(err.message, false); } }
-    return;
-  }
+  if (t.id === "otra") { const r = $("#customRow"); r.hidden = !r.hidden; if (!r.hidden) $("#customIn").focus(); return; }
+  if (t.id === "customSave") { const v = $("#customIn").value.replace(/\s+/g, " ").trim(); if (!v) { $("#customIn").focus(); return; } await clasificar(l, v); return; }
+  if (t.dataset.estado) { await clasificar(l, t.dataset.estado); return; }
   if (t.id === "addNota") {
     const ta = $("#nota"), txt = ta.value.trim(); if (!txt) { ta.focus(); return; }
     t.disabled = true;
@@ -575,6 +582,14 @@ document.addEventListener("click", async e => {
     finally { t.disabled = false; }
   }
 });
+async function clasificar(l, nuevo) {
+  const antes = l.estado; if (nuevo === antes) return;
+  l.estado = nuevo;
+  render(); paintDetail(l, true);
+  try { await api({action:"estado", token:S.token, row:l.row, email:l.email, estado:nuevo}); toast("Clasificado como " + nuevo); }
+  catch (err) { if (err.message !== "SESION") { l.estado = antes; render(); paintDetail(l, true); toast(err.message, false); } }
+}
+document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.id === "customIn") { e.preventDefault(); $("#customSave").click(); } });
 $("#scrim").onclick = closeDetail;
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeDetail();
