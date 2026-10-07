@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#504D13">
+<title>Proyecto Empatados · Links</title>
+<meta name="description" content="Dona, adopta, sé hogar temporal o súmate al equipo de Proyecto Empatados. Porque la empatía también puede cambiar vidas.">
+<meta property="og:title" content="Proyecto Empatados 🐾">
+<meta property="og:description" content="Porque la empatía también puede cambiar vidas. Dona, adopta o súmate.">
+<meta property="og:image" content="https://www.proyectoempatados.com/v1/img/adopciones.jpg">
+<link rel="icon" href="/giveaway/assets/logo.png">
+<link rel="apple-touch-icon" href="/giveaway/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,500..750,0..100,0..1;1,9..144,400,0..100,0..1&family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#504D13;--olive-2:#5A5718;--olive-3:#45420F;--olive-4:#363409;--sage:#918E55;
+  --pink:#FFDEE4;--pink-2:#D8B9C1;--pink-3:#F6C9D2;--ink:#2E2C0A;--ink-2:#5F5C24;
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden;overflow-x:clip;-webkit-text-size-adjust:100%}
+body{min-height:100dvh;background:var(--olive);color:var(--pink);font-family:"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+.serif{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"WONK" 1}
+
+/* ---------- fondo ---------- */
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(70px)}
+.b1{width:90vmax;height:90vmax;background:var(--olive-2);top:-40vmax;left:-40vmax;animation:drift 18s ease-in-out infinite alternate}
+.b2{width:70vmax;height:70vmax;background:var(--sage);bottom:-40vmax;right:-35vmax;opacity:.35;animation:drift 22s ease-in-out infinite alternate-reverse}
+.b3{width:40vmax;height:40vmax;background:var(--pink-2);top:30%;left:50%;opacity:.1;animation:drift 15s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.12)}}
+.grain{position:fixed;inset:-50%;opacity:.06;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1s steps(4) infinite}
+@keyframes grain{25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-1%,3%)}}
+.paw{position:absolute;bottom:-70px;fill:var(--pink);opacity:0;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(0) rotate(var(--r));opacity:0}10%,85%{opacity:var(--o)}100%{transform:translateY(-120vh) rotate(calc(var(--r) + 40deg));opacity:0}}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 22px) 18px calc(env(safe-area-inset-bottom) + 36px)}
+.top{display:flex;justify-content:flex-end}
+.share{width:42px;height:42px;border-radius:50%;background:rgba(255,222,228,.1);border:1px solid rgba(255,222,228,.2);display:grid;place-items:center;transition:transform .25s var(--spring),background .2s}
+.share:active{transform:scale(.9)}
+
+/* perfil */
+.profile{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:-6px}
+.avatar{position:relative;width:118px;height:118px;border-radius:50%;padding:5px}
+.avatar::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from var(--a),var(--pink),var(--sage),var(--pink-3),var(--pink));animation:turn 5s linear infinite}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes turn{to{--a:360deg}}
+.avatar span{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--olive);border:4px solid var(--olive)}
+.avatar img{width:78%}
+.verified{position:absolute;right:2px;bottom:6px;width:30px;height:30px;border-radius:50%;background:var(--pink);color:var(--olive);display:grid;place-items:center;border:3px solid var(--olive);font-size:14px}
+.profile h1{font-size:30px;font-weight:650;margin-top:14px;letter-spacing:-.01em}
+.profile .handle{font-size:14px;font-weight:700;color:var(--pink-2);margin-top:2px}
+.profile p.bio{font:italic 400 19px/1.35 "Fraunces",serif;color:var(--pink);margin-top:12px;max-width:30ch}
+.socials{display:flex;gap:10px;margin-top:16px}
+.socials a{width:44px;height:44px;border-radius:14px;background:rgba(255,222,228,.1);border:1px solid rgba(255,222,228,.18);display:grid;place-items:center;transition:transform .3s var(--spring),background .2s}
+.socials a:hover{background:rgba(255,222,228,.2);transform:translateY(-3px)}
+.socials a:active{transform:scale(.9)}
+.socials svg{width:20px;height:20px}
+
+/* destacado */
+.hero-card{position:relative;display:block;margin-top:26px;border-radius:26px;padding:20px;background:var(--pink);color:var(--olive);overflow:hidden;isolation:isolate;
+  box-shadow:0 26px 50px -24px rgba(0,0,0,.6);transition:transform .3s var(--spring)}
+.hero-card:active{transform:scale(.98)}
+.hero-card::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);transform:translateX(-120%);animation:shine 4s ease-in-out 1.5s infinite;z-index:-1}
+@keyframes shine{0%,55%{transform:translateX(-120%)}80%,100%{transform:translateX(120%)}}
+.hero-card .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:var(--olive);color:var(--pink);padding:6px 10px;border-radius:999px}
+.hero-card .tag i{width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.7);opacity:.35}}
+.hero-card h2{font:650 26px/1.05 "Fraunces",serif;margin:12px 0 6px;font-variation-settings:"SOFT" 100,"WONK" 1}
+.hero-card h2 em{font-style:italic;font-weight:400}
+.hero-card p{font-size:14px;color:var(--ink-2);max-width:30ch}
+.hero-card .go{position:absolute;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:var(--olive);color:var(--pink);display:grid;place-items:center;transition:transform .3s var(--spring)}
+.hero-card:hover .go{transform:translateX(4px) rotate(-8deg)}
+.hero-card .tiers{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap;padding-right:56px}
+.hero-card .tiers span{font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px;background:rgba(80,77,19,.1)}
+
+/* grupos */
+.group{margin-top:30px}
+.group h3{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--pink-2);margin:0 4px 12px}
+.group h3::after{content:"";flex:1;height:1px;background:rgba(255,222,228,.18)}
+.links{display:grid;gap:10px}
+.link{position:relative;display:flex;align-items:center;gap:14px;width:100%;min-height:70px;padding:12px 14px 12px 12px;border-radius:20px;text-align:left;
+  background:rgba(255,222,228,.08);border:1px solid rgba(255,222,228,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);overflow:hidden;isolation:isolate;
+  transition:transform .35s var(--spring),background .25s,border-color .25s}
+.link::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(260px 120px at var(--mx,50%) var(--my,50%),rgba(255,222,228,.16),transparent 70%);opacity:0;transition:opacity .3s}
+.link:hover{background:rgba(255,222,228,.13);border-color:rgba(255,222,228,.3);transform:translateY(-2px)}
+.link:hover::before{opacity:1}
+.link:active{transform:scale(.97)}
+.ico{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--pink);color:var(--olive)}
+.ico svg{width:22px;height:22px}
+.txt{flex:1;min-width:0}
+.txt b{display:block;font-size:16px;font-weight:700;line-height:1.2}
+.txt span{display:block;font-size:13px;color:var(--pink-2);margin-top:3px;line-height:1.3}
+.arrow{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--pink-2);transition:transform .3s var(--spring),color .2s}
+.link:hover .arrow{transform:translateX(3px);color:var(--pink)}
+.link .copy-pill{width:auto;height:auto;flex:none;font-size:12px;font-weight:800;padding:7px 11px;border-radius:999px;background:var(--pink);color:var(--olive);transition:transform .25s var(--spring)}
+.link.urgent{background:rgba(255,222,228,.95);color:var(--olive);border-color:transparent}
+.link.urgent .ico{background:var(--olive);color:var(--pink)}
+.link.urgent .txt span{color:var(--ink-2)}
+.link.urgent .arrow{color:var(--olive)}
+.link.urgent::after{content:"";position:absolute;inset:-2px;border-radius:22px;border:2px solid var(--pink);animation:ring 2.2s ease-out infinite;pointer-events:none}
+@keyframes ring{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(1.06)}}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pair .link{flex-direction:column;align-items:flex-start;gap:10px;min-height:118px;padding:14px}
+.pair .arrow{position:absolute;top:10px;right:10px}
+
+footer{text-align:center;margin-top:34px;font-size:12px;color:var(--pink-2)}
+footer a{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--pink);margin-bottom:10px}
+footer img{width:44px}
+
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 22px);z-index:50;transform:translate(-50%,calc(100% + 60px));background:var(--pink);color:var(--olive);font-weight:800;font-size:14px;
+  padding:12px 18px;border-radius:999px;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);transition:transform .45s var(--spring);white-space:nowrap}
+.toast.show{transform:translate(-50%,0)}
+.burst{position:fixed;inset:0;pointer-events:none;z-index:40}
+
+/* entrada */
+.in{opacity:0;transform:translateY(22px);animation:rise .9s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.in{opacity:1;transform:none}.paw{display:none}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div id="paws"></div></div>
+<div class="grain" aria-hidden="true"></div>
+<canvas class="burst" id="burst" aria-hidden="true"></canvas>
+
+<main>
+  <div class="top in" style="animation-delay:.05s"><button class="share" id="share" aria-label="Compartir"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v14"/></svg></button></div>
+
+  <header class="profile">
+    <div class="avatar in" style="animation-delay:.1s"><span><img src="/giveaway/assets/logo.png" alt="Proyecto Empatados"></span><b class="verified">🐾</b></div>
+    <h1 class="serif in" style="animation-delay:.2s">Proyecto Empatados</h1>
+    <p class="handle in" style="animation-delay:.25s">@proyectoempatados · Miami → Venezuela</p>
+    <p class="bio in" style="animation-delay:.32s">Porque la empatía también puede cambiar vidas. 🐾</p>
+    <nav class="socials in" style="animation-delay:.4s" aria-label="Redes">
+      <a href="https://www.instagram.com/proyectoempatados/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.proyectoempatados.com/" aria-label="Sitio web"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
+      <a href="https://tally.so/r/1Ay6yL" target="_blank" rel="noopener" aria-label="Contáctanos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 6L2 7"/></svg></a>
+    </nav>
+  </header>
+
+  <a class="hero-card in" style="animation-delay:.5s" href="https://www.proyectoempatados.com/#unete">
+    <span class="tag"><i></i>Apoyo mensual</span>
+    <h2>Conviértete en <em>Empatado</em></h2>
+    <p>Tu aporte de cada mes alimenta, cura y encuentra hogar. Cancélalo cuando quieras.</p>
+    <div class="tiers"><span>$5</span><span>$10</span><span>$25</span><span>$50</span></div>
+    <span class="go"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+  <section class="group">
+    <h3 class="in">Dona hoy</h3>
+    <div class="links">
+      <a class="link in heart-burst" href="https://www.paypal.com/ncp/payment/DZZL526YDTY6N" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.4 21H4.2a.6.6 0 0 1-.6-.7L6.3 3.5a.8.8 0 0 1 .8-.6h6.3c3.1 0 5.2 1.6 4.7 4.8-.6 3.7-3 5.3-6.4 5.3H9.8a.8.8 0 0 0-.8.7L8.2 20.4a.7.7 0 0 1-.8.6z"/><path d="M19.4 8.2c.6 3.6-1.7 6.4-5.6 6.4h-1.4a.8.8 0 0 0-.8.7l-.8 5a.6.6 0 0 1-.6.5H7.8l.3-2" opacity=".55"/></svg></span>
+        <span class="txt"><b>PayPal</b><span>Donación única, en segundos</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <div class="pair">
+        <button class="link in copy" data-copy="Proyectoempatados" data-msg="Copiado: Proyectoempatados (Zelle)">
+          <span class="ico" style="font-weight:900;font-size:20px">Z</span>
+          <span class="txt"><b>Zelle</b><span>Proyectoempatados</span></span>
+          <span class="arrow copy-pill">Copiar</span>
+        </button>
+        <a class="link in copy" href="https://venmo.com/u/proyectoempatados" target="_blank" rel="noopener" data-copy="@proyectoempatados" data-msg="Copiado: @proyectoempatados (Venmo)">
+          <span class="ico" style="font-weight:900;font-size:20px">V</span>
+          <span class="txt"><b>Venmo</b><span>@proyectoempatados</span></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+      </div>
+      <a class="link in heart-burst" href="https://gofund.me/8d5d6e6fa" target="_blank" rel="noopener">
+        <span class="ico">✂️</span>
+        <span class="txt"><b>Aporta para 25 esterilizaciones</b><span>Miles de vidas · Campaña en GoFundMe</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3 class="in">Dona insumos</h3>
+    <div class="pair">
+      <a class="link in" href="https://a.co/08SlqATn" target="_blank" rel="noopener">
+        <span class="ico">🐶</span><span class="txt"><b>Lista Amazon</b><span>Para perros</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://a.co/0hu9JSEN" target="_blank" rel="noopener">
+        <span class="ico">🐱</span><span class="txt"><b>Lista Amazon</b><span>Para gatos</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3 class="in">Adopta y ayuda</h3>
+    <div class="links">
+      <a class="link in urgent" href="https://tally.so/r/aQgvGX" target="_blank" rel="noopener">
+        <span class="ico">🚨</span><span class="txt"><b>Reportar un animal que necesita ayuda</b><span>Cuéntanos dónde está y cómo se encuentra</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://tally.so/r/2Eyl7e" target="_blank" rel="noopener">
+        <span class="ico">🐾</span><span class="txt"><b>Solicitud de adopción responsable</b><span>Dale un hogar para siempre</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://tally.so/r/WOBKaa" target="_blank" rel="noopener">
+        <span class="ico">🏡</span><span class="txt"><b>Formulario para hogar temporal</b><span>Abre tu casa mientras encuentran familia</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3 class="in">Súmate</h3>
+    <div class="links">
+      <a class="link in" href="https://tally.so/r/kd1J26" target="_blank" rel="noopener">
+        <span class="ico">💗</span><span class="txt"><b>¿Cómo quieres dejar tu huella?</b><span>Sé voluntario: en Venezuela, Miami o remoto</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://tally.so/r/Pdekb5" target="_blank" rel="noopener">
+        <span class="ico">🤝</span><span class="txt"><b>Hagamos equipo</b><span>Para negocios, marcas y aliados</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://www.proyectoempatados.com/">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="txt"><b>Nuestra web</b><span>proyectoempatados.com</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+      <a class="link in" href="https://tally.so/r/1Ay6yL" target="_blank" rel="noopener">
+        <span class="ico">💌</span><span class="txt"><b>Contáctanos</b><span>Escríbenos, te respondemos</span></span>
+        <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="in">
+    <a href="https://www.proyectoempatados.com/"><img src="/giveaway/assets/logo.png" alt=""></a>
+    <p>Hecho con 💗 desde Miami · Proyecto Empatados</p>
+  </footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+/* entrada en cascada: cada elemento con un retraso creciente */
+let d = .55;
+$$("main .in").forEach(el => { if (!el.style.animationDelay) { el.style.animationDelay = d + "s"; d += .06; } });
+
+/* huellitas flotando */
+if (!reduce) {
+  const paw = '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="42" rx="14" ry="12"/><ellipse cx="14" cy="26" rx="6" ry="8"/><ellipse cx="25" cy="14" rx="6" ry="8"/><ellipse cx="39" cy="14" rx="6" ry="8"/><ellipse cx="50" cy="26" rx="6" ry="8"/></svg>';
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement("div"); p.className = "paw"; p.innerHTML = paw;
+    const s = 18 + Math.random() * 28;
+    p.style.cssText = `left:${Math.random()*100}%;width:${s}px;animation-duration:${15+Math.random()*14}s;animation-delay:${-Math.random()*25}s;--r:${-30+Math.random()*60}deg;--o:${.06+Math.random()*.1}`;
+    $("#paws").appendChild(p);
+  }
+}
+
+/* brillo que sigue el dedo/mouse */
+$$(".link").forEach(l => l.addEventListener("pointermove", e => {
+  const r = l.getBoundingClientRect(); l.style.setProperty("--mx", (e.clientX - r.left) + "px"); l.style.setProperty("--my", (e.clientY - r.top) + "px");
+}));
+
+/* toast */
+function toast(t) { const el = $("#toast"); el.textContent = t; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), 2200); }
+
+/* copiar Zelle / Venmo */
+$$(".copy").forEach(b => b.addEventListener("click", () => {
+  navigator.clipboard && navigator.clipboard.writeText(b.dataset.copy).then(() => toast("✓ " + b.dataset.msg)).catch(() => {});
+}));
+
+/* compartir */
+$("#share").addEventListener("click", async () => {
+  const data = {title: "Proyecto Empatados 🐾", text: "Porque la empatía también puede cambiar vidas.", url: location.href};
+  if (navigator.share) { try { await navigator.share(data); } catch (e) {} }
+  else if (navigator.clipboard) { await navigator.clipboard.writeText(location.href); toast("✓ Link copiado"); }
+});
+
+/* corazones al tocar los links de donación */
+function burst(x, y) {
+  if (reduce) return;
+  const c = $("#burst"), ctx = c.getContext("2d"), dpr = devicePixelRatio || 1;
+  c.width = innerWidth * dpr; c.height = innerHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const cols = ["#FFDEE4", "#F6C9D2", "#D8B9C1", "#918E55"];
+  const ps = Array.from({length: 26}, () => { const a = Math.random() * Math.PI * 2, v = 3 + Math.random() * 6; return {x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 4, s: 10 + Math.random() * 12, r: Math.random() * 6, life: 1, c: cols[Math.random() * cols.length | 0], t: Math.random() < .6 ? "♥" : "🐾"}; });
+  (function tick() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight); let alive = false;
+    for (const p of ps) { p.vy += .25; p.x += p.vx; p.y += p.vy; p.r += .05; p.life -= .02; if (p.life <= 0) continue; alive = true;
+      ctx.save(); ctx.globalAlpha = p.life; ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.font = p.s + "px sans-serif"; ctx.textAlign = "center"; ctx.fillText(p.t, 0, 0); ctx.restore(); }
+    if (alive) requestAnimationFrame(tick); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  })();
+}
+$$(".heart-burst, .hero-card, .copy").forEach(l => l.addEventListener("click", e => burst(e.clientX, e.clientY)));
+</script>
+</body>
+</html>
