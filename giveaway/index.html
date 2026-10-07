@@ -279,6 +279,8 @@ footer a{color:inherit}
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/info@proyectoempatados.com";
 // URL /exec del Apps Script "Giveaway - Recibir registros" (guarda cada registro en la hoja Leads)
 const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwust9DBu-ZYQWH7ZMoFVop1q5qeo--RNLdhvvkR1rJsb4kMyB6bFi2lJZAYrQxhKyK/exec";
+// De dónde viene la persona (ej. ?src=stand en el QR del iPad)
+const FUENTE = (new URLSearchParams(location.search).get("src") || "giveaway").replace(/[^\w-]/g, "").slice(0, 30) || "giveaway";
 const IG_URL = "https://www.instagram.com/proyectoempatados/";
 const STORE = "pe-giveaway";
 
@@ -382,14 +384,14 @@ $("#step1").addEventListener("submit", async e => {
   if (SHEET_ENDPOINT) fetch(SHEET_ENDPOINT, {
     method: "POST", mode: "no-cors", keepalive: true,
     headers: {"Content-Type": "text/plain;charset=utf-8"},
-    body: JSON.stringify({nombre: name.trim(), email: email.trim(), telefono: phone.trim(), fuente: "giveaway"})
+    body: JSON.stringify({nombre: name.trim(), email: email.trim(), telefono: phone.trim(), fuente: FUENTE})
   }).catch(() => {});
   try {
     const res = await fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: {"Content-Type": "application/json", "Accept": "application/json"},
       body: JSON.stringify({
-        nombre: name.trim(), email: email.trim(), telefono: phone.trim(),
+        nombre: name.trim(), email: email.trim(), telefono: phone.trim(), fuente: FUENTE,
         _subject: `Nuevo registro giveaway: ${name.trim()}`,
         _template: "table", _captcha: "false",
         fecha: new Date().toLocaleString("es")
