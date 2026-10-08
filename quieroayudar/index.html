@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#504D13">
+<title>Quiero ayudar · Proyecto Empatados</title>
+<meta name="description" content="Sé voluntario de Proyecto Empatados en Miami o en Venezuela.">
+<meta property="og:title" content="Quiero ayudar · Proyecto Empatados">
+<meta property="og:description" content="Súmate como voluntario en Miami o en Venezuela. Toma 1 minuto.">
+<meta property="og:image" content="https://www.proyectoempatados.com/giveaway/assets/logo.png">
+<link rel="canonical" href="https://www.proyectoempatados.com/quieroayudar/">
+<link rel="icon" href="/giveaway/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#504D13;--olive-2:#5A5718;--olive-3:#45420F;--olive-4:#363409;--sage:#918E55;
+  --pink:#FFDEE4;--pink-2:#D8B9C1;--pink-3:#F6C9D2;--sand:#EFE5D6;--ink:#3F3D0E;
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --pad:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{min-height:100dvh;background:var(--olive);color:var(--pink);
+  font-family:"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+.serif{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"WONK" 1}
+button,input,textarea{font:inherit;color:inherit}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* fondo */
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:drift 18s var(--ease) infinite alternate}
+.blob.a{width:70vw;height:70vw;background:var(--olive-2);top:-20vw;left:-25vw}
+.blob.b{width:80vw;height:80vw;background:var(--sage);bottom:-40vw;right:-35vw;opacity:.3;animation-duration:22s}
+@keyframes drift{to{transform:translate(8vw,6vh) scale(1.15)}}
+
+/* barra de progreso */
+.prog{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(255,222,228,.12);z-index:20}
+.prog i{display:block;height:100%;width:0;background:var(--pink);border-radius:0 4px 4px 0;transition:width .7s var(--ease)}
+
+main{position:relative;z-index:2;max-width:520px;margin:0 auto;
+  padding:calc(env(safe-area-inset-top) + 26px) var(--pad) calc(env(safe-area-inset-bottom) + 60px)}
+
+header{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:26px}
+header a.home{display:block}
+header img{width:92px;height:auto;filter:drop-shadow(0 6px 22px rgba(0,0,0,.25));animation:pop .9s var(--spring) both}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-8deg)}}
+h1{font-size:clamp(34px,10vw,46px);line-height:1.02;font-weight:600;letter-spacing:-.01em}
+h1 em{font-style:italic;font-weight:400;color:var(--pink-3)}
+.lede{font-size:16px;line-height:1.5;opacity:.85;max-width:34ch}
+
+/* pasos que se van descubriendo */
+.step{margin-top:18px;padding:22px 18px;border-radius:24px;background:rgba(255,222,228,.07);
+  border:1px solid rgba(255,222,228,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.step[hidden]{display:block;opacity:0;transform:translateY(24px);pointer-events:none;position:absolute;visibility:hidden;left:0;right:0}
+.step.in{animation:stepIn .7s var(--ease) both}
+@keyframes stepIn{from{opacity:0;transform:translateY(26px) scale(.98)}}
+.q{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.q .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;
+  background:var(--pink);color:var(--olive);transform:translateY(-2px)}
+.q h2{font-size:22px;line-height:1.2;font-weight:600}
+.hint{font-size:14px;line-height:1.5;opacity:.75;margin:-6px 0 14px 36px}
+
+/* lugar: dos tarjetas grandes */
+.places{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.place{position:relative;cursor:pointer;border:2px solid rgba(255,222,228,.25);background:rgba(54,52,9,.35);border-radius:20px;
+  padding:20px 12px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;
+  transition:transform .35s var(--spring),border-color .3s,background .3s}
+.place:active{transform:scale(.96)}
+.place .flag{font-size:40px;line-height:1}
+.place b{font-size:20px;letter-spacing:.08em;font-weight:800}
+.place span{font-size:13px;line-height:1.35;opacity:.8}
+.place[aria-pressed="true"]{background:var(--pink);color:var(--olive);border-color:var(--pink);transform:translateY(-2px)}
+.place[aria-pressed="true"] span{opacity:.85}
+
+/* opciones */
+.opts{display:grid;gap:10px}
+.opt{cursor:pointer;display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  border:1.5px solid rgba(255,222,228,.22);background:rgba(54,52,9,.3);border-radius:18px;padding:14px 14px;
+  transition:transform .3s var(--spring),background .25s,border-color .25s}
+.opt:active{transform:scale(.98)}
+.opt .ic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:rgba(255,222,228,.12)}
+.opt .tx{flex:1;display:flex;flex-direction:column;gap:2px}
+.opt .tx b{font-size:16px;font-weight:700}
+.opt .tx small{font-size:13px;opacity:.75;line-height:1.35}
+.opt .ck{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid rgba(255,222,228,.45);display:grid;place-items:center;transition:.25s}
+.opt.radio .ck{border-radius:50%}
+.opt .ck svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:.3s var(--spring)}
+.opt[aria-pressed="true"]{background:var(--pink);color:var(--olive);border-color:var(--pink)}
+.opt[aria-pressed="true"] .ic{background:rgba(80,77,19,.1)}
+.opt[aria-pressed="true"] .ck{background:var(--olive);border-color:var(--olive)}
+.opt[aria-pressed="true"] .ck svg{opacity:1;transform:none;stroke:var(--pink)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{cursor:pointer;border:1.5px solid rgba(255,222,228,.3);background:rgba(54,52,9,.3);border-radius:999px;padding:11px 16px;font-size:15px;font-weight:700;
+  transition:transform .3s var(--spring),background .25s,color .25s}
+.chip:active{transform:scale(.95)}
+.chip[aria-pressed="true"]{background:var(--pink);color:var(--olive);border-color:var(--pink)}
+
+/* campos */
+.field{display:block;margin-top:12px}
+.field span{display:block;font-size:13px;font-weight:700;letter-spacing:.02em;margin:0 0 6px 4px;opacity:.85}
+.field input,.field textarea{width:100%;border-radius:16px;border:1.5px solid rgba(255,222,228,.25);background:rgba(54,52,9,.4);
+  padding:14px 16px;font-size:16px;outline:none;transition:border-color .25s,box-shadow .25s}
+.field textarea{min-height:84px;resize:vertical;line-height:1.45}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,222,228,.45)}
+.field input:focus,.field textarea:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,222,228,.12)}
+.field.bad input{border-color:#ff8fa3;animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.extra{margin-top:12px}
+.extra[hidden]{display:none}
+
+.btn{cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:16px;border:0;border-radius:999px;
+  padding:17px 22px;font-size:17px;font-weight:800;background:var(--pink);color:var(--olive);
+  box-shadow:0 16px 30px -14px rgba(0,0,0,.55);transition:transform .3s var(--spring),opacity .3s;text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn svg{width:18px;height:18px}
+.err{min-height:20px;margin-top:10px;font-size:14px;color:#ffc2cd;text-align:center}
+.spinner{width:20px;height:20px;border-radius:50%;border:3px solid rgba(80,77,19,.25);border-top-color:var(--olive);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* final */
+.done{text-align:center;padding:34px 20px}
+.done .big{font-size:56px;line-height:1;animation:pop .9s var(--spring) both}
+.done h2{font-size:30px;line-height:1.1;margin:14px 0 10px;font-weight:600}
+.done p{opacity:.85;line-height:1.55}
+.done .btn.ghost{background:transparent;color:var(--pink);border:1.5px solid rgba(255,222,228,.4);box-shadow:none}
+.trust{margin-top:26px;text-align:center;font-size:12px;line-height:1.5;opacity:.6}
+.trust a{color:inherit}
+canvas#burst{position:fixed;inset:0;pointer-events:none;z-index:30}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob a"></div><div class="blob b"></div></div>
+<div class="prog" aria-hidden="true"><i id="bar"></i></div>
+<canvas id="burst" aria-hidden="true"></canvas>
+
+<main>
+  <header>
+    <a class="home" href="/" aria-label="Ir a proyectoempatados.com"><img src="/giveaway/assets/logo.png" alt="Proyecto Empatados" width="570" height="499"></a>
+    <h1 class="serif">Quiero <em>ayudar</em> 🐾</h1>
+    <p class="lede">Súmate como voluntario. Responde unas preguntas rápidas y te contactamos para la próxima actividad.</p>
+  </header>
+
+  <form id="form" novalidate>
+    <!-- 1 · lugar -->
+    <section class="step in" id="s-lugar">
+      <div class="q"><span class="n">1</span><h2 class="serif">¿Dónde quieres ayudar?</h2></div>
+      <div class="places">
+        <button type="button" class="place" data-lugar="Miami" aria-pressed="false">
+          <span class="flag">🇺🇸</span><b>MIAMI</b><span>Cleanups en playas y lugares públicos</span>
+        </button>
+        <button type="button" class="place" data-lugar="Venezuela" aria-pressed="false">
+          <span class="flag">🇻🇪</span><b>VENEZUELA</b><span>Comida, cuidados y hogares temporales</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2 · cómo -->
+    <section class="step" id="s-como" hidden>
+      <div class="q"><span class="n">2</span><h2 class="serif" id="comoTitle">¿Cómo te gustaría ayudar?</h2></div>
+      <p class="hint">Puedes elegir varias.</p>
+      <div class="opts" id="comoOpts"></div>
+      <div class="extra" id="otraBox" hidden>
+        <label class="field"><span>Cuéntanos tu idea</span><textarea id="otra" maxlength="400" placeholder="Ej. sé de fotografía y puedo ayudar en los eventos"></textarea></label>
+      </div>
+      <button type="button" class="btn" id="comoNext" disabled>Continuar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </section>
+
+    <!-- 3 · cuándo -->
+    <section class="step" id="s-cuando" hidden>
+      <div class="q"><span class="n">3</span><h2 class="serif">¿Cuándo puedes?</h2></div>
+      <div class="chips" id="cuandoChips">
+        <button type="button" class="chip" aria-pressed="false">Fines de semana</button>
+        <button type="button" class="chip" aria-pressed="false">Entre semana</button>
+        <button type="button" class="chip" aria-pressed="false">Cuando se pueda</button>
+      </div>
+    </section>
+
+    <!-- 4 · carta -->
+    <section class="step" id="s-carta" hidden>
+      <div class="q"><span class="n">4</span><h2 class="serif">¿Necesitas una carta de horas de voluntariado?</h2></div>
+      <p class="hint">Te damos una carta firmada con los días y horas que ayudaste, para la escuela, la universidad o el trabajo.</p>
+      <div class="chips" id="cartaChips">
+        <button type="button" class="chip" data-v="Sí" aria-pressed="false">Sí, la necesito</button>
+        <button type="button" class="chip" data-v="No" aria-pressed="false">No por ahora</button>
+      </div>
+      <div class="extra" id="paraBox" hidden>
+        <p class="hint" style="margin:14px 0 10px 4px">¿Para qué la necesitas?</p>
+        <div class="chips" id="paraChips">
+          <button type="button" class="chip" aria-pressed="false">Escuela / High school</button>
+          <button type="button" class="chip" aria-pressed="false">Universidad</button>
+          <button type="button" class="chip" aria-pressed="false">Trabajo</button>
+          <button type="button" class="chip" aria-pressed="false">Otro</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · datos -->
+    <section class="step" id="s-datos" hidden>
+      <div class="q"><span class="n">5</span><h2 class="serif">¿Cómo te contactamos?</h2></div>
+      <label class="field" id="f-nombre"><span>Nombre y apellido</span><input id="nombre" autocomplete="name" placeholder="Tu nombre" maxlength="120"></label>
+      <label class="field" id="f-email"><span>Email</span><input id="email" type="email" inputmode="email" autocomplete="email" placeholder="tu@email.com" maxlength="160"></label>
+      <label class="field" id="f-tel"><span>WhatsApp</span><input id="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+1 305 555 1234" maxlength="30"></label>
+      <label class="field" id="f-ciudad" hidden><span>¿En qué ciudad de Venezuela estás?</span><input id="ciudad" autocomplete="address-level2" placeholder="Ej. Barquisimeto" maxlength="60"></label>
+      <div class="hp" aria-hidden="true"><input id="_honey" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="btn" id="send"><span id="sendLabel">Quiero ser voluntario 🐾</span></button>
+      <p class="err" id="err" role="alert"></p>
+    </section>
+
+    <!-- final -->
+    <section class="step done" id="s-fin" hidden>
+      <div class="big">💗</div>
+      <h2 class="serif" id="finTitle">¡Ya eres parte de la manada!</h2>
+      <p id="finText">Te escribiremos por WhatsApp con la próxima actividad.</p>
+      <a class="btn" href="https://www.instagram.com/proyectoempatados/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+      <a class="btn ghost" href="/">Volver a la página</a>
+    </section>
+  </form>
+
+  <p class="trust">Proyecto Empatados es una organización sin fines de lucro 501(c)(3).<br>Usamos tus datos solo para coordinar el voluntariado. · <a href="/">proyectoempatados.com</a></p>
+</main>
+
+<script>
+/* ====== CONFIG ====== */
+// Copia por correo (FormSubmit, ya activado para info@)
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/info@proyectoempatados.com";
+// Apps Script "Giveaway - Recibir registros": guarda en la hoja Leads → aparece en /crm
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwust9DBu-ZYQWH7ZMoFVop1q5qeo--RNLdhvvkR1rJsb4kMyB6bFi2lJZAYrQxhKyK/exec";
+// De dónde viene la persona (ej. ?src=stand)
+const SRC = (new URLSearchParams(location.search).get("src") || "").replace(/[^\w-]/g, "").slice(0, 30);
+
+const OPCIONES = {
+  Miami: {
+    titulo: "¿Cómo te gustaría ayudar en Miami?",
+    opts: [
+      ["🏖️", "Cleanups de playas", "Limpiamos las playas donde viven y pasean los animalitos"],
+      ["🌳", "Cleanups de parques y lugares públicos", "Espacios que nuestros animales frecuentan"],
+      ["🎪", "Eventos y stands", "Ayúdanos a dar a conocer la causa"],
+      ["💡", "Otra idea", "Cuéntanos cómo te gustaría sumar"],
+    ],
+  },
+  Venezuela: {
+    titulo: "¿Cómo te gustaría ayudar en Venezuela?",
+    opts: [
+      ["🍲", "Entregar comida", "Llevar comida a animales de la calle"],
+      ["🐶", "Cuidar animales rescatados", "Alimentarlos, bañarlos, darles cariño"],
+      ["🏠", "Hogar temporal (foster)", "Recibir un animal en casa mientras encuentra familia"],
+      ["🚗", "Traslados", "Llevar animales al veterinario o a su nuevo hogar"],
+      ["💡", "Otra idea", "Cuéntanos cómo te gustaría sumar"],
+    ],
+  },
+};
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const st = { lugar: "", como: [], cuando: "", carta: "", para: "" };
+const ORDER = ["s-lugar", "s-como", "s-cuando", "s-carta", "s-datos", "s-fin"];
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+function setBar(id) { $("#bar").style.width = (ORDER.indexOf(id) / (ORDER.length - 1) * 100) + "%"; }
+// muestra el siguiente paso (si no estaba) y lo lleva a la vista
+function reveal(id) {
+  const el = $("#" + id);
+  if (el.hidden) { el.hidden = false; el.classList.add("in"); }
+  setBar(id);
+  setTimeout(() => el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }), 120);
+}
+// botones tipo "uno solo" dentro de un grupo
+function single(group, onPick) {
+  $$(group + " > button").forEach(b => b.addEventListener("click", () => {
+    $$(group + " > button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    onPick(b);
+  }));
+}
+
+/* 1 · lugar */
+single(".places", b => {
+  const lugar = b.dataset.lugar;
+  if (lugar !== st.lugar) {
+    st.lugar = lugar; st.como = [];
+    pintarComo();
+    $("#f-ciudad").hidden = lugar !== "Venezuela";
+    $("#tel").placeholder = lugar === "Venezuela" ? "+58 412 555 1234" : "+1 305 555 1234";
+  }
+  reveal("s-como");
+});
+
+/* 2 · cómo (varias) */
+function pintarComo() {
+  const cfg = OPCIONES[st.lugar];
+  $("#comoTitle").textContent = cfg.titulo;
+  $("#comoOpts").innerHTML = cfg.opts.map(([ic, t, d]) =>
+    `<button type="button" class="opt" aria-pressed="false" data-v="${t}"><span class="ic">${ic}</span><span class="tx"><b>${t}</b><small>${d}</small></span><span class="ck">${CHECK}</span></button>`).join("");
+  $$("#comoOpts .opt").forEach(b => b.addEventListener("click", () => {
+    const on = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", String(on));
+    st.como = $$("#comoOpts .opt[aria-pressed=true]").map(x => x.dataset.v);
+    $("#otraBox").hidden = !st.como.includes("Otra idea");
+    $("#comoNext").disabled = !st.como.length;
+  }));
+  $("#otraBox").hidden = true;
+  $("#comoNext").disabled = true;
+}
+$("#comoNext").addEventListener("click", () => reveal("s-cuando"));
+
+/* 3 · cuándo */
+single("#cuandoChips", b => { st.cuando = b.textContent; reveal("s-carta"); });
+
+/* 4 · carta */
+single("#cartaChips", b => {
+  st.carta = b.dataset.v;
+  $("#paraBox").hidden = st.carta !== "Sí";
+  if (st.carta === "No") { st.para = ""; reveal("s-datos"); }
+  else setTimeout(() => $("#paraBox").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }), 120);
+});
+single("#paraChips", b => { st.para = b.textContent; reveal("s-datos"); });
+
+/* 5 · datos y envío */
+const ok = {
+  nombre: v => v.trim().length >= 2,
+  email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()),
+  tel: v => { const d = v.replace(/\D/g, ""); return d.length >= 7 && d.length <= 15 && /^[\d+()\s.-]+$/.test(v.trim()); },
+};
+["nombre", "email", "tel"].forEach(id => $("#" + id).addEventListener("input", () => { $("#f-" + id).classList.remove("bad"); $("#err").textContent = ""; }));
+
+function resumen() {
+  const otra = $("#otra").value.trim();
+  const partes = [
+    `Voluntariado ${st.lugar}`,
+    `Ayuda: ${st.como.join(", ")}`,
+    otra && st.como.includes("Otra idea") ? `Idea: ${otra}` : "",
+    st.lugar === "Venezuela" && $("#ciudad").value.trim() ? `Ciudad: ${$("#ciudad").value.trim()}` : "",
+    `Disponibilidad: ${st.cuando}`,
+    `Carta de horas: ${st.carta}${st.para ? " (" + st.para + ")" : ""}`,
+  ];
+  return partes.filter(Boolean).join(" · ");
+}
+
+$("#form").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!st.lugar || !st.como.length || !st.cuando || !st.carta) return;
+  const v = id => $("#" + id).value.trim();
+  const msgs = { nombre: "Escribe tu nombre.", email: "Revisa tu email, parece incompleto.", tel: "Escribe tu WhatsApp con código de país, ej. +1 305 555 1234." };
+  const bad = ["nombre", "email", "tel"].filter(id => !ok[id](v(id)));
+  if (bad.length) {
+    bad.forEach(id => { const f = $("#f-" + id); f.classList.remove("bad"); void f.offsetWidth; f.classList.add("bad"); });
+    $("#err").textContent = msgs[bad[0]]; $("#" + bad[0]).focus(); return;
+  }
+  if ($("#_honey").value) return;
+
+  const btn = $("#send");
+  btn.disabled = true; $("#sendLabel").innerHTML = '<span class="spinner"></span>';
+  const fuente = `quieroayudar-${st.lugar.toLowerCase()}${SRC ? "-" + SRC : ""}`;
+  const notas = resumen();
+  // a la hoja / CRM (no bloquea si falla)
+  fetch(SHEET_ENDPOINT, {
+    method: "POST", mode: "no-cors", keepalive: true,
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ nombre: v("nombre"), email: v("email"), telefono: v("tel"), fuente, clasificacion: "Voluntario", notas })
+  }).catch(() => {});
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        nombre: v("nombre"), email: v("email"), whatsapp: v("tel"),
+        lugar: st.lugar, ayuda: st.como.join(", "), idea: $("#otra").value.trim(),
+        ciudad: st.lugar === "Venezuela" ? v("ciudad") : "",
+        disponibilidad: st.cuando, carta_de_horas: st.carta + (st.para ? " (" + st.para + ")" : ""),
+        fuente, _subject: `Nuevo voluntario (${st.lugar}): ${v("nombre")}`,
+        _template: "table", _captcha: "false", fecha: new Date().toLocaleString("es")
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    // FormSubmit responde 200 incluso cuando falla; el resultado real viene en "success"
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || res.status);
+  } catch (err) {
+    btn.disabled = false; $("#sendLabel").textContent = "Quiero ser voluntario 🐾";
+    $("#err").textContent = "No pudimos enviar tus datos. Revisa tu conexión e intenta de nuevo.";
+    return;
+  }
+  const nombre = v("nombre").split(/\s+/)[0];
+  $("#finTitle").textContent = `¡Gracias, ${nombre}! Ya eres parte de la manada.`;
+  $("#finText").textContent = st.lugar === "Miami"
+    ? "Te escribiremos por WhatsApp cuando tengamos el próximo cleanup en Miami."
+    : "Nuestro equipo en Venezuela te escribirá por WhatsApp para coordinar.";
+  $$("#form .step:not(#s-fin)").forEach(s => s.hidden = true);
+  reveal("s-fin");
+  scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  burst(innerWidth / 2, innerHeight / 3);
+});
+
+/* confeti de corazones y huellitas */
+function burst(x, y) {
+  if (reduce) return;
+  const c = $("#burst"), ctx = c.getContext("2d"), dpr = devicePixelRatio || 1;
+  c.width = innerWidth * dpr; c.height = innerHeight * dpr; ctx.scale(dpr, dpr);
+  const cols = ["#FFDEE4", "#D8B9C1", "#918E55", "#EFE5D6", "#F6C9D2"], shapes = ["♥", "🐾", "●"];
+  const parts = Array.from({ length: 70 }, () => {
+    const a = Math.random() * Math.PI * 2, sp = 4 + Math.random() * 9;
+    return { x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 6, s: 10 + Math.random() * 14, r: Math.random() * 6, vr: (Math.random() - .5) * .3,
+      c: cols[Math.random() * cols.length | 0], t: shapes[Math.random() * shapes.length | 0], life: 1 };
+  });
+  (function tick() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    let alive = false;
+    for (const p of parts) {
+      p.vy += .32; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life -= .011;
+      if (p.life <= 0) continue; alive = true;
+      ctx.save(); ctx.globalAlpha = Math.min(1, p.life * 1.5); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+      ctx.fillStyle = p.c; ctx.font = `${p.s}px sans-serif`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(p.t, 0, 0); ctx.restore();
+    }
+    if (alive) requestAnimationFrame(tick); else ctx.clearRect(0, 0, innerWidth, innerHeight);
+  })();
+}
+</script>
+</body>
+</html>
