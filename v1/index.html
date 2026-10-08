@@ -69,16 +69,19 @@ nav .btn{height:42px;padding:0 18px;font-size:14px}
 @keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.15)}}
 .hero-in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:grid;gap:20px}
 .hero-copy{text-align:left}
-.stack{position:relative;width:min(80%,330px);aspect-ratio:1/1.02;margin:0 auto}
-.stack .sw{position:absolute;width:58%}
-.stack figure{width:100%;aspect-ratio:3/4;border-radius:22px;overflow:hidden;border:5px solid var(--pink);box-shadow:0 30px 50px -22px rgba(0,0,0,.65);background:var(--olive-3)}
-.stack figure img{width:100%;height:100%;object-fit:cover}
-.stack .s1{left:0;top:12%}.stack .s1 figure{transform:rotate(-9deg);animation:bob1 6s ease-in-out infinite}
-.stack .s2{right:0;top:8%}.stack .s2 figure{transform:rotate(8deg);animation:bob2 7s ease-in-out infinite}
-.stack .s3{left:21%;top:0;width:60%;z-index:2}.stack .s3 figure{transform:rotate(-1deg);animation:bob3 6.5s ease-in-out infinite}
-@keyframes bob1{50%{transform:rotate(-11deg) translateY(-8px)}}
-@keyframes bob2{50%{transform:rotate(10deg) translateY(-10px)}}
-@keyframes bob3{50%{transform:rotate(1deg) translateY(-6px)}}
+.stack{position:relative;width:min(84%,340px);aspect-ratio:811/741;margin:10px auto 0}
+.stack .hh{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 40px rgba(0,0,0,.25))}
+.hh-line,.hh-paw{fill:var(--pink)}
+.hh-inside{fill:rgba(255,222,228,.08)}
+.hh-route{fill:none;stroke:rgba(255,222,228,.4);stroke-width:4;stroke-linecap:round;stroke-dasharray:1 16}
+.hh-dot{fill:var(--pink);filter:drop-shadow(0 0 8px rgba(255,222,228,.9))}
+.hh-beat{transform-box:fill-box;transform-origin:50% 55%;animation:beat 2.6s ease-in-out 3.2s infinite}
+@keyframes beat{0%,45%,100%{transform:scale(1)}12%{transform:scale(1.035)}24%{transform:scale(1)}34%{transform:scale(1.02)}}
+.stack .loc{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--pink);padding:8px 12px;border-radius:999px;background:rgba(255,222,228,.14);border:1px solid rgba(255,222,228,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:bobLoc 6s ease-in-out infinite}
+.stack .loc.mia{right:-3%;top:-5%}
+.stack .loc.ven{left:-5%;bottom:-2%;animation-delay:-3s}
+@keyframes bobLoc{50%{transform:translateY(-7px)}}
+@media (prefers-reduced-motion: reduce){.hh-beat,.stack .loc{animation:none}.hh-dot{display:none}}
 .stack .heart{z-index:3}
 .stack .heart.a{left:-2%;top:2%;width:30px}
 .stack .heart.b{right:2%;bottom:6%;width:24px;animation-delay:-2s}
@@ -312,19 +315,28 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
       <p class="lede h-in">Trabajamos para mejorar la vida de animales en situación de vulnerabilidad a través de apoyo directo, educación, comunidad y colaboración.</p>
       <div class="ctas h-in hide-m">
         <a class="btn btn-pink" href="#unete">Conviértete en Empatado <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="/quieroayudar/">Quiero ayudar</a>
+        <a class="btn btn-ghost" href="/quieroayudar/">Voluntariado</a>
       </div>
     </div>
     <div class="stack" id="stack" aria-hidden="true">
-      <div class="sw s1"><figure><img src="img/impacto-3.jpg" alt=""></figure></div>
-      <div class="sw s2"><figure><img src="img/apoyo-animal.jpg" alt=""></figure></div>
-      <div class="sw s3"><figure><img src="img/adopciones.jpg" alt=""></figure></div>
+      <svg class="hh" viewBox="0 0 811 741">
+        <defs><mask id="hhMask" maskUnits="userSpaceOnUse" x="0" y="0" width="811" height="741"><circle id="hhReveal" cx="419" cy="731" r="1000" fill="#fff"/></mask></defs>
+        <path class="hh-route" d="M701 38C561 300 300 330 118 701"/>
+        <circle class="hh-dot" r="7"><animateMotion dur="6s" repeatCount="indefinite" path="M701 38C561 300 300 330 118 701"/></circle>
+        <g class="hh-beat">
+          <path class="hh-inside" d="M401 715C391 708 376 698 367 691C345 675 339 671 324 659C240 597 170 524 131 456C127 450 121 441 117 434C92 396 66 284 66 218C66 157 77 109 98 78C105 67 108 64 120 61C144 55 170 56 193 65C248 84 315 158 354 243C376 290 400 358 405 387C406 394 407 395 412 393C414 393 414 392 414 387C414 383 415 380 416 379C416 377 417 375 417 373C417 358 433 313 448 286C498 194 593 121 668 117C679 117 680 117 686 119C710 129 741 166 751 198C761 227 761 266 752 301C743 338 724 382 700 423L690 438L693 442L696 445L692 449C690 452 684 460 678 468C663 490 634 527 632 527C632 527 629 525 626 523C614 516 607 513 593 514C579 514 569 516 550 525C533 533 529 534 504 534C481 535 470 539 460 552C442 575 444 595 469 621C478 631 479 634 484 650C485 657 487 664 488 665C489 667 489 667 486 670C481 674 473 681 464 689C453 700 422 727 421 728C421 728 412 722 401 715ZM543 500C559 493 567 476 566 452C565 427 556 415 538 412C521 409 504 420 497 439C494 446 493 464 495 473C500 497 522 510 543 500ZM629 497C652 488 671 450 662 431C649 405 612 407 594 434C585 446 581 460 583 470C587 493 608 505 629 497Z"/>
+          <path class="hh-line" mask="url(#hhMask)" d="M413 734C412 733 400 727 386 720C325 690 288 667 241 630C168 573 110 508 79 447C76 441 70 430 66 422C-3 295 -14 163 40 96C51 82 63 72 82 62C90 58 92 56 97 50C104 42 115 32 124 26C160 3 210 -1 254 17C302 35 329 66 357 131C374 172 381 201 401 308C405 332 409 351 409 350C409 350 410 345 411 340C432 233 502 137 581 110C610 99 635 98 664 105C671 107 684 109 693 111C732 118 751 130 775 162C829 235 813 318 722 437L716 444L699 444L681 444L682 442C711 398 736 343 746 301C755 266 755 227 745 198C735 167 709 135 686 125C680 123 679 123 668 123C600 127 514 188 464 267C443 302 426 345 423 371C423 375 422 380 421 380C421 380 420 384 420 389C419 398 418 399 409 400C402 400 401 399 399 388C394 358 370 290 348 243C309 159 247 90 193 71C168 62 133 61 111 70C106 72 94 93 87 110C75 144 68 207 73 250C80 320 103 403 123 434C127 441 133 450 137 456C176 524 241 592 324 653C339 665 345 669 367 685C386 699 420 722 421 722C422 721 453 694 465 682C470 678 484 666 495 656C506 646 520 634 526 629L536 620L548 620L560 620L555 625C526 652 493 680 478 691C459 706 437 723 432 726C429 728 427 730 427 730C426 732 418 736 416 736C415 736 414 735 413 734ZM224 592C176 545 139 498 116 454C113 449 110 444 109 444C108 442 93 407 88 390C53 287 46 181 67 107L72 92L68 95C51 108 33 142 27 176C24 196 24 246 29 273C37 321 62 387 87 428C90 433 96 443 100 451C124 491 152 526 189 562C202 575 240 609 242 609C242 609 234 601 224 592ZM734 389C755 358 772 322 779 297C788 263 788 232 778 204C768 174 747 144 729 136C716 129 716 130 729 143C743 158 749 166 756 180C774 215 776 257 764 306C757 332 751 348 734 382C729 393 725 401 725 402C725 403 727 400 734 389ZM371 239C350 138 320 75 276 42C249 22 203 17 163 31C153 35 139 42 134 46L131 49L142 49C174 52 186 54 214 67C241 79 271 104 300 137C330 172 344 194 369 249C371 253 373 257 374 257C374 256 372 248 371 239ZM492 205C528 166 570 137 614 120L624 116L617 117C595 118 565 131 539 150C517 166 489 198 478 218L475 224L479 220C482 217 487 210 492 205Z"/>
+          <g class="hh-paw"><path d="M544 720C515 712 493 687 483 650C479 634 478 631 469 621C444 595 442 575 460 552C470 539 481 535 504 534C529 534 533 533 550 525C572 515 592 511 605 514C615 516 628 524 635 531C649 545 653 564 647 594C644 609 644 619 648 636C657 671 655 688 640 703C630 713 626 714 606 715C589 716 587 716 581 719C572 722 556 723 544 720Z"/><path d="M690 636C678 632 671 620 672 606C673 583 694 569 726 569C745 569 756 576 761 590C765 602 762 615 752 626C743 636 741 636 715 637C703 637 691 637 690 636Z"/><path d="M679 553C655 548 645 523 657 500C672 470 704 458 724 476C737 487 739 500 730 518C718 543 697 557 679 553Z"/><path d="M522 503C508 500 498 488 495 473C493 464 494 446 497 439C510 405 553 402 563 434C568 448 566 471 561 483C554 497 536 506 522 503Z"/><path d="M609 499C592 495 580 477 583 458C584 452 589 440 594 434C606 415 629 408 645 415C666 425 670 445 656 470C644 492 627 503 609 499Z"/></g>
+        </g>
+      </svg>
+      <span class="loc mia">🇺🇸 Miami</span>
+      <span class="loc ven">🇻🇪 Venezuela</span>
       <svg class="heart a" viewBox="0 0 24 24"><use href="#heart"/></svg>
       <svg class="heart b" viewBox="0 0 24 24"><use href="#heart"/></svg>
     </div>
     <div class="ctas h-in show-m">
       <a class="btn btn-pink" href="#unete">Conviértete en Empatado <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-ghost" href="/quieroayudar/">Quiero ayudar</a>
+      <a class="btn btn-ghost" href="/quieroayudar/">Voluntariado</a>
     </div>
   </div>
 </header>
@@ -555,8 +567,12 @@ if (window.gsap && !reduce) {
   const tl = gsap.timeline({defaults: {ease: "expo.out"}});
   tl.from("#heroTitle .line > span", {yPercent: 115, rotate: 4, duration: 1.3, stagger: .12}, .1)
     .from(".h-in", {y: 26, opacity: 0, duration: 1, stagger: .1}, .45)
-    .from("#stack .sw", {y: 160, opacity: 0, rotate: (i) => [-25, 25, 0][i], scale: .8, duration: 1.4, stagger: .14, ease: "expo.out"}, .35)
-    .from("#stack .heart", {scale: 0, duration: .8, stagger: .15, ease: "back.out(3)"}, 1.1);
+    .from("#hhReveal", {attr: {r: 0}, duration: 2, ease: "power2.inOut"}, .4)
+    .from("#stack .hh-inside", {opacity: 0, duration: 1.2, ease: "power1.out"}, 1.4)
+    .from("#stack .hh-paw path", {scale: 0, opacity: 0, transformOrigin: "50% 50%", duration: .55, stagger: .12, ease: "back.out(3)"}, 1.6)
+    .from("#stack .hh-route, #stack .hh-dot", {opacity: 0, duration: 1}, 2.1)
+    .from("#stack .loc", {y: 14, opacity: 0, duration: .8, stagger: .15}, 2.1)
+    .from("#stack .heart", {scale: 0, duration: .8, stagger: .15, ease: "back.out(3)"}, 2.3);
   gsap.to("#stack", {yPercent: -12, ease: "none", scrollTrigger: {trigger: ".hero", start: "top top", end: "bottom top", scrub: true}});
 
   // títulos palabra por palabra
