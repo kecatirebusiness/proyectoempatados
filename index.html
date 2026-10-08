@@ -8,10 +8,14 @@
 <meta name="description" content="Desde Miami conectamos personas, recursos e iniciativas para apoyar el bienestar animal en Venezuela y Latinoamérica. Conviértete en Empatado desde $5/mes.">
 <meta property="og:title" content="Proyecto Empatados">
 <meta property="og:description" content="Que sentir empatía por un animal no se quede solamente en sentir. Conviértete en Empatado desde $5/mes.">
-<meta property="og:image" content="https://www.proyectoempatados.com/v1/img/adopciones.jpg">
+<meta property="og:image" content="https://www.proyectoempatados.com/brand/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.proyectoempatados.com/">
-<link rel="icon" href="/giveaway/assets/logo.png">
-<link rel="apple-touch-icon" href="/giveaway/assets/logo.png">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
@@ -230,6 +234,53 @@ h2 em{font-style:italic;font-weight:400;color:var(--sage)}
 .assure{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin-top:22px;font-size:13px;font-weight:700;color:rgba(255,222,228,.75)}
 .assure span{display:inline-flex;align-items:center;gap:6px}
 
+/* transparencia */
+.money{background:var(--cream)}
+.money-grid{display:grid;gap:30px;margin-top:30px;align-items:center}
+.donut{position:relative;width:min(84%,330px);margin:0 auto;aspect-ratio:1}
+.donut svg{width:100%;height:100%;overflow:visible}
+.donut .ring{transform:rotate(-90deg);transform-origin:100px 100px}
+.donut .track-c{fill:none;stroke:var(--cream-2);stroke-width:30}
+.donut .seg{fill:none;stroke-width:30;transition:opacity .35s,stroke-width .35s var(--spring)}
+.seg-ic text{transform:rotate(90deg)}
+.seg-ic circle{filter:drop-shadow(0 4px 8px rgba(54,52,9,.18))}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;pointer-events:none}
+.d-amt{font:650 clamp(52px,15vw,68px)/1 "Fraunces",serif;color:var(--olive);letter-spacing:-.02em}
+.d-lbl{font-size:13px;font-weight:700;color:var(--ink-2);margin-top:6px;line-height:1.3}
+.legend{list-style:none;display:grid;gap:12px}
+.lg{display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start;background:#fff;border-radius:22px;padding:16px;border:1px solid rgba(80,77,19,.07);
+  box-shadow:0 16px 36px -28px rgba(54,52,9,.45);cursor:default;outline:none}
+.lg-ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:24px;background:color-mix(in srgb,var(--c) 14%,#fff)}
+.lg-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.lg-top b{font:650 19px/1.15 "Fraunces",serif}
+.lg-amt{font:650 28px/1 "Fraunces",serif;color:var(--c)}
+.lg p{font-size:14px;color:var(--ink-2);line-height:1.45;margin:4px 0 10px}
+.bar{display:block;height:8px;border-radius:8px;background:var(--cream-2);overflow:hidden}
+.bar i{display:block;height:100%;width:var(--w);border-radius:8px;background:var(--c)}
+/* las transiciones se activan al terminar la animación de entrada (si no, chocan con GSAP) */
+.money-grid.ready .lg{transition:transform .35s var(--spring),opacity .35s,box-shadow .35s}
+.money-grid.ready .seg-ic{transition:opacity .35s}
+.money-grid.hl .seg,.money-grid.hl .seg-ic,.money-grid.hl .lg{opacity:.3}
+.money-grid.hl .seg.on,.money-grid.hl .seg-ic.on,.money-grid.hl .lg.on{opacity:1}
+.money-grid.hl .seg.on{stroke-width:38}
+.money-grid.hl .lg.on{transform:translateX(6px);box-shadow:0 20px 40px -24px rgba(54,52,9,.55)}
+.equiv{position:relative;display:grid;gap:18px;align-items:center;justify-items:center;text-align:center;margin-top:44px;padding:30px 22px;border-radius:30px;overflow:hidden;
+  background:radial-gradient(120% 90% at 20% 0%,var(--olive-2),var(--olive) 60%);color:var(--pink);box-shadow:0 30px 60px -36px rgba(54,52,9,.8)}
+.eq-heart{width:min(62%,220px);overflow:visible}
+.eq-fill{fill:rgba(255,222,228,.12);transform-origin:70px 66px}
+.hd{fill:var(--pink)}
+.eq-paw{fill:var(--pink)}
+.eq-big{font:650 clamp(34px,9vw,52px)/1.05 "Fraunces",serif;letter-spacing:-.01em}
+.eq-amt{color:var(--pink)}
+.eq-eq{color:var(--pink-2);font-weight:400;margin:0 .1em}
+.eq-what{font-style:italic;font-weight:400;color:var(--pink-3)}
+.eq-sub{color:rgba(255,222,228,.8);max-width:40ch;margin:10px auto 18px;font-size:16px}
+@media (min-width:900px){
+  .money-grid{grid-template-columns:.9fr 1.1fr;gap:70px}
+  .equiv{grid-template-columns:auto 1fr;text-align:left;justify-items:start;padding:44px 56px;gap:50px}
+  .eq-heart{width:220px}
+  .eq-sub{margin-left:0}
+}
 /* cierre */
 .final{text-align:center;padding:110px 0 120px;overflow:hidden}
 .final h2{font-size:clamp(46px,13vw,110px)}
@@ -298,7 +349,7 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
 
 <nav class="top" id="nav">
   <a href="#top" aria-label="Inicio"><img src="/giveaway/assets/logo.png" alt="Proyecto Empatados"></a>
-  <div class="links"><a href="#nosotros">Nosotros</a><a href="#que-hacemos">Qué hacemos</a><a href="#impacto">Impacto</a><a href="#equipo">Equipo</a></div>
+  <div class="links"><a href="#nosotros">Nosotros</a><a href="#que-hacemos">Qué hacemos</a><a href="#impacto">Impacto</a><a href="#transparencia">Transparencia</a><a href="#equipo">Equipo</a></div>
   <a class="btn btn-pink" href="#unete">Donar</a>
 </nav>
 
@@ -460,6 +511,49 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   </div>
 </section>
 
+<!-- ===== TRANSPARENCIA ===== -->
+<section class="sec money" id="transparencia">
+  <svg class="bgpaw" style="top:60px;left:-50px;transform:rotate(-20deg)" viewBox="0 0 64 64"><use href="#paw"/></svg>
+  <div class="wrap">
+    <span class="kicker rv">Transparencia</span>
+    <h2 class="split">¿A dónde va <em>tu donación?</em></h2>
+    <div class="prose"><p class="rv">Cada dólar tiene un destino claro. Así repartimos lo que recibimos:</p></div>
+    <div class="money-grid" id="money">
+      <div class="donut">
+        <svg viewBox="-20 -20 240 240" aria-hidden="true"><g class="ring">
+          <circle cx="100" cy="100" r="80" class="track-c"/>
+          <circle class="seg" data-k="vet" cx="100" cy="100" r="80" stroke="#504D13" stroke-dasharray="296.6 502.7" stroke-dashoffset="-0.0" data-len="296.6"/><g class="seg-ic" data-k="vet" transform="translate(69.0 206.6)"><circle r="17" fill="#fff"/><text text-anchor="middle" dominant-baseline="central" font-size="17">🩺</text></g><circle class="seg" data-k="food" cx="100" cy="100" r="80" stroke="#918E55" stroke-dasharray="145.8 502.7" stroke-dashoffset="-301.6" data-len="145.8"/><g class="seg-ic" data-k="food" transform="translate(96.5 -10.9)"><circle r="17" fill="#fff"/><text text-anchor="middle" dominant-baseline="central" font-size="17">🍲</text></g><circle class="seg" data-k="move" cx="100" cy="100" r="80" stroke="#E28A9F" stroke-dasharray="45.3 502.7" stroke-dashoffset="-452.4" data-len="45.3"/><g class="seg-ic" data-k="move" transform="translate(204.4 62.4)"><circle r="17" fill="#fff"/><text text-anchor="middle" dominant-baseline="central" font-size="17">🚗</text></g>
+        </g></svg>
+        <div class="donut-c"><span class="d-amt">$<span class="num" id="dNum" data-to="10">10</span></span><span class="d-lbl">de cada $10<br>donados</span></div>
+      </div>
+      <ul class="legend" role="list">
+        <li class="lg" data-k="vet" tabindex="0" style="--c:#504D13;--w:60%">
+          <span class="lg-ic">🩺</span>
+          <div class="lg-tx"><div class="lg-top"><b>Atención veterinaria</b><span class="lg-amt">$<span class="num" data-to="6">6</span></span></div>
+          <p>Esterilizaciones, vacunas, consultas y medicinas.</p><span class="bar"><i></i></span></div></li><li class="lg" data-k="food" tabindex="0" style="--c:#918E55;--w:30%">
+          <span class="lg-ic">🍲</span>
+          <div class="lg-tx"><div class="lg-top"><b>Comida</b><span class="lg-amt">$<span class="num" data-to="3">3</span></span></div>
+          <p>Alimento para animales de la calle y rescatados.</p><span class="bar"><i></i></span></div></li><li class="lg" data-k="move" tabindex="0" style="--c:#E28A9F;--w:10%">
+          <span class="lg-ic">🚗</span>
+          <div class="lg-tx"><div class="lg-top"><b>Traslados</b><span class="lg-amt">$<span class="num" data-to="1">1</span></span></div>
+          <p>Llevarlos al veterinario y a su nuevo hogar.</p><span class="bar"><i></i></span></div></li>
+      </ul>
+    </div>
+    <div class="equiv rv" id="equiv">
+      <svg class="eq-heart" viewBox="0 0 140 130" aria-hidden="true">
+        <path class="eq-fill" d="M70 118C30 88 12 70 12 46 12 28 26 16 42 16c12 0 22 7 28 18 6-11 16-18 28-18 16 0 30 12 30 30 0 24-18 42-58 72z"/>
+        <circle class="hd" cx="70.0" cy="47.0" r="5.2"/><circle class="hd" cx="75.3" cy="34.3" r="5.2"/><circle class="hd" cx="86.1" cy="25.7" r="5.2"/><circle class="hd" cx="99.6" cy="23.6" r="5.2"/><circle class="hd" cx="112.5" cy="28.5" r="5.2"/><circle class="hd" cx="121.6" cy="38.8" r="5.2"/><circle class="hd" cx="124.3" cy="52.2" r="5.2"/><circle class="hd" cx="120.1" cy="65.4" r="5.2"/><circle class="hd" cx="111.7" cy="76.5" r="5.2"/><circle class="hd" cx="101.7" cy="86.0" r="5.2"/><circle class="hd" cx="91.1" cy="95.1" r="5.2"/><circle class="hd" cx="80.9" cy="104.5" r="5.2"/><circle class="hd" cx="72.4" cy="115.3" r="5.2"/><circle class="hd" cx="67.6" cy="115.3" r="5.2"/><circle class="hd" cx="59.0" cy="104.4" r="5.2"/><circle class="hd" cx="48.8" cy="95.0" r="5.2"/><circle class="hd" cx="38.2" cy="85.9" r="5.2"/><circle class="hd" cx="28.2" cy="76.4" r="5.2"/><circle class="hd" cx="19.8" cy="65.3" r="5.2"/><circle class="hd" cx="15.7" cy="52.1" r="5.2"/><circle class="hd" cx="18.4" cy="38.7" r="5.2"/><circle class="hd" cx="27.6" cy="28.4" r="5.2"/><circle class="hd" cx="40.5" cy="23.6" r="5.2"/><circle class="hd" cx="54.0" cy="25.7" r="5.2"/><circle class="hd" cx="64.7" cy="34.4" r="5.2"/>
+        <g class="eq-paw" transform="translate(70 62)"><g transform="translate(-16 -16) scale(.5)"><ellipse cx="32" cy="42" rx="14" ry="12"/><ellipse cx="14" cy="26" rx="6" ry="8"/><ellipse cx="25" cy="14" rx="6" ry="8"/><ellipse cx="39" cy="14" rx="6" ry="8"/><ellipse cx="50" cy="26" rx="6" ry="8"/></g></g>
+      </svg>
+      <div class="eq-tx">
+        <p class="eq-big"><span class="eq-amt">$<span id="eqNum">25</span></span> <span class="eq-eq">=</span> <span class="eq-what">1 esterilización</span></p>
+        <p class="eq-sub">Cada punto es $1. Con $25 esterilizamos a un perrito, y eso evita que nazcan más cachorros en la calle.</p>
+        <a class="btn btn-pink" href="#unete">Quiero donar <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== ÚNETE ===== -->
 <section class="sec join" id="unete">
   <svg class="bgpaw" style="top:40px;right:-40px;fill:var(--pink);opacity:.05;width:180px" viewBox="0 0 64 64"><use href="#paw"/></svg>
@@ -506,6 +600,7 @@ footer .soc a{display:inline-flex;align-items:center;gap:8px;border:1px solid rg
   <div class="wrap f">
     <img src="/giveaway/assets/logo.png" alt="Proyecto Empatados" loading="lazy">
     <div class="soc"><a href="https://www.instagram.com/proyectoempatados/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>@proyectoempatados</a><a href="/links/">Más formas de ayudar</a></div>
+    <p class="contact"><a href="mailto:info@proyectoempatados.com">info@proyectoempatados.com</a> · Miami, FL</p>
     <p class="legal" style="max-width:42ch;opacity:.85;font-size:13px;line-height:1.5">Proyecto Empatados es una organización sin fines de lucro 501(c)(3). Tus donaciones son deducibles de impuestos según lo permita la ley.</p>
     <p>Hecho con 💗 desde Miami · © <span id="yr">2026</span> Proyecto Empatados</p>
   </div>
@@ -560,6 +655,20 @@ $$(".tier").forEach(t => t.addEventListener("pointermove", e => {
   t.style.setProperty("--mx", (e.clientX - r.left) + "px"); t.style.setProperty("--my", (e.clientY - r.top) + "px");
 }));
 
+
+/* transparencia: resaltar categoría */
+(() => {
+  const g = document.getElementById("money"); if (!g) return;
+  if (!window.gsap || matchMedia("(prefers-reduced-motion: reduce)").matches) g.classList.add("ready");
+  const on = k => { g.classList.toggle("hl", !!k); g.querySelectorAll("[data-k]").forEach(e => e.classList.toggle("on", e.dataset.k === k)); };
+  g.querySelectorAll(".lg, .seg").forEach(e => {
+    e.addEventListener("mouseenter", () => on(e.dataset.k));
+    e.addEventListener("focus", () => on(e.dataset.k));
+    e.addEventListener("click", ev => { ev.stopPropagation(); on(e.dataset.k); });
+  });
+  g.addEventListener("mouseleave", () => on(null));
+  document.addEventListener("click", () => on(null));  // tocar fuera quita el resaltado
+})();
 /* ---------- motion ---------- */
 if (window.gsap && !reduce) {
   gsap.registerPlugin(ScrollTrigger);
@@ -575,6 +684,33 @@ if (window.gsap && !reduce) {
     .from("#stack .loc", {y: 14, opacity: 0, duration: .8, stagger: .15}, 2.1)
     .from("#stack .heart", {scale: 0, duration: .8, stagger: .15, ease: "back.out(3)"}, 2.3);
   gsap.to("#stack", {yPercent: -12, ease: "none", scrollTrigger: {trigger: ".hero", start: "top top", end: "bottom top", scrub: true}});
+
+  // transparencia: la dona se dibuja por partes y los montos cuentan
+  const money = document.getElementById("money");
+  if (money) {
+    const mt = gsap.timeline({scrollTrigger: {trigger: money, start: "top 72%", once: true}});
+    money.querySelectorAll(".seg").forEach((c, i) => {
+      const len = +c.dataset.len, C = c.getAttribute("stroke-dasharray").split(" ")[1];
+      mt.fromTo(c, {attr: {"stroke-dasharray": `0 ${C}`}}, {attr: {"stroke-dasharray": `${len} ${C}`}, duration: [1.1, .8, .5][i], ease: "power2.inOut"}, i ? ">-0.05" : 0);
+    });
+    mt.from("#money .seg-ic", {scale: 0, opacity: 0, transformOrigin: "50% 50%", duration: .6, stagger: .15, ease: "back.out(3)"}, 1.2)
+      .from("#dNum", {textContent: 0, duration: 2.2, ease: "power2.out", snap: {textContent: 1}}, 0)
+      .from("#money .lg", {x: 40, opacity: 0, duration: .9, stagger: .15, ease: "expo.out"}, .1)
+      .from("#money .bar i", {width: 0, duration: 1.4, stagger: .15, ease: "expo.out"}, .5)
+      .from("#money .lg .num", {textContent: 0, duration: 1.4, stagger: .15, ease: "power2.out", snap: {textContent: 1}}, .5)
+      .eventCallback("onComplete", () => { gsap.set("#money .lg", {clearProps: "opacity,transform"}); gsap.set("#money .seg-ic", {clearProps: "opacity"}); money.classList.add("ready"); });
+  }
+  const eq = document.getElementById("equiv");
+  if (eq) {
+    const et = gsap.timeline({scrollTrigger: {trigger: eq, start: "top 75%", once: true}});
+    et.from("#equiv .hd", {opacity: .15, scale: .3, transformOrigin: "50% 50%", duration: .35, stagger: .07, ease: "back.out(4)"}, .2)
+      .from("#eqNum", {textContent: 0, duration: 25 * .07 + .2, ease: "none", snap: {textContent: 1}}, .2)
+      .from("#equiv .eq-fill", {scale: 0, opacity: 0, duration: .8, ease: "back.out(2)"}, ">-0.1")
+      .from("#equiv .eq-paw", {scale: 0, rotate: -30, transformOrigin: "50% 50%", duration: .7, ease: "back.out(3)"}, "<.2")
+      .from("#equiv .eq-what, #equiv .eq-eq", {y: 20, opacity: 0, duration: .8, stagger: .1, ease: "expo.out"}, "<")
+      .to("#equiv .eq-heart", {scale: 1.06, duration: .18, yoyo: true, repeat: 3, ease: "power1.inOut", transformOrigin: "50% 50%"});
+  }
+
 
   // títulos palabra por palabra
   $$(".split").forEach(h => {
