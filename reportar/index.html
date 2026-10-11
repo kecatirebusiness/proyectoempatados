@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#504D13">
+<title>Reporta maltrato animal · Proyecto Empatados</title>
+<meta name="description" content="Publica un caso de maltrato, abandono o un animal herido en Venezuela para que la comunidad lo vea y pueda ayudar. Y encuentra a quién acudir.">
+<meta property="og:title" content="Reporta maltrato animal · Proyecto Empatados">
+<meta property="og:description" content="¿Viste un animal en peligro? Publícalo para que la comunidad pueda ayudar, y encuentra a quién acudir en Venezuela.">
+<meta property="og:image" content="https://www.proyectoempatados.com/brand/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.proyectoempatados.com/reportar/">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Schibsted+Grotesk:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#504D13;--olive-2:#5A5718;--olive-3:#45420F;--olive-4:#363409;--sage:#918E55;--sage-2:#C9C7A3;
+  --pink:#FFDEE4;--pink-2:#D8B9C1;--pink-3:#F6C9D2;--cream:#F6F3EA;--cream-2:#EDE8D9;--ink:#2E2C0A;--ink-2:#5F5C24;--ink-3:#8E8B5E;
+  --line:rgba(63,61,14,.10);--line-2:rgba(63,61,14,.18);--card:#fff;--red:#B4475A;
+  --ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --pad:16px;--maxw:1120px;
+  --shadow:0 1px 2px rgba(46,44,10,.06),0 8px 24px -14px rgba(46,44,10,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--cream);color:var(--ink);font-family:"Schibsted Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-appearance:none;appearance:none;border:0;background:none}
+[hidden]{display:none!important}
+.serif{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"WONK" 1}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- nav ---------- */
+nav.top{position:sticky;top:0;z-index:40;background:rgba(80,77,19,.92);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid rgba(255,222,228,.08)}
+nav.top .wrap{display:flex;align-items:center;gap:12px;height:62px;padding-top:env(safe-area-inset-top)}
+nav.top img{width:44px}
+nav.top .sp{flex:1}
+nav.top a.l{color:var(--pink-2);text-decoration:none;font-weight:700;font-size:14px;padding:8px 10px;border-radius:10px}
+nav.top a.l:hover{color:var(--pink)}
+.pill-btn{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;background:var(--pink);color:var(--olive);font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap;transition:transform .2s var(--spring)}
+.pill-btn:active{transform:scale(.96)}
+
+/* ---------- hero ---------- */
+.hero{background:var(--olive);color:var(--pink);position:relative;overflow:hidden;padding:34px 0 86px}
+.hero::before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;right:-260px;top:-380px;background:radial-gradient(circle,rgba(145,142,85,.55),transparent 62%);pointer-events:none}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-2);padding:7px 12px;border-radius:999px;background:rgba(255,222,228,.08);border:1px solid rgba(255,222,228,.16)}
+.hero h1{font:600 clamp(36px,7vw,62px)/1.02 "Fraunces",serif;font-variation-settings:"SOFT" 100,"WONK" 1;letter-spacing:-.02em;margin:16px 0 14px;max-width:760px;animation:rise .8s var(--ease) both}
+.hero h1 em{font-weight:400;color:var(--pink-3)}
+.hero p.lede{font-size:18px;color:var(--pink-2);max-width:640px;animation:rise .8s var(--ease) .08s both}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;animation:rise .8s var(--ease) .16s both}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;padding:0 22px;border-radius:999px;font-weight:800;font-size:15px;text-decoration:none;transition:transform .2s var(--spring)}
+.btn:active{transform:scale(.96)}
+.btn-pink{background:var(--pink);color:var(--olive);box-shadow:0 14px 30px -12px rgba(255,222,228,.5)}
+.btn-ghost{color:var(--pink);border:1.5px solid rgba(255,222,228,.45);background:rgba(255,222,228,.06)}
+.sos{margin-top:22px;display:flex;gap:12px;align-items:flex-start;max-width:640px;background:rgba(255,222,228,.08);border:1px solid rgba(255,222,228,.18);border-radius:16px;padding:12px 14px;font-size:14px;color:var(--pink-2);animation:rise .8s var(--ease) .24s both}
+.sos b{color:var(--pink)}
+.sos .ic{flex:none;width:30px;height:30px;border-radius:9px;background:var(--pink);color:var(--olive);display:grid;place-items:center;font-size:16px}
+
+/* ---------- layout ---------- */
+.main{margin-top:-56px;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start;padding-bottom:calc(env(safe-area-inset-bottom) + 40px)}
+@media (min-width:980px){
+  .main{grid-template-columns:minmax(0,1fr) 360px}
+  .side{position:sticky;top:78px;max-height:calc(100dvh - 92px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+
+/* ---------- composer ---------- */
+.composer{padding:14px;animation:rise .7s var(--ease) .1s both}
+.c-open{width:100%;display:flex;align-items:center;gap:12px;text-align:left}
+.c-open .fake{flex:1;height:48px;border-radius:999px;background:var(--cream);border:1px solid var(--line);display:flex;align-items:center;padding:0 18px;color:var(--ink-3);font-weight:600;transition:background .2s}
+.c-open:hover .fake{background:var(--cream-2)}
+.c-quick{display:flex;gap:6px;margin-top:10px;overflow-x:auto;scrollbar-width:none}
+.c-quick::-webkit-scrollbar{display:none}
+.c-quick button{flex:none;display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 13px;border-radius:12px;font-size:13px;font-weight:700;color:var(--ink-2);transition:background .2s}
+.c-quick button:hover{background:var(--cream)}
+.av{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 15px/1 "Fraunces",serif;background:var(--olive)}
+form.c-form{margin-top:4px}
+.c-form h2{font:600 22px/1.15 "Fraunces",serif;margin:2px 0 4px}
+.c-form .sub{font-size:14px;color:var(--ink-2);margin-bottom:14px}
+.lbl{display:block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 7px}
+.lbl i{font-style:normal;font-weight:600;letter-spacing:0;text-transform:none}
+.tipos{display:flex;flex-wrap:wrap;gap:7px}
+.tipos label{position:relative}
+.tipos input{position:absolute;opacity:0;pointer-events:none}
+.tipos span{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 13px;border-radius:999px;border:1.5px solid var(--line-2);font-size:14px;font-weight:700;color:var(--ink-2);cursor:pointer;transition:all .2s}
+.tipos input:checked + span{background:var(--olive);border-color:var(--olive);color:var(--pink)}
+.tipos input:focus-visible + span{box-shadow:0 0 0 4px rgba(80,77,19,.15)}
+.in{width:100%;height:48px;border-radius:13px;border:1.5px solid var(--line-2);background:#fff;padding:0 14px;font-size:16px;font-weight:600;outline:none;transition:border-color .2s,box-shadow .2s}
+textarea.in{height:auto;min-height:110px;padding:12px 14px;line-height:1.45;resize:vertical;font-weight:500}
+.in:focus{border-color:var(--olive);box-shadow:0 0 0 4px rgba(80,77,19,.1)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+.photo{position:relative;border:2px dashed var(--line-2);border-radius:16px;min-height:120px;display:grid;place-items:center;text-align:center;color:var(--ink-2);font-weight:700;font-size:14px;cursor:pointer;overflow:hidden;transition:border-color .2s,background .2s}
+.photo:hover{border-color:var(--olive);background:var(--cream)}
+.photo input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.photo .ph{padding:18px;display:grid;gap:6px;justify-items:center}
+.photo .ph small{font-weight:500;color:var(--ink-3)}
+.photo img{width:100%;max-height:340px;object-fit:cover}
+.photo .rm{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;background:rgba(30,29,8,.65);color:#fff;display:grid;place-items:center;z-index:2}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;color:var(--ink-2);cursor:pointer}
+.chk input{margin-top:3px;width:18px;height:18px;accent-color:var(--olive);flex:none}
+.note{font-size:12.5px;color:var(--ink-3);margin-top:14px;line-height:1.45}
+.err{min-height:20px;font-size:14px;font-weight:700;color:var(--red);margin-top:10px}
+.f-actions{display:flex;gap:10px;margin-top:6px}
+.f-actions .btn{flex:1}
+.btn-olive{background:var(--olive);color:var(--pink);box-shadow:0 12px 26px -14px rgba(54,52,9,.8)}
+.btn-line{border:1.5px solid var(--line-2);color:var(--ink-2);flex:0 0 auto!important}
+.btn:disabled{opacity:.6}
+.spin{width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(255,222,228,.35);border-top-color:var(--pink);animation:spin .7s linear infinite}
+.hp{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+
+/* ---------- filtros ---------- */
+.filters{display:flex;gap:8px;align-items:center;margin:4px 0 2px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:36px;padding:0 13px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:13px;font-weight:700;color:var(--ink-2);transition:all .2s}
+.chip.on{background:var(--olive);border-color:var(--olive);color:var(--pink)}
+select.sel{height:36px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;padding:0 12px;font-size:13px;font-weight:700;color:var(--ink-2);outline:none}
+.count{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:10px 4px 0}
+
+/* ---------- post ---------- */
+.feed{display:grid;gap:14px;margin-top:10px}
+.post{overflow:hidden;animation:rise .55s var(--ease) both}
+.post.hl{box-shadow:0 0 0 3px var(--olive),var(--shadow)}
+.p-head{display:flex;gap:11px;align-items:center;padding:14px 14px 0}
+.p-who{flex:1;min-width:0}
+.p-who b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p-who span{display:block;font-size:12.5px;color:var(--ink-3);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.more{position:relative}
+.more > button{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--ink-3)}
+.more > button:hover{background:var(--cream)}
+.menu{position:absolute;right:0;top:40px;z-index:5;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px -16px rgba(30,29,8,.35);padding:6px;animation:rise .25s var(--ease) both}
+.menu button{width:100%;text-align:left;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;font-size:14px;font-weight:700;color:var(--ink-2)}
+.menu button:hover{background:var(--cream)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
+.tag.loc{background:var(--cream);color:var(--ink-2)}
+.tag.ok{background:rgba(47,133,90,.12);color:#2F855A}
+.p-text{padding:10px 14px 12px;font-size:15.5px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}
+.p-text.clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.p-text + .rd{margin:-8px 14px 10px;font-size:14px;font-weight:800;color:var(--ink-2)}
+.p-img{position:relative;background:var(--cream-2);cursor:zoom-in;overflow:hidden}
+.p-img img{width:100%;max-height:560px;object-fit:cover;transition:filter .4s}
+.p-img.blur img{filter:blur(28px) saturate(.7);transform:scale(1.08)}
+.p-img .veil{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:20px;background:rgba(30,29,8,.35);cursor:pointer}
+.p-img .veil b{display:block;font-size:16px}
+.p-img .veil span{display:inline-block;margin-top:10px;padding:8px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.7);font-size:13px;font-weight:800}
+.stats{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;font-size:13px;color:var(--ink-3);font-weight:600}
+.stats .em{display:inline-flex;align-items:center;gap:6px}
+.stats .em i{font-style:normal;letter-spacing:-3px;margin-right:2px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.acts button{height:42px;border-radius:10px;font-size:13.5px;font-weight:800;color:var(--ink-2);display:flex;align-items:center;justify-content:center;gap:6px;transition:background .2s,transform .2s var(--spring)}
+.acts button:hover{background:var(--cream)}
+.acts button:active{transform:scale(.94)}
+.acts button.on{color:var(--olive);background:rgba(80,77,19,.08)}
+.acts button.on .e{animation:pop .45s var(--spring)}
+@keyframes pop{40%{transform:scale(1.5)}}
+.p-cta{display:flex;gap:8px;padding:10px 14px 0;flex-wrap:wrap}
+.p-cta a,.p-cta button{flex:1;min-width:140px;height:42px;border-radius:12px;font-size:13.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;border:1.5px solid var(--line-2);color:var(--ink-2);background:#fff}
+.p-cta a.wa{background:#1F9D55;border-color:#1F9D55;color:#fff}
+.coms{padding:10px 14px 14px;display:grid;gap:8px}
+.com{display:flex;gap:9px;align-items:flex-start}
+.com .av{width:32px;height:32px;font-size:12px}
+.com .bub{background:var(--cream);border-radius:4px 16px 16px 16px;padding:8px 12px;min-width:0;max-width:100%}
+.com .bub b{font-size:13px;display:block}
+.com .bub p{font-size:14px;white-space:pre-wrap;word-wrap:break-word}
+.com small{display:flex;gap:10px;font-size:11.5px;color:var(--ink-3);font-weight:700;margin:3px 0 0 8px}
+.com small button{font-size:11.5px;font-weight:700;color:var(--ink-3)}
+.morecoms{justify-self:start;font-size:13.5px;font-weight:800;color:var(--ink-2)}
+.c-new{display:flex;gap:8px;align-items:flex-end;margin-top:4px}
+.c-new .box{flex:1;min-width:0;background:var(--cream);border:1.5px solid transparent;border-radius:18px;padding:4px 4px 4px 12px;display:flex;flex-direction:column;transition:border-color .2s,background .2s}
+.c-new .box:focus-within{border-color:var(--olive);background:#fff}
+.c-new input,.c-new textarea{border:0;background:transparent;outline:none;font-size:14px}
+.c-new input{height:28px;font-weight:700;font-size:12.5px;color:var(--ink-2)}
+.c-new textarea{resize:none;min-height:24px;max-height:120px;padding:2px 0 6px;line-height:1.4}
+.c-new .go{width:38px;height:38px;border-radius:50%;background:var(--olive);color:var(--pink);display:grid;place-items:center;flex:none;transition:transform .2s var(--spring),opacity .2s}
+.c-new .go:disabled{opacity:.5}
+.empty{text-align:center;padding:50px 20px;color:var(--ink-2)}
+.empty b{display:block;font:600 22px/1.2 "Fraunces",serif;color:var(--ink);margin:10px 0 6px}
+.skel{height:220px;border-radius:22px;background:linear-gradient(90deg,#efeadc,#f8f5ee,#efeadc);background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.loadmore{justify-self:center;margin-top:4px}
+
+/* ---------- directorio ---------- */
+.side .card{padding:18px}
+.side h2{font:600 22px/1.15 "Fraunces",serif;display:flex;align-items:center;gap:8px}
+.side h2 + p{font-size:13.5px;color:var(--ink-2);margin-top:4px}
+.dir-sec{margin-top:18px}
+.dir-sec h3{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.dir{display:grid;gap:8px}
+.d-item{border:1px solid var(--line);border-radius:14px;padding:11px 12px;background:#fff}
+.d-item b{display:block;font-size:14.5px}
+.d-item p{font-size:13px;color:var(--ink-2);margin-top:2px;line-height:1.4}
+.d-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.d-links a{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;border-radius:999px;background:var(--cream);font-size:12.5px;font-weight:800;color:var(--olive);text-decoration:none}
+.d-links a.tel{background:var(--olive);color:var(--pink)}
+.steps{counter-reset:s;list-style:none;display:grid;gap:8px}
+.steps li{position:relative;padding-left:32px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--pink);color:var(--olive);font-size:12px;font-weight:800;display:grid;place-items:center}
+.steps b{color:var(--ink)}
+.law{margin-top:10px;font-size:12.5px;color:var(--ink-2);background:var(--cream);border-radius:12px;padding:10px 12px;line-height:1.45}
+.disc{font-size:11.5px;color:var(--ink-3);margin-top:16px;line-height:1.45}
+
+/* ---------- lightbox / toast ---------- */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(15,14,4,.92);display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb.on{opacity:1;pointer-events:auto}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+.lb button{position:absolute;top:calc(env(safe-area-inset-top) + 14px);right:14px;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 20px);transform:translate(-50%,calc(100% + 60px));background:var(--ink);color:var(--pink);padding:12px 18px;border-radius:14px;font-weight:700;font-size:14px;z-index:70;transition:transform .45s var(--spring);max-width:calc(100% - 32px);text-align:center;box-shadow:0 14px 34px -10px rgba(0,0,0,.45)}
+.toast.show{transform:translate(-50%,0)}
+footer{background:var(--olive-4);color:var(--pink-2);padding:28px 0 calc(env(safe-area-inset-bottom) + 28px);font-size:13px;text-align:center}
+footer a{color:var(--pink);font-weight:700}
+@media (max-width:979px){ .side-m{order:-1} }
+@media (max-width:640px){ nav.top a.l{display:none} .hero{padding-top:26px} .acts button{font-size:12.5px;gap:4px} .p-cta .lg{display:none} }
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a href="/" aria-label="Inicio"><img src="/giveaway/assets/logo.png" alt="Proyecto Empatados"></a>
+  <span class="sp"></span>
+  <a class="l" href="#casos">Casos</a>
+  <a class="l" href="#acudir">A quién acudir</a>
+  <a class="pill-btn" href="#publicar" data-open><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Reportar</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">🇻🇪 Venezuela · Red de ayuda</span>
+  <h1>Reporta <em>maltrato animal</em> y no te quedes solo con lo que viste.</h1>
+  <p class="lede">Publica el caso con una foto y la zona. La comunidad lo ve, puede reconocer al dueño, ofrecer hogar o acercarse a ayudar. Y aquí mismo te decimos a quién acudir.</p>
+  <div class="ctas">
+    <a class="btn btn-pink" href="#publicar" data-open>Publicar un caso <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <a class="btn btn-ghost" href="#acudir">¿A quién acudir?</a>
+  </div>
+  <div class="sos"><span class="ic">!</span><p><b>Si el animal o alguien está en peligro ahora mismo,</b> llama primero a las autoridades (abajo tienes los números). Publicar aquí ayuda a difundir, pero no reemplaza una denuncia oficial.</p></div>
+</div></header>
+
+<div class="wrap main">
+  <section id="casos">
+    <div class="card composer" id="publicar">
+      <div id="cClosed">
+        <button class="c-open" type="button" data-open><span class="av" id="meAv" style="background:var(--pink)">🐾</span><span class="fake">¿Qué viste? Cuéntalo y sube una foto…</span></button>
+        <div class="c-quick">
+          <button type="button" data-open="Maltrato">🚨 Maltrato</button>
+          <button type="button" data-open="Herido">🩹 Herido</button>
+          <button type="button" data-open="Abandonado">🏚️ Abandonado</button>
+          <button type="button" data-open="Perdido">🔎 Perdido</button>
+          <button type="button" data-open="Encontrado">📍 Encontrado</button>
+          <button type="button" data-open="Necesita hogar">🏡 Necesita hogar</button>
+        </div>
+      </div>
+      <form class="c-form" id="form" hidden novalidate>
+        <h2>Publicar un caso</h2>
+        <p class="sub">Se publica al instante y todos lo pueden ver. Toma menos de un minuto.</p>
+        <span class="lbl">¿Qué está pasando?</span>
+        <div class="tipos" id="tipos"></div>
+        <span class="lbl">Foto <i>(muy recomendada)</i></span>
+        <label class="photo" id="photo"><input type="file" id="file" accept="image/*"><div class="ph"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>Toca para tomar o subir una foto<small>Evita que se vean caras de personas o placas</small></div></label>
+        <label class="lbl" for="texto">Describe lo que viste</label>
+        <textarea class="in" id="texto" maxlength="1500" placeholder="Ej. Perro mediano marrón con una pata herida, cojea y no deja que se le acerquen. Está desde ayer frente a la panadería."></textarea>
+        <div class="row2">
+          <div><label class="lbl" for="estado">Estado</label><select class="in" id="estado"></select></div>
+          <div><label class="lbl" for="ciudad">Ciudad / municipio</label><input class="in" id="ciudad" maxlength="60" placeholder="Ej. Chacao"></div>
+        </div>
+        <label class="lbl" for="zona">Zona o punto de referencia</label>
+        <input class="in" id="zona" maxlength="140" placeholder="Ej. Av. Francisco de Miranda, cerca de la estación de metro">
+        <div class="row2">
+          <div><label class="lbl" for="nombre">Tu nombre</label><input class="in" id="nombre" maxlength="60" autocomplete="given-name" placeholder="Como quieres aparecer"></div>
+          <div><label class="lbl" for="wa">WhatsApp <i>(opcional, será visible)</i></label><input class="in" id="wa" type="tel" maxlength="20" inputmode="tel" autocomplete="tel" placeholder="0414 123 4567"></div>
+        </div>
+        <label class="chk"><input type="checkbox" id="sensible"><span><b>La foto puede ser fuerte</b> (sangre, heridas, maltrato). Se mostrará borrosa hasta que alguien decida verla.</span></label>
+        <div class="hp" aria-hidden="true"><label>No llenar <input id="web" tabindex="-1" autocomplete="off"></label></div>
+        <p class="note">Al publicar aceptas que el caso sea público. No incluyas direcciones exactas de casas, caras ni datos personales de otras personas. Si dejas tu WhatsApp, cualquiera podrá escribirte para ayudar. Proyecto Empatados puede ocultar publicaciones que no cumplan estas normas.</p>
+        <p class="err" id="ferr" role="alert"></p>
+        <div class="f-actions">
+          <button type="button" class="btn btn-line" id="cancel">Cancelar</button>
+          <button type="submit" class="btn btn-olive" id="send"><span>Publicar</span></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="filters" style="margin-top:16px">
+      <div class="chips" id="fTipos"></div>
+      <select class="sel" id="fEstado" aria-label="Filtrar por estado"></select>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="feed" id="feed"><div class="skel"></div><div class="skel"></div></div>
+  </section>
+
+  <aside class="side" id="acudir">
+    <div class="card">
+      <h2>📞 ¿A quién acudir?</h2>
+      <p>Venezuela. Guarda estos contactos: en una emergencia no hay tiempo de buscarlos.</p>
+      <div id="dir"></div>
+    </div>
+  </aside>
+</div>
+
+<footer><div class="wrap">
+  <p>Una iniciativa de <a href="/">Proyecto Empatados</a> · Miami 🇺🇸 → Venezuela 🇻🇪</p>
+  <p style="margin-top:6px;opacity:.75">Las publicaciones son de la comunidad. Si ves algo que no debería estar aquí, usa “Denunciar publicación”.</p>
+</div></footer>
+
+<div class="lb" id="lb"><img alt=""><button aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbwust9DBu-ZYQWH7ZMoFVop1q5qeo--RNLdhvvkR1rJsb4kMyB6bFi2lJZAYrQxhKyK/exec";
+const TIPOS = {
+  "Maltrato": {e: "🚨", c: "#B4475A"}, "Herido": {e: "🩹", c: "#C2571A"}, "Abandonado": {e: "🏚️", c: "#8C6D1F"},
+  "Perdido": {e: "🔎", c: "#2F6FDB"}, "Encontrado": {e: "📍", c: "#2F855A"}, "Necesita hogar": {e: "🏡", c: "#7C5CE0"}
+};
+const ESTADOS = ["Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Distrito Capital", "Falcón", "Guárico", "La Guaira", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Yaracuy", "Zulia"];
+const REACT = [["importa", "❤️", "Me importa"], ["visto", "👀", "Lo vi"], ["ayudo", "🙋", "Puedo ayudar"]];
+const AVC = ["#504D13", "#7A7533", "#918E55", "#B4475A", "#C27C1A", "#2F855A", "#2F6FDB", "#7C5CE0"];
+const LS = {me: "pe-rep-me", mine: "pe-rep-mine", reacted: "pe-rep-reacted", flagged: "pe-rep-flagged"};
+
+// Directorio de a quién acudir (Venezuela), verificado en octubre 2026 con prensa venezolana y sitios oficiales.
+// Fuentes: eldiario.com (MP ago-2025, 911, CICPC), eldiario.com 30-03-2026 (Minec 0800-Ambiente),
+// globalanimallaw.org (Ley 2010, G.O. 39.338), telesurtv.net y diariodelosandes.com (Misión Nevado), spcai.org (Red de Apoyo Canino).
+const PASOS = [
+  "<b>No te enfrentes a quien maltrata.</b> Tu seguridad primero. Si hay peligro inmediato o un animal atrapado, llama al <b>911</b>.",
+  "<b>Documenta desde un lugar seguro:</b> fotos o video, fecha, hora, dirección y testigos. Guarda los archivos originales.",
+  "<b>Denuncia</b> en la Fiscalía (Unidad de Atención a la Víctima o Fiscalía Superior de tu estado) o en el CICPC. Pide el número o una copia de tu denuncia.",
+  "<b>Publícalo aquí</b> para que vecinos, rescatistas o el dueño lo vean y puedan ayudar."
+];
+const LEY = "La <b>Ley para la Protección de la Fauna Doméstica Libre y en Cautiverio</b> (Gaceta Oficial N° 39.338, 2010) prohíbe maltratar a los animales domésticos. Menciónala cuando denuncies.";
+const DIRECTORIO = [
+  {titulo: "Emergencia ahora mismo", items: [
+    {nombre: "VEN 911", para: "Número nacional de emergencias: peligro inmediato para personas o un animal atrapado (bomberos, Protección Civil).", links: [{txt: "📞 Llamar al 911", href: "tel:911", tel: 1}]}
+  ]},
+  {titulo: "Denunciar maltrato", items: [
+    {nombre: "Ministerio Público (Fiscalía)", para: "Recibe denuncias de maltrato animal en todo el país: Unidad de Atención a la Víctima, Fiscalía Superior de tu estado o fiscales de Defensa Integral del Ambiente. Si la línea no responde, ve en persona.", links: [{txt: "📞 0800-FISCA-00", href: "tel:08003472200", tel: 1}, {txt: "mp.gob.ve", href: "https://www.mp.gob.ve/"}]},
+    {nombre: "CICPC", para: "Cualquier subdelegación puede recibir tu denuncia. Ya ha detenido a personas por maltrato y envenenamiento de animales."},
+    {nombre: "Consejo Comunal, autoridad parroquial o juez de paz", para: "Para casos vecinales o menores. La Ley de Fauna Doméstica (art. 25) les permite recibir denuncias."}
+  ]},
+  {titulo: "Animales silvestres (aves, monos, reptiles)", items: [
+    {nombre: "Ministerio de Ecosocialismo · 0800-Ambiente", para: "Caza, tráfico o maltrato de fauna silvestre. No atiende perros ni gatos.", links: [{txt: "📞 0800-2624368", href: "tel:08002624368", tel: 1}, {txt: "Denunciar en línea", href: "https://0800amb.minec.gob.ve/"}]}
+  ]},
+  {titulo: "Atención veterinaria y rescate", items: [
+    {nombre: "Misión Nevado", para: "Programa del Estado con jornadas veterinarias gratuitas. También recibe casos de maltrato y los remite a la Fiscalía. Busca su cuenta oficial en redes o su sede en tu estado."},
+    {nombre: "Red de Apoyo Canino (Caracas)", para: "Esterilización y hogares temporales desde 2007.", links: [{txt: "reddeapoyocanino.org", href: "https://reddeapoyocanino.org/"}]},
+    {nombre: "Ojo: los refugios están llenos", para: "En 2026 muchos refugios y rescatistas están al máximo de su capacidad. Antes de llevar un animal, escribe primero. Si puedes darle hogar temporal mientras se ubica, publícalo aquí y la comunidad te ayuda."}
+  ]}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const store = {get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }};
+const initials = n => (String(n).trim().split(/\s+/).slice(0, 2).map(w => w[0] || "").join("") || "?").toUpperCase();
+const avColor = s => { let h = 0; for (const c of String(s).toLowerCase()) h = (h * 31 + c.charCodeAt(0)) >>> 0; return AVC[h % AVC.length]; };
+const fotoUrl = (id, w) => `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w${w || 1200}`;
+function ago(iso) {
+  const d = new Date(iso), m = (Date.now() - d) / 6e4;
+  if (isNaN(m)) return "";
+  if (m < 1) return "ahora"; if (m < 60) return `hace ${Math.floor(m)} min`; if (m < 1440) return `hace ${Math.floor(m / 60)} h`; if (m < 10080) return `hace ${Math.floor(m / 1440)} d`;
+  return d.toLocaleDateString("es", {day: "numeric", month: "short", year: d.getFullYear() !== new Date().getFullYear() ? "numeric" : undefined});
+}
+function toast(t) { const e = $("#toast"); e.textContent = t; e.classList.add("show"); clearTimeout(e._t); e._t = setTimeout(() => e.classList.remove("show"), 2600); }
+async function api(body) {
+  const r = await fetch(API, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(body)});
+  const d = await r.json();
+  if (!d.ok) throw new Error(d.error || "Algo salió mal");
+  return d;
+}
+
+let S = {reportes: [], total: 0, offset: 0, tipo: "Todos", estado: "", foto: null, t0: 0, focus: new URLSearchParams(location.search).get("caso")};
+const me = () => store.get(LS.me, {nombre: ""});
+
+/* ---------- formulario ---------- */
+$("#tipos").innerHTML = Object.entries(TIPOS).map(([t, v]) => `<label><input type="radio" name="tipo" value="${t}"><span>${v.e} ${t}</span></label>`).join("");
+$("#estado").innerHTML = `<option value="">Elige…</option>` + ESTADOS.map(e => `<option>${e}</option>`).join("");
+$("#fEstado").innerHTML = `<option value="">Toda Venezuela</option>` + ESTADOS.map(e => `<option>${e}</option>`).join("");
+$("#fTipos").innerHTML = ["Todos"].concat(Object.keys(TIPOS)).map(t => `<button class="chip${t === "Todos" ? " on" : ""}" data-ft="${t}">${t === "Todos" ? "Todos" : TIPOS[t].e + " " + t}</button>`).join("");
+if (me().nombre) { $("#nombre").value = me().nombre; $("#meAv").textContent = initials(me().nombre); $("#meAv").style.background = avColor(me().nombre); }
+if (me().estado) $("#estado").value = me().estado;
+
+function openForm(tipo) {
+  $("#cClosed").hidden = true; $("#form").hidden = false; S.t0 = Date.now();
+  if (tipo) { const r = document.querySelector(`input[name=tipo][value="${tipo}"]`); if (r) { r.checked = true; syncSensible(); } }
+  $("#publicar").scrollIntoView({behavior: "smooth", block: "start"});
+  setTimeout(() => (tipo ? $("#texto") : document.querySelector("input[name=tipo]")).focus({preventScroll: true}), 450);
+}
+function closeForm() { $("#form").hidden = true; $("#cClosed").hidden = false; $("#ferr").textContent = ""; }
+document.addEventListener("click", e => { const o = e.target.closest("[data-open]"); if (o) { e.preventDefault(); openForm(o.dataset.open || ""); } });
+$("#cancel").onclick = closeForm;
+// para maltrato y heridos la foto se marca como sensible por defecto
+function syncSensible() { const t = (document.querySelector("input[name=tipo]:checked") || {}).value; if (!$("#sensible").dataset.touched) $("#sensible").checked = t === "Maltrato" || t === "Herido"; }
+$("#tipos").addEventListener("change", syncSensible);
+$("#sensible").addEventListener("change", e => e.target.dataset.touched = "1");
+
+// la foto se reduce en el navegador (máx. 1400 px, JPEG) antes de enviarla
+$("#file").addEventListener("change", async e => {
+  const f = e.target.files[0]; if (!f) return;
+  if (!/^image\//.test(f.type)) { $("#ferr").textContent = "Ese archivo no es una imagen"; return; }
+  try {
+    S.foto = await shrink(f, 1400, .82);
+    const ph = $("#photo");
+    ph.querySelector(".ph").hidden = true;
+    ph.querySelector("img")?.remove(); ph.querySelector(".rm")?.remove();
+    ph.insertAdjacentHTML("beforeend", `<img src="${S.foto}" alt="Vista previa"><button type="button" class="rm" aria-label="Quitar foto">✕</button>`);
+    $("#ferr").textContent = "";
+  } catch (err) { $("#ferr").textContent = "No pudimos leer esa foto. Prueba con otra."; }
+});
+$("#photo").addEventListener("click", e => {
+  if (!e.target.closest(".rm")) return;
+  e.preventDefault(); S.foto = null; $("#file").value = "";
+  const ph = $("#photo"); ph.querySelector("img")?.remove(); e.target.closest(".rm").remove(); ph.querySelector(".ph").hidden = false;
+});
+function shrink(file, max, q) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, max / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg", q));
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(); };
+    img.src = url;
+  });
+}
+const clave = () => { const a = new Uint8Array(18); crypto.getRandomValues(a); return [...a].map(b => b.toString(16).padStart(2, "0")).join(""); };
+
+$("#form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const tipo = (document.querySelector("input[name=tipo]:checked") || {}).value;
+  const d = {tipo, texto: $("#texto").value.trim(), estado: $("#estado").value, ciudad: $("#ciudad").value.trim(), zona: $("#zona").value.trim(),
+    nombre: $("#nombre").value.trim(), whatsapp: $("#wa").value.trim(), sensible: $("#sensible").checked, web: $("#web").value};
+  const err = !tipo ? "Elige qué está pasando" : d.texto.length < 15 ? "Cuéntanos un poco más de lo que viste" : !d.estado ? "Elige el estado" : !d.nombre ? "Escribe tu nombre" : "";
+  if (err) { $("#ferr").textContent = err; return; }
+  const b = $("#send"); b.disabled = true; b.innerHTML = '<span class="spin"></span><span>Publicando…</span>';
+  const k = clave();
+  try {
+    const r = await api({action: "repAdd", ...d, foto: S.foto, clave: k, ms: Date.now() - S.t0});
+    store.set(LS.me, {nombre: d.nombre, estado: d.estado});
+    const mine = store.get(LS.mine, {}); mine[r.id] = k; store.set(LS.mine, mine);
+    $("#form").reset(); S.foto = null; $("#photo").querySelector("img")?.remove(); $("#photo").querySelector(".rm")?.remove(); $("#photo").querySelector(".ph").hidden = false;
+    $("#nombre").value = d.nombre; $("#estado").value = d.estado; delete $("#sensible").dataset.touched;
+    closeForm(); toast("¡Publicado! Gracias por no mirar a otro lado 🐾");
+    S.focus = r.id; await load(true);
+  } catch (err) { $("#ferr").textContent = err.message === "Failed to fetch" ? "Sin conexión. Intenta de nuevo." : err.message; }
+  finally { b.disabled = false; b.innerHTML = "<span>Publicar</span>"; }
+});
+
+/* ---------- feed ---------- */
+async function load(reset) {
+  if (reset) { S.offset = 0; S.reportes = []; }
+  try {
+    const d = await api({action: "repList", offset: S.offset, limit: 20});
+    S.total = d.total; S.reportes = S.reportes.concat(d.reportes); S.offset += d.reportes.length;
+    // un caso compartido por enlace que no esté en la primera página se trae aparte
+    if (S.focus && !S.reportes.some(r => r.id === S.focus)) {
+      const one = await api({action: "repList", id: S.focus}).catch(() => null);
+      if (one && one.reportes[0]) S.reportes.unshift(one.reportes[0]);
+    }
+    render();
+  } catch (err) {
+    $("#feed").innerHTML = `<div class="card empty">⚠️<b>No pudimos cargar los casos</b>${esc(err.message === "Failed to fetch" ? "Revisa tu conexión e intenta de nuevo." : err.message)}</div>`;
+  }
+}
+function visibles() { return S.reportes.filter(r => (S.tipo === "Todos" || r.tipo === S.tipo) && (!S.estado || r.estado === S.estado)); }
+function render() {
+  const V = visibles();
+  const filt = S.tipo !== "Todos" || S.estado;
+  $("#count").textContent = filt ? `${V.length} ${V.length === 1 ? "caso" : "casos"} con estos filtros` : `${S.total} ${S.total === 1 ? "caso publicado" : "casos publicados"}`;
+  if (!V.length) {
+    $("#feed").innerHTML = `<div class="card empty">🐾<b>${filt ? "No hay casos con estos filtros" : "Todavía no hay casos"}</b>${filt ? "Prueba con otro estado o tipo." : "Si viste un animal en peligro, sé la primera persona en publicarlo."}</div>`;
+  } else {
+    const focus = S.focus;
+    const ord = focus ? V.slice().sort((a, b) => (b.id === focus) - (a.id === focus)) : V;
+    $("#feed").innerHTML = ord.map((r, i) => postHTML(r, i)).join("") + (S.offset < S.total ? `<button class="btn btn-line loadmore" id="more">Ver más casos</button>` : "");
+    if (focus) { const el = document.getElementById("p-" + focus); if (el) { el.classList.add("hl"); setTimeout(() => el.scrollIntoView({behavior: "smooth", block: "center"}), 200); } S.focus = null; }
+  }
+}
+function postHTML(r, i) {
+  const t = TIPOS[r.tipo] || {e: "🐾", c: "#504D13"}, reacted = store.get(LS.reacted, {}), mine = store.get(LS.mine, {});
+  const lugar = [r.zona, r.ciudad, r.estado].filter(Boolean).join(", ");
+  const tot = r.reacciones.importa + r.reacciones.visto + r.reacciones.ayudo;
+  const long = r.texto.length > 320 || r.texto.split("\n").length > 6;
+  const coms = r.comentarios || [], showAll = r._all || coms.length <= 3, cs = showAll ? coms : coms.slice(-2);
+  return `<article class="card post" id="p-${esc(r.id)}" data-id="${esc(r.id)}" style="animation-delay:${Math.min(i, 8) * .04}s">
+    <div class="p-head">
+      <span class="av" style="background:${avColor(r.nombre)}">${esc(initials(r.nombre))}</span>
+      <div class="p-who"><b>${esc(r.nombre)}</b><span>${ago(r.fecha)} · ${esc(r.estado)}</span></div>
+      <div class="more"><button data-menu aria-label="Más opciones"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button></div>
+    </div>
+    <div class="tags"><span class="tag" style="background:${t.c}1A;color:${t.c}">${t.e} ${esc(r.tipo)}</span>${r.situacion === "Resuelto" ? '<span class="tag ok">✓ Resuelto</span>' : ""}${lugar ? `<span class="tag loc">📍 ${esc(lugar)}</span>` : ""}${mine[r.id] ? '<span class="tag loc">Tu publicación</span>' : ""}</div>
+    <p class="p-text${long && !r._open ? " clamp" : ""}">${esc(r.texto)}</p>${long && !r._open ? '<button class="rd" data-read>Ver más</button>' : ""}
+    ${r.foto ? `<div class="p-img${r.sensible && !r._see ? " blur" : ""}" data-img="${esc(r.foto)}"><img src="${fotoUrl(r.foto, 1000)}" alt="Foto del caso" loading="lazy" referrerpolicy="no-referrer">${r.sensible && !r._see ? '<div class="veil" data-see><div><b>Imagen sensible</b>Puede mostrar heridas o maltrato<br><span>Ver foto</span></div></div>' : ""}</div>` : ""}
+    <div class="stats"><span class="em">${tot ? `<i>${REACT.filter(x => r.reacciones[x[0]]).map(x => x[1]).join("")}</i>${tot}` : "Sé el primero en reaccionar"}</span><span>${coms.length ? `${coms.length} ${coms.length === 1 ? "comentario" : "comentarios"}` : ""}</span></div>
+    <div class="acts">${REACT.map(([k, e, l]) => `<button data-react="${k}" class="${reacted[r.id + k] ? "on" : ""}"><span class="e">${e}</span>${l}</button>`).join("")}</div>
+    <div class="p-cta">${r.whatsapp ? `<a class="wa" href="https://wa.me/${esc(r.whatsapp)}?text=${encodeURIComponent("Hola " + r.nombre.split(" ")[0] + ", vi tu publicación en Proyecto Empatados sobre el caso en " + (r.ciudad || r.estado) + ".")}" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg><span class="lg">Escribirle por&nbsp;</span>WhatsApp</a>` : ""}<button data-share><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13"/></svg>Compartir</button></div>
+    <div class="coms">${!showAll ? `<button class="morecoms" data-allcoms>Ver los ${coms.length} comentarios</button>` : ""}${cs.map(comHTML).join("")}
+      <form class="c-new" data-com><span class="av" style="width:32px;height:32px;font-size:12px;background:${avColor(me().nombre || "?")}">${esc(initials(me().nombre || "🐾"))}</span><div class="box"><input name="n" maxlength="60" placeholder="Tu nombre" value="${esc(me().nombre)}" ${me().nombre ? "hidden" : ""}><textarea name="t" rows="1" maxlength="600" placeholder="Escribe un comentario… ¿lo conoces, puedes ayudar?"></textarea></div><button class="go" aria-label="Comentar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>
+    </div>
+  </article>`;
+}
+function comHTML(c) {
+  return `<div class="com" data-cid="${esc(c.id)}"><span class="av" style="background:${avColor(c.nombre)}">${esc(initials(c.nombre))}</span><div style="min-width:0"><div class="bub"><b>${esc(c.nombre)}</b><p>${esc(c.texto)}</p></div><small>${ago(c.fecha)}<button data-cflag>Denunciar</button></small></div></div>`;
+}
+const byId = id => S.reportes.find(r => r.id === id);
+function repaint(r) { const el = document.getElementById("p-" + r.id); if (el) { const n = document.createElement("div"); n.innerHTML = postHTML(r, 0); n.firstElementChild.style.animation = "none"; el.replaceWith(n.firstElementChild); } }
+
+document.addEventListener("click", async e => {
+  const ft = e.target.closest("[data-ft]");
+  if (ft) { S.tipo = ft.dataset.ft; document.querySelectorAll("[data-ft]").forEach(b => b.classList.toggle("on", b === ft)); render(); return; }
+  if (e.target.id === "more") { e.target.disabled = true; e.target.textContent = "Cargando…"; await load(); return; }
+  if (!e.target.closest(".more")) document.querySelectorAll(".menu").forEach(m => m.remove());
+  const post = e.target.closest(".post"); if (!post) return;
+  const r = byId(post.dataset.id); if (!r) return;
+  const t = e.target.closest("[data-react],[data-share],[data-menu],[data-see],[data-img],[data-read],[data-allcoms],[data-cflag],[data-flag],[data-resolve]");
+  if (!t) return;
+  if (t.dataset.read !== undefined) { r._open = true; repaint(r); return; }
+  if (t.dataset.allcoms !== undefined) { r._all = true; repaint(r); return; }
+  if (t.dataset.see !== undefined) { r._see = true; repaint(r); return; }
+  if (t.dataset.img) { const lb = $("#lb"); lb.querySelector("img").src = fotoUrl(r.foto, 2000); lb.classList.add("on"); return; }
+  if (t.dataset.react) {
+    const k = t.dataset.react, reacted = store.get(LS.reacted, {});
+    if (reacted[r.id + k]) return;
+    reacted[r.id + k] = 1; store.set(LS.reacted, reacted); r.reacciones[k]++; repaint(r);
+    if (k === "ayudo") toast(r.whatsapp ? "¡Gracias! Escríbele por WhatsApp o deja un comentario 🙌" : "¡Gracias! Deja un comentario para coordinar 🙌");
+    api({action: "repReact", id: r.id, tipo: k}).catch(() => {});
+    return;
+  }
+  if (t.dataset.share !== undefined) {
+    const url = `${location.origin}/reportar/?caso=${r.id}`, txt = `${TIPOS[r.tipo]?.e || "🐾"} ${r.tipo} en ${[r.ciudad, r.estado].filter(Boolean).join(", ")}: ${r.texto.slice(0, 120)}${r.texto.length > 120 ? "…" : ""}`;
+    if (navigator.share) navigator.share({title: "Caso en Proyecto Empatados", text: txt, url}).catch(() => {});
+    else navigator.clipboard.writeText(url).then(() => toast("Enlace copiado"));
+    return;
+  }
+  if (t.dataset.menu !== undefined) {
+    const box = t.parentElement; if (box.querySelector(".menu")) { box.querySelector(".menu").remove(); return; }
+    const mine = store.get(LS.mine, {});
+    box.insertAdjacentHTML("beforeend", `<div class="menu">${mine[r.id] && r.situacion !== "Resuelto" ? '<button data-resolve>✅ Marcar como resuelto</button>' : ""}<button data-flag>🚩 Denunciar publicación</button></div>`);
+    return;
+  }
+  if (t.dataset.resolve !== undefined) {
+    try { await api({action: "repResolve", id: r.id, clave: store.get(LS.mine, {})[r.id]}); r.situacion = "Resuelto"; repaint(r); toast("¡Qué alegría! Marcado como resuelto 💚"); }
+    catch (err) { toast(err.message); }
+    return;
+  }
+  if (t.dataset.flag !== undefined || t.dataset.cflag !== undefined) {
+    const isC = t.dataset.cflag !== undefined, id = isC ? t.closest("[data-cid]").dataset.cid : r.id;
+    const fl = store.get(LS.flagged, {}); if (fl[id]) { toast("Ya lo denunciaste. El equipo lo revisará."); return; }
+    fl[id] = 1; store.set(LS.flagged, fl); document.querySelectorAll(".menu").forEach(m => m.remove());
+    api({action: "repFlag", id, comentario: isC}).catch(() => {});
+    toast("Gracias. El equipo de Proyecto Empatados lo revisará.");
+  }
+});
+document.addEventListener("submit", async e => {
+  const f = e.target.closest("[data-com]"); if (!f) return;
+  e.preventDefault();
+  const r = byId(f.closest(".post").dataset.id), nombre = (f.n.value || me().nombre || "").trim(), texto = f.t.value.trim();
+  if (!nombre) { f.n.hidden = false; f.n.focus(); toast("Escribe tu nombre"); return; }
+  if (!texto) { f.t.focus(); return; }
+  const b = f.querySelector(".go"); b.disabled = true;
+  try {
+    const d = await api({action: "repComment", id: r.id, nombre, texto});
+    store.set(LS.me, {...me(), nombre});
+    r.comentarios = (r.comentarios || []).concat(d.comentario); r._all = true; repaint(r);
+  } catch (err) { toast(err.message); b.disabled = false; }
+});
+document.addEventListener("input", e => { if (e.target.matches(".c-new textarea")) { e.target.style.height = "auto"; e.target.style.height = Math.min(e.target.scrollHeight, 120) + "px"; } });
+document.addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey && e.target.matches(".c-new textarea")) { e.preventDefault(); e.target.form.requestSubmit(); }
+  if (e.key === "Escape") $("#lb").classList.remove("on");
+});
+$("#lb").onclick = () => $("#lb").classList.remove("on");
+$("#fEstado").onchange = e => { S.estado = e.target.value; render(); };
+
+/* ---------- directorio ---------- */
+function renderDir() {
+  const sec = DIRECTORIO.map(g => `<div class="dir-sec"><h3>${esc(g.titulo)}</h3><div class="dir">${g.items.map(it => `<div class="d-item"><b>${esc(it.nombre)}</b>${it.para ? `<p>${esc(it.para)}</p>` : ""}${(it.links || []).length ? `<div class="d-links">${it.links.map(l => `<a class="${l.tel ? "tel" : ""}" href="${esc(l.href)}"${/^https?:/.test(l.href) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.txt)}</a>`).join("")}</div>` : ""}</div>`).join("")}</div></div>`).join("");
+  const pasos = PASOS.length ? `<div class="dir-sec"><h3>Si ves maltrato</h3><ol class="steps">${PASOS.map(p => `<li>${p}</li>`).join("")}</ol>${LEY ? `<p class="law">${LEY}</p>` : ""}</div>` : "";
+  $("#dir").innerHTML = pasos + sec + `<p class="disc">Verificamos estos contactos en fuentes oficiales y públicas, pero pueden cambiar. Si alguno no funciona, escríbenos a <a href="mailto:info@proyectoempatados.com">info@proyectoempatados.com</a>.</p>`;
+}
+renderDir();
+load(true);
+</script>
+</body>
+</html>
