@@ -237,6 +237,84 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .toast.show{transform:translate(-50%,0)}
 .toast .ok{width:22px;height:22px;border-radius:50%;background:#7BD88F;color:var(--ink);display:grid;place-items:center;font-size:13px}
 
+/* =================== VISTAS (Leads / Horas) =================== */
+.views{display:inline-flex;gap:4px;padding:4px;border-radius:14px;background:rgba(255,222,228,.08);border:1px solid rgba(255,222,228,.14);margin-bottom:16px;animation:rise .6s var(--ease) both;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.views button{flex:none;height:36px;padding:0 14px;border:0;border-radius:10px;background:transparent;color:var(--pink-2);font-weight:800;font-size:13px;display:inline-flex;align-items:center;gap:7px;transition:background .25s,color .25s}
+.views button:hover{color:var(--pink)}
+.views button.on{background:var(--pink);color:var(--olive)}
+
+/* =================== HORAS DE VOLUNTARIOS =================== */
+.hform{margin:14px 14px 4px;padding:16px;border-radius:18px;background:var(--surface-2);border:1px solid var(--line)}
+.hform h3{font:600 19px/1.1 "Fraunces",serif;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.hform h3 small{margin-left:auto;font:700 11px/1 "Schibsted Grotesk",sans-serif;color:var(--ink-3)}
+.hgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0;grid-column:span 3}
+.f.c2{grid-column:span 2}.f.c1{grid-column:span 1}.f.c6{grid-column:span 6}
+.f label{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.f label i{font-style:normal;font-weight:600;letter-spacing:0;text-transform:none}
+.f input,.f select{width:100%;min-width:0;height:44px;border-radius:12px;border:1px solid var(--line-2);background:#fff;padding:0 12px;font-size:15px;font-weight:600;outline:none;transition:border-color .2s,box-shadow .2s}
+.f input:focus,.f select:focus{border-color:var(--olive);box-shadow:0 0 0 4px rgba(80,77,19,.08)}
+.hsubmit{grid-column:span 6;height:48px;border:0;border-radius:13px;background:var(--olive);color:var(--pink);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s var(--spring)}
+.hsubmit:active{transform:scale(.98)}
+.hsubmit:disabled{opacity:.6}
+.hrs{font:600 22px/1 "Fraunces",serif;color:var(--olive);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hrs small{font:800 11px/1 "Schibsted Grotesk",sans-serif;color:var(--ink-3);margin-left:3px}
+.htotal{display:flex;align-items:baseline;gap:10px;margin:2px 0 0}
+.htotal .big{font:600 52px/1 "Fraunces",serif;color:var(--olive);font-variant-numeric:tabular-nums}
+.htotal span:last-child{font-size:14px;font-weight:700;color:var(--ink-2)}
+.certbtn{width:100%;height:56px;margin-top:16px;border:0;border-radius:16px;background:var(--olive);color:var(--pink);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 12px 26px -12px rgba(80,77,19,.7);transition:transform .2s var(--spring)}
+.certbtn:hover{transform:translateY(-2px)}
+.certbtn:active{transform:scale(.97)}
+.certbtn:disabled{opacity:.6;transform:none}
+.bars{display:grid;gap:12px}
+.bar-r .t{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:700;margin-bottom:6px}
+.bar-r .t span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-r .t b{flex:none;font-variant-numeric:tabular-nums;color:var(--olive)}
+.track{height:9px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden}
+.track i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--olive),var(--sage));transition:width 1s var(--ease)}
+.entries{list-style:none;display:grid;gap:6px}
+.entries li{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:9px 8px 9px 10px;border-radius:13px;background:var(--surface-2);border:1px solid var(--line);animation:rise .45s var(--ease) both}
+.entries .d{width:40px;text-align:center;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);line-height:1.15}
+.entries .d b{display:block;font:600 19px/1 "Fraunces",serif;color:var(--ink);letter-spacing:0}
+.entries .m{min-width:0}
+.entries .m b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.entries .m span{display:block;font-size:12px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.entries .h{font-weight:800;font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.xdel{height:30px;min-width:30px;padding:0 6px;border-radius:9px;border:0;background:transparent;color:var(--ink-3);display:grid;place-items:center;font-size:12px;font-weight:800;transition:background .2s,color .2s}
+.xdel:hover{background:rgba(180,71,90,.08);color:#B4475A}
+.xdel.armed{background:#B4475A;color:#fff;padding:0 10px}
+.ghost{width:100%;height:44px;margin-top:12px;border-radius:13px;border:1px dashed var(--line-2);background:transparent;color:var(--ink-2);font-weight:800;font-size:13px;transition:background .2s,border-color .2s}
+.ghost:hover{background:var(--surface-2);border-color:var(--olive)}
+
+/* modal de la carta */
+.modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(30,29,8,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+.modal.on{opacity:1;pointer-events:auto}
+.mcard{width:100%;max-width:540px;max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;background:var(--surface);border-radius:24px;padding:22px;box-shadow:var(--shadow-3);transform:translateY(24px) scale(.98);transition:transform .45s var(--ease)}
+.modal.on .mcard{transform:none}
+.mhead{display:flex;gap:12px;align-items:flex-start}
+.mhead h3{font:600 23px/1.1 "Fraunces",serif;flex:1}
+.mhead p{font-size:13px;color:var(--ink-2);margin-top:5px;font-family:"Schibsted Grotesk",sans-serif;font-weight:500}
+.mhead .d-close{position:static;flex:none;display:grid}
+.msum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.msum div{background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:10px 12px}
+.msum span{display:block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.msum b{display:block;font:600 22px/1.1 "Fraunces",serif;color:var(--olive);margin-top:4px;font-variant-numeric:tabular-nums}
+.mcard .hgrid{margin-top:4px}
+.mcard details{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:0 14px;background:var(--surface-2)}
+.mcard summary{cursor:pointer;list-style:none;height:46px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;color:var(--ink-2)}
+.mcard summary::-webkit-details-marker{display:none}
+.mcard summary::after{content:"+";font-size:18px;font-weight:600;transition:transform .3s var(--ease)}
+.mcard details[open] summary::after{transform:rotate(45deg)}
+.mcard details .hgrid{padding-bottom:14px}
+.warn{font-size:12px;line-height:1.4;font-weight:600;color:#8A5300;background:#FFF4DF;border:1px solid #F2D49B;border-radius:11px;padding:9px 11px;margin-top:12px}
+.mnote{font-size:12px;color:var(--ink-3);margin-top:10px;line-height:1.4}
+@media (max-width:640px){
+  .f,.f.c2{grid-column:span 6}
+  .f.c1,.f.m3{grid-column:span 3}
+  .msum b{font-size:19px}
+  .hform h3 small{display:none}
+}
+
 /* =================== ESCRITORIO: lista + ficha lado a lado =================== */
 @media (min-width:980px){
   .content{grid-template-columns:minmax(0,1fr) 420px;padding:0 22px 40px;z-index:2}
@@ -293,12 +371,16 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
   </div></div>
 
   <section class="hero"><div class="hero-in">
-    <div class="greet"><p id="hello">Hola equipo</p><h1>Leads del <em>giveaway</em></h1></div>
+    <div class="views" role="tablist">
+      <button data-view="leads" class="on" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg>Leads</button>
+      <button data-view="horas" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horas voluntarios</button>
+    </div>
+    <div class="greet"><p id="hello">Hola equipo</p><h1 id="title">Leads del <em>giveaway</em></h1></div>
     <div class="kpis" id="kpis"></div>
-    <div class="pipe"><div class="pipe-h"><span>Pipeline</span><span id="pipeTotal"></span></div><div class="pipe-bar" id="pipeBar"></div><div class="pipe-legend" id="pipeLegend"></div></div>
+    <div class="pipe" id="pipe"><div class="pipe-h"><span>Pipeline</span><span id="pipeTotal"></span></div><div class="pipe-bar" id="pipeBar"></div><div class="pipe-legend" id="pipeLegend"></div></div>
   </div></section>
 
-  <div class="content">
+  <div class="content" id="lContent">
     <section class="panel">
       <div class="toolbar">
         <div class="search">
@@ -321,6 +403,66 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
       <div class="d-scroll d-body" id="dBody"></div>
     </aside>
   </div>
+
+  <!-- horas de voluntarios -->
+  <div class="content" id="hContent" hidden>
+    <section class="panel">
+      <form class="hform" id="hForm" autocomplete="off">
+        <h3>⏱️ Registrar horas<small>Lugar y fecha se quedan para el siguiente</small></h3>
+        <div class="hgrid">
+          <div class="f"><label for="hVol">Voluntario</label><input id="hVol" name="voluntario" list="dlVol" maxlength="120" placeholder="Nombre y apellido" required></div>
+          <div class="f"><label for="hEmail">Email <i>(opcional)</i></label><input id="hEmail" name="email" type="email" maxlength="160" placeholder="correo@ejemplo.com"></div>
+          <div class="f"><label for="hLugar">Lugar</label><input id="hLugar" name="lugar" list="dlLug" maxlength="120" placeholder="Dónde hizo el voluntariado" required></div>
+          <div class="f c2 m3"><label for="hFecha">Fecha</label><input id="hFecha" name="fecha" type="date" required></div>
+          <div class="f c1 m3"><label for="hHoras">Horas</label><input id="hHoras" name="horas" type="number" inputmode="decimal" min="0.25" max="24" step="0.25" placeholder="3" required></div>
+          <div class="f c6"><label for="hAct">Actividad <i>(sale en la carta)</i></label><input id="hAct" name="actividad" maxlength="300" placeholder="Ej. Jornada de adopción, recolección de donaciones…"></div>
+          <button class="hsubmit" id="hSubmit" type="submit"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>Agregar horas</span></button>
+        </div>
+        <datalist id="dlVol"></datalist><datalist id="dlLug"></datalist>
+      </form>
+      <div class="toolbar">
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="hq" type="search" placeholder="Buscar voluntario o lugar" autocomplete="off">
+        </div>
+      </div>
+      <div class="listbar"><span id="hCount"></span><span class="acts">
+        <button class="tbtn" id="hSort"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/></svg><span id="hSortTxt">Más horas</span></button>
+      </span></div>
+      <div class="list" id="vList"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+    </section>
+
+    <aside class="detail" id="hDetail" role="dialog" aria-labelledby="vName">
+      <div class="grab"></div>
+      <div class="d-empty"><div class="ill">⏱️</div><b>Elige un voluntario</b><span>Verás sus horas por lugar y podrás descargar su carta de horas comunitarias.</span></div>
+      <div class="d-scroll d-body" id="vBody"></div>
+    </aside>
+  </div>
+</div>
+
+<!-- carta de horas comunitarias -->
+<div class="modal" id="certModal" role="dialog" aria-labelledby="cTitle">
+  <form class="mcard" id="certForm">
+    <div class="mhead"><div><h3 id="cTitle">Carta de horas comunitarias</h3><p id="cSub"></p></div><button type="button" class="d-close" id="cClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="msum"><div><span>Horas</span><b id="cHoras">0</b></div><div><span>Registros</span><b id="cRegs">0</b></div><div><span>Lugares</span><b id="cLugs">0</b></div></div>
+    <div class="hgrid">
+      <div class="f c6"><label for="cLugar">Lugar</label><select id="cLugar"></select></div>
+      <div class="f m3"><label for="cDesde">Desde</label><input id="cDesde" type="date"></div>
+      <div class="f m3"><label for="cHasta">Hasta</label><input id="cHasta" type="date"></div>
+      <div class="f c6"><label for="cIdioma">Idioma de la carta</label><select id="cIdioma"><option value="en">English (para escuelas y becas en EE. UU.)</option><option value="es">Español</option></select></div>
+      <div class="f"><label for="cFirma">Firma</label><input id="cFirma" maxlength="80" placeholder="Nombre de quien firma"></div>
+      <div class="f"><label for="cCargo">Cargo</label><input id="cCargo" maxlength="80" placeholder="Ej. Co-Founder & President"></div>
+    </div>
+    <details id="cOrg"><summary>Dirección y teléfono en la carta</summary>
+      <div class="hgrid">
+        <div class="f c6"><label for="cDir">Dirección</label><input id="cDir" maxlength="140" placeholder="Miami, Florida"></div>
+        <div class="f c6"><label for="cTel">Teléfono</label><input id="cTel" maxlength="30" placeholder="(305) 000-0000"></div>
+      </div>
+    </details>
+    <p class="warn" id="cWarn" hidden></p>
+    <button class="certbtn" id="cGo" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>Descargar PDF</span></button>
+    <p class="mnote">Imprímela, fírmala a mano y entrégasela al voluntario. Las escuelas piden que las fechas y horas coincidan con el registro del estudiante.</p>
+  </form>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -369,7 +511,7 @@ function toast(t, ok = true) {
 
 /* ---------- login ---------- */
 function showLogin(msg) {
-  S.token = null; closeDetail(); document.body.classList.remove("in-app");
+  S.token = null; closeDetail(); closeVol(); closeCert(); document.body.classList.remove("in-app");
   $("#app").hidden = true; $("#login").hidden = false;
   $("#lerr").textContent = msg || "";
   setTimeout(() => $("#pw").focus(), 300);
@@ -397,7 +539,10 @@ function enterApp() {
   $("#login").hidden = true; $("#app").hidden = false; document.body.classList.add("in-app");
   const h = new Date().getHours();
   $("#hello").textContent = (h < 12 ? "Buenos días" : h < 19 ? "Buenas tardes" : "Buenas noches") + ", equipo";
-  S.firstPaint = true; S.seen = null; load();
+  S.firstPaint = true; S.seen = null; S.hLoaded = false;
+  let v = "leads"; try { v = localStorage.getItem(VKEY) || "leads"; } catch (e) {}
+  setView(v === "horas" ? "horas" : "leads");
+  load();
 }
 async function load(manual) {
   const rb = $("#reload"); rb.classList.add("spinning");
@@ -442,9 +587,10 @@ function visible() {
 }
 function countUp(el, to) {
   const from = Number(el.dataset.v || 0); el.dataset.v = to;
-  if (reduce || from === to) { el.textContent = to; return; }
+  const dec = !Number.isInteger(to), show = v => dec ? fmtH(v) : Math.round(v);
+  if (reduce || from === to) { el.textContent = show(to); return; }
   const t0 = performance.now(), dur = 900;
-  (function f(t) { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(f); })(t0);
+  (function f(t) { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = p < 1 ? show(from + (to - from) * e) : show(to); if (p < 1) requestAnimationFrame(f); })(t0);
 }
 
 /* ---------- render ---------- */
@@ -452,6 +598,7 @@ function render() {
   const L = S.leads, today = new Date().toDateString(), dups = dupMap();
   const latest = L.reduce((a, l) => (!a || (l.fecha || "") > a ? l.fecha : a), "");
   $("#last").textContent = L.length ? "Último registro " + ago(latest) : "Aún no hay registros";
+  if (S.view === "horas") return;
 
   const k = [
     ["Leads", L.length, ICONS.users, "en total"],
@@ -571,6 +718,7 @@ function closeDetail() {
 
 /* ---------- eventos ---------- */
 document.addEventListener("click", async e => {
+  if (e.target.closest("#hContent,#certModal")) return; // la vista de horas tiene su propio manejador
   const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave,#delLead");
   if (!t) return;
   if (t.dataset.f) { S.filter = t.dataset.f; S._reflow = true; render(); return; }
@@ -623,13 +771,13 @@ async function clasificar(l, nuevo) {
   catch (err) { if (err.message !== "SESION") { l.estado = antes; render(); paintDetail(l, true); toast(err.message, false); } }
 }
 document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.id === "customIn") { e.preventDefault(); $("#customSave").click(); } });
-$("#scrim").onclick = closeDetail;
+$("#scrim").onclick = () => { closeDetail(); closeVol(); };
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeDetail();
-  if (e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA" && !$("#app").hidden) { e.preventDefault(); $("#q").focus(); }
+  if (e.key === "Escape") { if ($("#certModal").classList.contains("on")) { closeCert(); return; } closeDetail(); closeVol(); }
+  if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName) && !$("#app").hidden) { e.preventDefault(); $(S.view === "horas" ? "#hq" : "#q").focus(); }
 });
 $("#q").addEventListener("input", e => { S.q = e.target.value; S._reflow = true; render(); });
-$("#reload").onclick = () => load(true);
+$("#reload").onclick = () => S.view === "horas" ? loadHoras(true) : load(true);
 $("#sort").onclick = () => { S.sort = S.sort === "recientes" ? "nombre" : "recientes"; $("#sortTxt").textContent = S.sort === "recientes" ? "Recientes" : "A–Z"; S._reflow = true; render(); };
 $("#copy").onclick = () => {
   const em = [...new Set(visible().map(l => l.email))];
@@ -638,7 +786,427 @@ $("#copy").onclick = () => {
 };
 addEventListener("scroll", () => $("#topbar").classList.toggle("scrolled", scrollY > 8), {passive:true});
 if (matchMedia("(pointer:coarse)").matches) $("#kbd").hidden = true;
-setInterval(() => { if (S.token && !document.hidden) load(); }, 60000);
+setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "horas") loadHoras(); } }, 60000);
+
+/* =================== HORAS DE VOLUNTARIOS =================== */
+const VKEY = "pe-crm-view", CKEY = "pe-cert-cfg";
+const ORG = {legal: "HAPPILY PAWS FOUNDATION CORP", ein: "33-3752552", email: "info@proyectoempatados.com", web: "proyectoempatados.com"}; // Proyecto Empatados es el DBA
+const CFG_DEF = {direccion: "Miami, Florida", telefono: "", firma: "Isabella Barela", cargo: "Co-Founder & President", idioma: "en"};
+Object.assign(ICONS, {
+  clock:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  cal:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  doc:'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>'
+});
+Object.assign(S, {view: "leads", horas: [], hLoaded: false, vOpen: null, hq: "", hSort: "horas"});
+
+const fmtH = n => (Math.round(n * 100) / 100).toLocaleString("en-US", {maximumFractionDigits: 2});
+const normName = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+const dOf = f => new Date(f + "T12:00:00"); // fecha "aaaa-mm-dd" sin saltos por zona horaria
+const todayISO = () => { const d = new Date(); return new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
+const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
+function cfg() { try { return {...CFG_DEF, ...JSON.parse(localStorage.getItem(CKEY) || "{}")}; } catch (e) { return {...CFG_DEF}; } }
+function saveCfg(c) { try { localStorage.setItem(CKEY, JSON.stringify(c)); } catch (e) {} }
+
+// agrupa los registros por voluntario (mismo nombre sin importar acentos ni mayúsculas)
+function volunteers() {
+  const m = new Map();
+  for (const h of S.horas) {
+    const k = normName(h.voluntario);
+    let v = m.get(k);
+    if (!v) m.set(k, v = {k, nombre: h.voluntario, email: "", total: 0, items: [], lugares: new Map(), last: ""});
+    v.items.push(h); v.total += h.horas;
+    const lk = normName(h.lugar), l = v.lugares.get(lk) || {nombre: h.lugar, horas: 0};
+    l.horas += h.horas; v.lugares.set(lk, l);
+    if (h.email && !v.email) v.email = h.email;
+    if (h.fecha >= v.last) { v.last = h.fecha; v.nombre = h.voluntario; }
+  }
+  return [...m.values()];
+}
+const volByKey = k => volunteers().find(v => v.k === k);
+
+function setView(v) {
+  S.view = v; try { localStorage.setItem(VKEY, v); } catch (e) {}
+  document.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === v));
+  closeDetail(); closeVol();
+  $("#kpis").innerHTML = "";
+  const h = v === "horas";
+  $("#lContent").hidden = h; $("#hContent").hidden = !h; $("#pipe").hidden = h;
+  $("#title").innerHTML = h ? "Horas de <em>voluntarios</em>" : "Leads del <em>giveaway</em>";
+  if (h) { if (S.hLoaded) renderHoras(); loadHoras(); }
+  else if (S.seen) { S.firstPaint = true; render(); }
+}
+
+async function loadHoras(manual) {
+  const rb = $("#reload"); rb.classList.add("spinning");
+  try {
+    const d = await api({action: "horas", token: S.token});
+    if (!Array.isArray(d.horas)) throw new Error("NOAPI");
+    S.horas = d.horas; S.hLoaded = true; renderHoras();
+    if (manual) toast("Todo al día");
+  } catch (err) {
+    if (err.message === "SESION") return;
+    // si el Apps Script no tiene la versión nueva, la acción cae en el registro público y responde "datos inválidos"
+    const old = err.message === "NOAPI" || err.message === "datos inválidos";
+    $("#vList").innerHTML = `<div class="empty"><div class="ill">⚠️</div><b>No se pudieron cargar las horas</b>${old ? "Falta publicar la nueva versión del Apps Script (Implementar → Administrar implementaciones → Nueva versión)." : esc(err.message)}</div>`;
+  } finally { setTimeout(() => rb.classList.remove("spinning"), 400); }
+}
+
+function renderHoras() {
+  if (S.view !== "horas") return;
+  const V = volunteers(), H = S.horas, mes = todayISO().slice(0, 7);
+  const k = [
+    ["Horas totales", H.reduce((a, h) => a + h.horas, 0), ICONS.clock, "acumuladas"],
+    ["Voluntarios", V.length, ICONS.users, "con horas"],
+    ["Lugares", new Set(H.map(h => normName(h.lugar))).size, ICONS.pin, "distintos"],
+    ["Este mes", H.filter(h => h.fecha.startsWith(mes)).reduce((a, h) => a + h.horas, 0), ICONS.cal, "horas"]
+  ];
+  if (!$("#kpis").children.length) $("#kpis").innerHTML = k.map((x, i) => `<div class="kpi" style="animation-delay:${.05 + i*.06}s"><span>${x[2]}${x[0]}</span><b class="num" data-v="0">0</b><em>${x[3]}</em></div>`).join("");
+  [...$("#kpis").children].forEach((el, i) => countUp(el.querySelector("b"), k[i][1]));
+
+  // sugerencias: voluntarios con horas + leads clasificados como Voluntario
+  const names = new Map(V.map(v => [v.k, v.nombre]));
+  S.leads.filter(l => l.estado === "Voluntario" && l.nombre).forEach(l => { if (!names.has(normName(l.nombre))) names.set(normName(l.nombre), l.nombre); });
+  $("#dlVol").innerHTML = [...names.values()].sort((a, b) => a.localeCompare(b, "es")).map(n => `<option value="${esc(n)}">`).join("");
+  const lugs = new Map(); H.forEach(h => lugs.set(normName(h.lugar), h.lugar));
+  $("#dlLug").innerHTML = [...lugs.values()].sort((a, b) => a.localeCompare(b, "es")).map(n => `<option value="${esc(n)}">`).join("");
+
+  const q = normName(S.hq);
+  const list = V.filter(v => !q || normName(v.nombre + " " + v.email + " " + [...v.lugares.values()].map(l => l.nombre).join(" ")).includes(q))
+    .sort((a, b) => S.hSort === "horas" ? b.total - a.total : S.hSort === "recientes" ? b.last.localeCompare(a.last) : a.nombre.localeCompare(b.nombre, "es"));
+  $("#hCount").textContent = plural(list.length, "voluntario", "voluntarios");
+  if (!list.length) {
+    $("#vList").innerHTML = `<div class="empty"><div class="ill">${V.length ? "🔎" : "⏱️"}</div><b>${V.length ? "Sin resultados" : "Aún no hay horas registradas"}</b>${V.length ? "Prueba con otra búsqueda." : "Usa el formulario de arriba para registrar las primeras."}</div>`;
+  } else {
+    $("#vList").innerHTML = list.map((v, i) => `<button class="lead vrow${S.vOpen === v.k ? " sel" : ""}" data-k="${esc(v.k)}" style="animation-delay:${Math.min(i, 14) * .03}s">
+      <span class="av" style="background:${avColor(v.email || v.nombre)}">${esc(initials(v.nombre))}</span>
+      <span class="who"><b><span class="nm">${esc(v.nombre)}</span></b><span>${plural(v.lugares.size, "lugar", "lugares")} · ${plural(v.items.length, "registro", "registros")} · último ${dOf(v.last).toLocaleDateString("es", {day: "numeric", month: "short"})}</span></span>
+      <span class="right"><span class="hrs">${fmtH(v.total)}<small>h</small></span></span>
+    </button>`).join("");
+  }
+  if (S.vOpen) { const v = volByKey(S.vOpen); v ? paintVol(v, true) : closeVol(); }
+}
+
+function openVol(k) {
+  const v = volByKey(k); if (!v) return;
+  S.vOpen = k;
+  document.querySelectorAll(".vrow").forEach(b => b.classList.toggle("sel", b.dataset.k === k));
+  paintVol(v);
+  $("#hDetail").classList.add("on", "has");
+  if (!isDesk()) { $("#scrim").classList.add("on"); document.body.style.overflow = "hidden"; }
+  $("#vBody").scrollTop = 0;
+}
+function closeVol() {
+  S.vOpen = null; $("#hDetail").classList.remove("on", "has");
+  if (!$("#detail").classList.contains("on")) { $("#scrim").classList.remove("on"); document.body.style.overflow = ""; }
+  document.querySelectorAll(".vrow.sel").forEach(b => b.classList.remove("sel"));
+}
+function paintVol(v, quiet) {
+  const lugs = [...v.lugares.values()].sort((a, b) => b.horas - a.horas), max = lugs[0] ? lugs[0].horas : 1;
+  const items = [...v.items].sort((a, b) => b.fecha.localeCompare(a.fecha) || (b.registrado || "").localeCompare(a.registrado || ""));
+  $("#vBody").innerHTML = `<div class="${quiet ? "" : "d-stagger"}">
+    <div class="d-head">
+      <span class="av" style="background:${avColor(v.email || v.nombre)}">${esc(initials(v.nombre))}</span>
+      <div style="min-width:0;padding-right:40px"><h2 id="vName">${esc(v.nombre)}</h2><p><span>${v.email ? esc(v.email) : "Sin email"}</span></p></div>
+      <button class="d-close" id="hClose" aria-label="Cerrar">${ICONS.x}</button>
+    </div>
+    <div class="htotal"><span class="big">${fmtH(v.total)}</span><span>${v.total === 1 ? "hora acumulada" : "horas acumuladas"}</span></div>
+    <button class="certbtn" id="certOpen">${ICONS.doc}Carta de horas comunitarias (PDF)</button>
+    <p class="sec"><span>Horas por lugar</span><span>${lugs.length}</span></p>
+    <div class="bars">${lugs.map(l => `<div class="bar-r"><div class="t"><span>${esc(l.nombre)}</span><b>${fmtH(l.horas)} h</b></div><div class="track"><i data-w="${l.horas / max * 100}"${quiet ? ` style="width:${l.horas / max * 100}%"` : ""}></i></div></div>`).join("")}</div>
+    <p class="sec"><span>Registros</span><span>${items.length}</span></p>
+    <ul class="entries">${items.map((h, i) => { const d = dOf(h.fecha); return `<li style="animation-delay:${Math.min(i, 10) * .03}s">
+      <span class="d">${d.toLocaleDateString("es", {month: "short"}).replace(".", "")}<b>${d.getDate()}</b>${d.getFullYear() !== new Date().getFullYear() ? d.getFullYear() : ""}</span>
+      <span class="m"><b>${esc(h.lugar)}</b><span>${h.actividad ? esc(h.actividad) : "Sin descripción"}</span></span>
+      <span class="h">${fmtH(h.horas)} h</span>
+      <button class="xdel" data-del="${esc(h.id)}" aria-label="Eliminar registro">${ICONS.x}</button></li>`; }).join("")}</ul>
+    <button class="ghost" id="addFor">+ Agregar horas a ${esc(v.nombre.split(/\s+/)[0])}</button>
+  </div>`;
+  if (!quiet) setTimeout(() => document.querySelectorAll("#vBody .track i").forEach(i => i.style.width = i.dataset.w + "%"), 60);
+}
+
+/* eventos de la vista de horas */
+document.addEventListener("click", async e => {
+  const vb = e.target.closest("[data-view]");
+  if (vb) { if (vb.dataset.view !== S.view) setView(vb.dataset.view); return; }
+  const t = e.target.closest("#hContent .vrow,#hClose,#certOpen,#addFor,[data-del],#cClose");
+  if (!t) { if (e.target.id === "certModal") closeCert(); return; }
+  if (t.classList.contains("vrow")) { openVol(t.dataset.k); return; }
+  if (t.id === "hClose") { closeVol(); return; }
+  if (t.id === "cClose") { closeCert(); return; }
+  const v = volByKey(S.vOpen); if (!v) return;
+  if (t.id === "certOpen") { openCert(v); return; }
+  if (t.id === "addFor") {
+    $("#hVol").value = v.nombre; $("#hEmail").value = v.email; closeVol();
+    $("#hForm").scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "center"});
+    setTimeout(() => $("#hLugar").value ? $("#hHoras").focus() : $("#hLugar").focus(), 350);
+    return;
+  }
+  if (t.dataset.del) {
+    if (!t.classList.contains("armed")) {
+      t.classList.add("armed"); t.textContent = "Eliminar";
+      clearTimeout(t._t); t._t = setTimeout(() => { if (document.body.contains(t)) { t.classList.remove("armed"); t.innerHTML = ICONS.x; } }, 4000);
+      return;
+    }
+    clearTimeout(t._t); t.disabled = true; t.textContent = "…";
+    try {
+      await api({action: "horaDel", token: S.token, id: t.dataset.del});
+      S.horas = S.horas.filter(h => h.id !== t.dataset.del);
+      renderHoras(); toast("Registro eliminado");
+    } catch (err) { if (err.message !== "SESION") { toast(err.message, false); t.disabled = false; t.classList.remove("armed"); t.innerHTML = ICONS.x; } }
+  }
+});
+
+// al elegir un voluntario conocido, completa su email
+$("#hVol").addEventListener("change", () => {
+  if ($("#hEmail").value) return;
+  const k = normName($("#hVol").value);
+  const v = volunteers().find(x => x.k === k && x.email), l = S.leads.find(x => normName(x.nombre) === k && x.email);
+  if (v || l) $("#hEmail").value = (v || l).email;
+});
+$("#hForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const b = $("#hSubmit"), data = {voluntario: $("#hVol").value, email: $("#hEmail").value, lugar: $("#hLugar").value, fecha: $("#hFecha").value, horas: $("#hHoras").value, actividad: $("#hAct").value};
+  b.disabled = true; b.querySelector("span").textContent = "Guardando…";
+  try {
+    const d = await api({action: "horaAdd", token: S.token, ...data});
+    S.horas.push({...d.hora, registrado: new Date().toISOString()});
+    renderHoras();
+    toast(`${fmtH(d.hora.horas)} h para ${d.hora.voluntario.split(/\s+/)[0]}`);
+    $("#hVol").value = ""; $("#hEmail").value = ""; $("#hHoras").value = "";
+    $("#hVol").focus();
+  } catch (err) { if (err.message !== "SESION") toast(err.message === "datos inválidos" ? "Falta publicar la nueva versión del Apps Script" : err.message, false); }
+  finally { b.disabled = false; b.querySelector("span").textContent = "Agregar horas"; }
+});
+$("#hFecha").value = todayISO();
+$("#hq").addEventListener("input", e => { S.hq = e.target.value; renderHoras(); });
+$("#hSort").onclick = () => {
+  S.hSort = {horas: "recientes", recientes: "nombre", nombre: "horas"}[S.hSort];
+  $("#hSortTxt").textContent = {horas: "Más horas", recientes: "Recientes", nombre: "A–Z"}[S.hSort];
+  renderHoras();
+};
+
+/* ---------- carta de horas comunitarias ---------- */
+let certVol = null;
+function openCert(v) {
+  certVol = v;
+  const c = cfg(), f = v.items.map(i => i.fecha).sort();
+  $("#cSub").textContent = v.nombre;
+  $("#cLugar").innerHTML = `<option value="">Todos los lugares</option>` + [...v.lugares.entries()].map(([k, l]) => `<option value="${esc(k)}">${esc(l.nombre)}</option>`).join("");
+  $("#cDesde").value = f[0]; $("#cHasta").value = f[f.length - 1];
+  $("#cIdioma").value = c.idioma; $("#cFirma").value = c.firma; $("#cCargo").value = c.cargo;
+  $("#cDir").value = c.direccion; $("#cTel").value = c.telefono;
+  certSum();
+  $("#certModal").classList.add("on");
+}
+function closeCert() { $("#certModal").classList.remove("on"); }
+function certItems() {
+  if (!certVol) return [];
+  const lk = $("#cLugar").value, a = $("#cDesde").value, b = $("#cHasta").value;
+  return certVol.items.filter(i => (!lk || normName(i.lugar) === lk) && (!a || i.fecha >= a) && (!b || i.fecha <= b));
+}
+function certSum() {
+  const it = certItems();
+  $("#cHoras").textContent = fmtH(it.reduce((a, i) => a + i.horas, 0));
+  $("#cRegs").textContent = it.length;
+  $("#cLugs").textContent = new Set(it.map(i => normName(i.lugar))).size;
+  const w = [];
+  if (!it.length) w.push("No hay registros en ese rango.");
+  if (!$("#cFirma").value.trim()) w.push("Falta el nombre de quien firma.");
+  $("#cWarn").hidden = !w.length; $("#cWarn").textContent = w.join(" ");
+  $("#cGo").disabled = !it.length;
+}
+["#cLugar", "#cDesde", "#cHasta", "#cFirma"].forEach(s => $(s).addEventListener("input", certSum));
+$("#certForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const it = certItems(); if (!it.length) return;
+  const o = {idioma: $("#cIdioma").value, firma: $("#cFirma").value.trim(), cargo: $("#cCargo").value.trim(), direccion: $("#cDir").value.trim(), telefono: $("#cTel").value.trim()};
+  saveCfg(o);
+  const b = $("#cGo"); b.disabled = true; b.querySelector("span").textContent = "Generando…";
+  try {
+    const doc = await certPDF(certVol.nombre, it, o);
+    const slug = normName(certVol.nombre).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    doc.save(`${o.idioma === "es" ? "Horas-comunitarias" : "Community-service-hours"}-${slug}.pdf`);
+    toast("Carta descargada"); closeCert();
+  } catch (err) { toast(err.message || "No se pudo generar el PDF", false); }
+  finally { b.disabled = false; b.querySelector("span").textContent = "Descargar PDF"; }
+});
+
+let jsPDFp = null, logoP = null;
+function getJsPDF() {
+  return jsPDFp || (jsPDFp = new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    s.onload = () => res(window.jspdf.jsPDF);
+    s.onerror = () => { jsPDFp = null; s.remove(); rej(new Error("No se pudo cargar el generador de PDF. Revisa tu conexión.")); };
+    document.head.appendChild(s);
+  }));
+}
+function getLogo() {
+  return logoP || (logoP = fetch("/brand/logo-olive.png").then(r => r.ok ? r.blob() : Promise.reject())
+    .then(b => new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(b); }))
+    .catch(() => { logoP = null; return null; }));
+}
+
+const CERT_TXT = {
+  en: {
+    title: "Community Service Hours Verification", to: "To Whom It May Concern:",
+    intro: (n, h, one, a, b) => a === b
+      ? `This letter certifies that ${n} completed ${h} ${one ? "hour" : "hours"} of volunteer community service with Proyecto Empatados on ${a}, as detailed below.`
+      : `This letter certifies that ${n} completed ${h} ${one ? "hour" : "hours"} of volunteer community service with Proyecto Empatados between ${a} and ${b}, as detailed below.`,
+    about: `Proyecto Empatados is the operating name (d/b/a) of ${ORG.legal}, a 501(c)(3) nonprofit organization (EIN ${ORG.ein}) based in Miami, Florida, that connects people, resources and initiatives to support animal welfare in Venezuela and Latin America.`,
+    unpaid: "The service described above was performed voluntarily and without monetary compensation, under the supervision of Proyecto Empatados. To the best of our knowledge, the information in this letter is accurate and matches our records.",
+    contact: (e, t) => `To verify this information, please contact us at ${e}${t ? ` or ${t}` : ""}.`,
+    volunteer: "Volunteer", total: "Total hours", period: "Service period",
+    cols: ["Date", "Location", "Activity", "Hours"], totalRow: "Total hours", byLoc: "Hours by location",
+    sincerely: "Sincerely,", date: "Date", np: "501(c)(3) Nonprofit Organization", ein: "EIN", dba: "d/b/a",
+    page: (i, n) => `Page ${i} of ${n}`, vid: "Verification ID",
+    long: d => d.toLocaleDateString("en-US", {month: "long", day: "numeric", year: "numeric"}),
+    short: d => d.toLocaleDateString("en-US", {month: "short", day: "numeric", year: "numeric"})
+  },
+  es: {
+    title: "Verificación de horas de servicio comunitario", to: "A quien pueda interesar:",
+    intro: (n, h, one, a, b) => a === b
+      ? `Por medio de la presente certificamos que ${n} completó ${h} ${one ? "hora" : "horas"} de servicio comunitario voluntario con Proyecto Empatados el ${a}, según el detalle a continuación.`
+      : `Por medio de la presente certificamos que ${n} completó ${h} ${one ? "hora" : "horas"} de servicio comunitario voluntario con Proyecto Empatados entre el ${a} y el ${b}, según el detalle a continuación.`,
+    about: `Proyecto Empatados es el nombre comercial (DBA) de ${ORG.legal}, organización sin fines de lucro 501(c)(3) (EIN ${ORG.ein}) con sede en Miami, Florida, que conecta personas, recursos e iniciativas para apoyar el bienestar animal en Venezuela y Latinoamérica.`,
+    unpaid: "El servicio descrito se realizó de forma voluntaria y sin remuneración económica, bajo la supervisión de Proyecto Empatados. La información de esta carta es correcta y coincide con nuestros registros.",
+    contact: (e, t) => `Para verificar esta información puede escribirnos a ${e}${t ? ` o llamarnos al ${t}` : ""}.`,
+    volunteer: "Voluntario/a", total: "Horas totales", period: "Período de servicio",
+    cols: ["Fecha", "Lugar", "Actividad", "Horas"], totalRow: "Total de horas", byLoc: "Horas por lugar",
+    sincerely: "Atentamente,", date: "Fecha", np: "Organización sin fines de lucro 501(c)(3)", ein: "EIN", dba: "DBA",
+    page: (i, n) => `Página ${i} de ${n}`, vid: "ID de verificación",
+    long: d => d.toLocaleDateString("es", {day: "numeric", month: "long", year: "numeric"}),
+    short: d => d.toLocaleDateString("es", {day: "numeric", month: "short", year: "numeric"}).replace(".", "")
+  }
+};
+
+// Carta tamaño carta en el formato que piden las escuelas (M-DCPS / Bright Futures): membrete de la
+// organización, nombre del voluntario, fechas, horas por día, actividades, total y firma del supervisor.
+async function certPDF(nombre, items, o) {
+  const [jsPDF, logo] = await Promise.all([getJsPDF(), getLogo()]);
+  const t = CERT_TXT[o.idioma] || CERT_TXT.en;
+  const doc = new jsPDF({unit: "pt", format: "letter"});
+  const W = 612, H = 792, M = 54, CW = W - 2 * M;
+  const OL = [80, 77, 19], PK = [242, 167, 181], RO = [201, 106, 128], BL = [255, 222, 228], ZB = [255, 246, 248], INK = [46, 44, 10], GR = [110, 107, 39], MUT = [150, 147, 110];
+  const rows = [...items].sort((a, b) => a.fecha.localeCompare(b.fecha));
+  const total = rows.reduce((a, i) => a + i.horas, 0);
+  const first = rows[0].fecha, last = rows[rows.length - 1].fecha;
+  let hsh = 0; for (const c of nombre + first + last + total + todayISO()) hsh = (hsh * 31 + c.charCodeAt(0)) >>> 0;
+  const vid = `PE-${todayISO().slice(0, 4)}-${hsh.toString(36).toUpperCase().padStart(6, "0").slice(-6)}`;
+  doc.setProperties({title: `${t.title} – ${nombre}`, author: "Proyecto Empatados", creator: "Proyecto Empatados CRM"});
+
+  const header = full => {
+    doc.setFillColor(...OL); doc.rect(0, 0, W, 9, "F");
+    doc.setFillColor(...PK); doc.rect(0, 9, W, 3, "F");
+    if (!full) {
+      if (logo) doc.addImage(logo, "PNG", M, 26, 42, 37, "logo", "FAST");
+      doc.setFont("times", "bold"); doc.setFontSize(13); doc.setTextColor(...OL); doc.text("Proyecto Empatados", M + (logo ? 52 : 0), 44);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...GR); doc.text(`${t.title} · ${nombre}`, M + (logo ? 52 : 0), 57);
+      doc.setDrawColor(...PK); doc.setLineWidth(1); doc.line(M, 74, W - M, 74);
+      return 74;
+    }
+    if (logo) doc.addImage(logo, "PNG", M, 30, 100, 88, "logo", "FAST");
+    let y = 52;
+    doc.setFont("times", "bold"); doc.setFontSize(21); doc.setTextColor(...OL); doc.text("Proyecto Empatados", W - M, y, {align: "right"});
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...GR);
+    [`${ORG.legal} ${t.dba} Proyecto Empatados`, `${t.np}  ·  ${t.ein} ${ORG.ein}`, o.direccion, [ORG.email, o.telefono].filter(Boolean).join("  ·  "), ORG.web]
+      .filter(Boolean).forEach(l => { y += 14; doc.text(l, W - M, y, {align: "right"}); });
+    doc.setDrawColor(...PK); doc.setLineWidth(1.2); doc.line(M, 134, W - M, 134);
+    return 134;
+  };
+
+  let y = header(true);
+  const FS = 10.5, LH = FS * 1.45;
+  const para = (txt, gap) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(FS); doc.setTextColor(...INK);
+    const L = doc.splitTextToSize(txt, CW);
+    y += gap + LH * .75; doc.text(L, M, y, {lineHeightFactor: 1.45}); y += (L.length - 1) * LH;
+  };
+  doc.setFont("helvetica", "normal"); doc.setFontSize(FS); doc.setTextColor(...INK);
+  y += 28; doc.text(t.long(new Date()), M, y);
+  y += 36; doc.setFont("times", "bold"); doc.setFontSize(19); doc.setTextColor(...OL); doc.text(t.title, W / 2, y, {align: "center"});
+  y += 30; doc.setFont("helvetica", "normal"); doc.setFontSize(FS); doc.setTextColor(...INK); doc.text(t.to, M, y);
+  para(t.intro(nombre, fmtH(total), total === 1, t.long(dOf(first)), t.long(dOf(last))), 8);
+  para(t.about, 8);
+
+  // resumen
+  y += 18;
+  const bw = (CW - 16) / 3, bh = 56;
+  const period = first === last ? t.short(dOf(first)) : `${t.short(dOf(first))} – ${t.short(dOf(last))}`;
+  [[t.volunteer, nombre, 14], [t.total, fmtH(total), 22], [t.period, period, 11]].forEach(([lab, val, fs], i) => {
+    const x = M + i * (bw + 8);
+    doc.setFillColor(...BL); doc.roundedRect(x, y, bw, bh, 8, 8, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...RO); doc.text(lab.toUpperCase(), x + 12, y + 18, {charSpace: .6});
+    doc.setFont("times", "bold"); doc.setTextColor(...OL);
+    while (fs > 7 && (doc.setFontSize(fs), doc.getTextWidth(val) > bw - 24)) fs -= .5;
+    doc.text(val, x + 12, y + 41);
+  });
+  y += bh;
+
+  // tabla de registros
+  const C = [{w: 86}, {w: 140}, {w: CW - 86 - 140 - 56}, {w: 56, r: true}];
+  const cellX = (i, x) => C[i].r ? x + C[i].w - 9 : x + 9;
+  const BOTTOM = H - 96;
+  const thead = () => {
+    doc.setFillColor(...OL); doc.rect(M, y, CW, 22, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BL);
+    let x = M; t.cols.forEach((c, i) => { doc.text(c.toUpperCase(), cellX(i, x), y + 14.5, {align: C[i].r ? "right" : "left", charSpace: .5}); x += C[i].w; });
+    y += 22;
+  };
+  const newPage = () => { doc.addPage(); y = header(false) + 18; };
+  y += 22; thead();
+  rows.forEach((it, idx) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    const cells = [t.short(dOf(it.fecha)), doc.splitTextToSize(it.lugar, C[1].w - 18), doc.splitTextToSize(it.actividad || "—", C[2].w - 18), fmtH(it.horas)];
+    const rh = 10 + Math.max(cells[1].length, cells[2].length) * 12.4;
+    if (y + rh > BOTTOM) { newPage(); thead(); doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); }
+    if (idx % 2 === 0) { doc.setFillColor(...ZB); doc.rect(M, y, CW, rh, "F"); }
+    doc.setTextColor(...INK);
+    let x = M; cells.forEach((c, i) => { doc.text(c, cellX(i, x), y + 16, {align: C[i].r ? "right" : "left", lineHeightFactor: 1.3}); x += C[i].w; });
+    y += rh;
+    doc.setDrawColor(242, 224, 228); doc.setLineWidth(.5); doc.line(M, y, W - M, y);
+  });
+  if (y + 26 > BOTTOM) newPage();
+  doc.setFillColor(...BL); doc.rect(M, y, CW, 26, "F");
+  doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...OL);
+  doc.text(t.totalRow, M + 9, y + 17); doc.text(fmtH(total), W - M - 9, y + 17, {align: "right"});
+  y += 26;
+
+  // horas por lugar (solo si hay más de uno)
+  const byLoc = new Map(); rows.forEach(r => { const k = normName(r.lugar), l = byLoc.get(k) || {n: r.lugar, h: 0}; l.h += r.horas; byLoc.set(k, l); });
+  if (byLoc.size > 1) {
+    const L = [...byLoc.values()].sort((a, b) => b.h - a.h);
+    if (y + 34 + L.length * 15 > BOTTOM) newPage();
+    y += 26; doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...RO); doc.text(t.byLoc.toUpperCase(), M, y, {charSpace: .6});
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...INK);
+    L.forEach(l => { y += 15; doc.text(doc.splitTextToSize(l.n, 260)[0], M, y); doc.text(`${fmtH(l.h)} h`, M + 330, y, {align: "right"}); });
+  }
+
+  // cierre y firma
+  doc.setFont("helvetica", "normal"); doc.setFontSize(FS);
+  const need = (doc.splitTextToSize(t.unpaid, CW).length + doc.splitTextToSize(t.contact(ORG.email, o.telefono), CW).length) * LH + 147;
+  if (y + need > H - 52) newPage();
+  para(t.unpaid, 24);
+  para(t.contact(ORG.email, o.telefono), 8);
+  y += 30; doc.text(t.sincerely, M, y);
+  y += 50; doc.setDrawColor(...INK); doc.setLineWidth(.7); doc.line(M, y, M + 230, y); doc.line(W - M - 150, y, W - M, y);
+  y += 15; doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...INK); doc.text(o.firma || "", M, y);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...GR); doc.text(t.date, W - M - 150, y);
+  y += 13; doc.text([o.cargo, "Proyecto Empatados"].filter(Boolean).join(", "), M, y);
+  y += 12; doc.setFontSize(8); doc.setTextColor(...MUT); doc.text(`${ORG.legal} · ${t.ein} ${ORG.ein}`, M, y);
+
+  // pie en todas las páginas
+  const n = doc.getNumberOfPages();
+  for (let i = 1; i <= n; i++) {
+    doc.setPage(i);
+    doc.setDrawColor(...PK); doc.setLineWidth(.8); doc.line(M, H - 46, W - M, H - 46);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUT);
+    doc.text(`${ORG.legal} ${t.dba} Proyecto Empatados  ·  ${t.ein} ${ORG.ein}`, M, H - 32);
+    doc.text(`${t.vid}: ${vid}  ·  ${t.page(i, n)}`, W - M, H - 32, {align: "right"});
+  }
+  return doc;
+}
 
 /* ---------- inicio ---------- */
 S.token = loadSession();
