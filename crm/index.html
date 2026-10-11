@@ -286,6 +286,32 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .ghost{width:100%;height:44px;margin-top:12px;border-radius:13px;border:1px dashed var(--line-2);background:transparent;color:var(--ink-2);font-weight:800;font-size:13px;transition:background .2s,border-color .2s}
 .ghost:hover{background:var(--surface-2);border-color:var(--olive)}
 
+/* moderación de reportes */
+.vbadge{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#B4475A;color:#fff;font-size:11px;font-weight:800;display:inline-grid;place-items:center}
+.rcontent{grid-template-columns:minmax(0,1fr)!important}
+.rlist{display:grid;gap:10px;padding:4px 14px 16px}
+.rcard{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);animation:rise .45s var(--ease) both}
+.rcard.off{background:var(--surface-2);opacity:.75}
+.rcard.rev{border-color:rgba(180,71,90,.45);box-shadow:0 0 0 3px rgba(180,71,90,.08)}
+.rthumb{width:120px;height:120px;border-radius:12px;background:var(--surface-2) center/cover no-repeat;border:1px solid var(--line);display:grid;place-items:center;font-size:30px;color:var(--ink-3);text-decoration:none}
+.rhead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.rhead b{font-size:15px}
+.rhead span{font-size:12px;color:var(--ink-3);font-weight:600}
+.rtxt{font-size:14px;margin-top:6px;white-space:pre-wrap;word-wrap:break-word;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.rmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.rmeta .tag{font-size:11px;padding:3px 8px}
+.racts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.racts button,.racts a{height:34px;padding:0 12px;border-radius:10px;border:1px solid var(--line-2);background:#fff;font-size:12.5px;font-weight:800;color:var(--ink-2);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.racts .hide{color:#B4475A;border-color:rgba(180,71,90,.3)}
+.racts .show{background:var(--olive);color:var(--pink);border-color:var(--olive)}
+.rcoms{margin-top:10px;display:grid;gap:6px}
+.rcom{display:flex;gap:8px;align-items:flex-start;font-size:13px;background:var(--surface-2);border-radius:10px;padding:7px 10px}
+.rcom.off{opacity:.55;text-decoration:line-through}
+.rcom div{flex:1;min-width:0}
+.rcom b{font-size:12.5px}
+.rcom button{flex:none;font-size:11.5px;font-weight:800;color:var(--ink-2);padding:2px 6px;border-radius:6px;border:1px solid var(--line-2);background:#fff}
+@media (max-width:640px){.rcard{grid-template-columns:76px minmax(0,1fr)}.rthumb{width:76px;height:76px}}
+
 /* modal de la carta */
 .modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(30,29,8,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
 .modal.on{opacity:1;pointer-events:auto}
@@ -374,6 +400,7 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
     <div class="views" role="tablist">
       <button data-view="leads" class="on" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg>Leads</button>
       <button data-view="horas" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horas voluntarios</button>
+      <button data-view="reportes" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h11l-1 4h6l-2 6H8"/></svg>Reportes<i class="vbadge" id="rBadge" hidden></i></button>
     </div>
     <div class="greet"><p id="hello">Hola equipo</p><h1 id="title">Leads del <em>giveaway</em></h1></div>
     <div class="kpis" id="kpis"></div>
@@ -437,6 +464,17 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
       <div class="d-empty"><div class="ill">⏱️</div><b>Elige un voluntario</b><span>Verás sus horas por lugar y podrás descargar su carta de horas comunitarias.</span></div>
       <div class="d-scroll d-body" id="vBody"></div>
     </aside>
+  </div>
+
+  <!-- moderación de reportes -->
+  <div class="content rcontent" id="rContent" hidden>
+    <section class="panel">
+      <div class="toolbar">
+        <div class="seg-wrap" style="margin-top:0"><div class="seg" id="rSeg"></div></div>
+      </div>
+      <div class="listbar"><span id="rCount"></span><span class="acts"><a class="tbtn" href="/reportar/" target="_blank" rel="noopener">Ver página pública ↗</a></span></div>
+      <div class="rlist" id="rList"><div class="skel"></div><div class="skel"></div></div>
+    </section>
   </div>
 </div>
 
@@ -541,7 +579,7 @@ function enterApp() {
   $("#hello").textContent = (h < 12 ? "Buenos días" : h < 19 ? "Buenas tardes" : "Buenas noches") + ", equipo";
   S.firstPaint = true; S.seen = null; S.hLoaded = false;
   let v = "leads"; try { v = localStorage.getItem(VKEY) || "leads"; } catch (e) {}
-  setView(v === "horas" ? "horas" : "leads");
+  setView(["horas", "reportes"].includes(v) ? v : "leads");
   load();
 }
 async function load(manual) {
@@ -718,7 +756,7 @@ function closeDetail() {
 
 /* ---------- eventos ---------- */
 document.addEventListener("click", async e => {
-  if (e.target.closest("#hContent,#certModal")) return; // la vista de horas tiene su propio manejador
+  if (e.target.closest("#hContent,#certModal,#rContent")) return; // horas y reportes tienen su propio manejador
   const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave,#delLead");
   if (!t) return;
   if (t.dataset.f) { S.filter = t.dataset.f; S._reflow = true; render(); return; }
@@ -777,7 +815,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName) && !$("#app").hidden) { e.preventDefault(); $(S.view === "horas" ? "#hq" : "#q").focus(); }
 });
 $("#q").addEventListener("input", e => { S.q = e.target.value; S._reflow = true; render(); });
-$("#reload").onclick = () => S.view === "horas" ? loadHoras(true) : load(true);
+$("#reload").onclick = () => S.view === "horas" ? loadHoras(true) : S.view === "reportes" ? loadReportes(true) : load(true);
 $("#sort").onclick = () => { S.sort = S.sort === "recientes" ? "nombre" : "recientes"; $("#sortTxt").textContent = S.sort === "recientes" ? "Recientes" : "A–Z"; S._reflow = true; render(); };
 $("#copy").onclick = () => {
   const em = [...new Set(visible().map(l => l.email))];
@@ -786,7 +824,7 @@ $("#copy").onclick = () => {
 };
 addEventListener("scroll", () => $("#topbar").classList.toggle("scrolled", scrollY > 8), {passive:true});
 if (matchMedia("(pointer:coarse)").matches) $("#kbd").hidden = true;
-setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "horas") loadHoras(); } }, 60000);
+setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "horas") loadHoras(); if (S.view === "reportes") loadReportes(); } }, 60000);
 
 /* =================== HORAS DE VOLUNTARIOS =================== */
 const VKEY = "pe-crm-view", CKEY = "pe-cert-cfg";
@@ -830,10 +868,10 @@ function setView(v) {
   document.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === v));
   closeDetail(); closeVol();
   $("#kpis").innerHTML = "";
-  const h = v === "horas";
-  $("#lContent").hidden = h; $("#hContent").hidden = !h; $("#pipe").hidden = h;
-  $("#title").innerHTML = h ? "Horas de <em>voluntarios</em>" : "Leads del <em>giveaway</em>";
-  if (h) { if (S.hLoaded) renderHoras(); loadHoras(); }
+  $("#lContent").hidden = v !== "leads"; $("#hContent").hidden = v !== "horas"; $("#rContent").hidden = v !== "reportes"; $("#pipe").hidden = v !== "leads";
+  $("#title").innerHTML = {leads: "Leads del <em>giveaway</em>", horas: "Horas de <em>voluntarios</em>", reportes: "Reportes de <em>la comunidad</em>"}[v];
+  if (v === "horas") { if (S.hLoaded) renderHoras(); loadHoras(); }
+  else if (v === "reportes") { if (S.rLoaded) renderReportes(); loadReportes(); }
   else if (S.seen) { S.firstPaint = true; render(); }
 }
 
@@ -1207,6 +1245,88 @@ async function certPDF(nombre, items, o) {
   }
   return doc;
 }
+
+/* =================== REPORTES DE LA COMUNIDAD (/reportar) =================== */
+Object.assign(S, {reportes: [], rLoaded: false, rFilter: "Revisión"});
+const R_FILTROS = [["Revisión", "En revisión"], ["Sí", "Publicados"], ["Oculto", "Ocultos"], ["Todos", "Todos"]];
+const R_TIPOS = {"Maltrato": "🚨", "Herido": "🩹", "Abandonado": "🏚️", "Perdido": "🔎", "Encontrado": "📍", "Necesita hogar": "🏡"};
+const rFoto = id => `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w400`;
+
+async function loadReportes(manual) {
+  const rb = $("#reload"); rb.classList.add("spinning");
+  try {
+    const d = await api({action: "repMod", token: S.token});
+    if (!Array.isArray(d.reportes)) throw new Error("NOAPI");
+    S.reportes = d.reportes; S.rLoaded = true;
+    // si no hay nada en revisión, abre en "Publicados"
+    if (S.rFilter === "Revisión" && !S.reportes.some(r => r.visible === "Revisión") && !S._rTouched) S.rFilter = "Sí";
+    renderReportes(); if (manual) toast("Todo al día");
+  } catch (err) {
+    if (err.message === "SESION") return;
+    const old = err.message === "NOAPI" || err.message === "datos inválidos";
+    $("#rList").innerHTML = `<div class="empty"><div class="ill">⚠️</div><b>No se pudieron cargar los reportes</b>${old ? "Falta publicar la nueva versión del Apps Script." : esc(err.message)}</div>`;
+  } finally { setTimeout(() => rb.classList.remove("spinning"), 400); }
+}
+function renderReportes() {
+  const R = S.reportes, rev = R.filter(r => r.visible === "Revisión").length;
+  $("#rBadge").hidden = !rev; $("#rBadge").textContent = rev;
+  if (S.view !== "reportes") return;
+  const k = [
+    ["Publicados", R.filter(r => r.visible === "Sí").length, ICONS.users, "en el feed"],
+    ["En revisión", rev, ICONS.bell, "3+ denuncias"],
+    ["Resueltos", R.filter(r => r.situacion === "Resuelto").length, ICONS.sun, "marcados por quien publicó"],
+    ["Comentarios", R.reduce((a, r) => a + r.comentarios.length, 0), ICONS.mail, "en total"]
+  ];
+  if (!$("#kpis").children.length) $("#kpis").innerHTML = k.map((x, i) => `<div class="kpi" style="animation-delay:${.05 + i*.06}s"><span>${x[2]}${x[0]}</span><b class="num" data-v="0">0</b><em>${x[3]}</em></div>`).join("");
+  [...$("#kpis").children].forEach((el, i) => countUp(el.querySelector("b"), k[i][1]));
+
+  const cnt = f => f === "Todos" ? R.length : R.filter(r => r.visible === f).length;
+  $("#rSeg").innerHTML = R_FILTROS.map(([f, l]) => `<button data-rf="${f}" class="${S.rFilter === f ? "on" : ""}" style="${S.rFilter === f ? "background:var(--olive);border-radius:10px" : ""}">${l}<i class="num">${cnt(f)}</i></button>`).join("");
+  const V = S.rFilter === "Todos" ? R : R.filter(r => r.visible === S.rFilter);
+  $("#rCount").textContent = `${V.length} ${V.length === 1 ? "reporte" : "reportes"}`;
+  if (!V.length) { $("#rList").innerHTML = `<div class="empty"><div class="ill">${S.rFilter === "Revisión" ? "✅" : "🐾"}</div><b>${S.rFilter === "Revisión" ? "Nada por revisar" : "No hay reportes aquí"}</b>${S.rFilter === "Revisión" ? "Cuando un reporte reciba 3 denuncias aparecerá aquí." : ""}</div>`; return; }
+  $("#rList").innerHTML = V.map((r, i) => `<div class="rcard${r.visible === "Oculto" ? " off" : ""}${r.visible === "Revisión" ? " rev" : ""}" data-rid="${esc(r.id)}" style="animation-delay:${Math.min(i, 12) * .03}s">
+    ${r.foto ? `<a class="rthumb" href="${rFoto(r.foto).replace("w400", "w2000")}" target="_blank" rel="noopener" style="background-image:url('${rFoto(r.foto)}')" aria-label="Ver foto"></a>` : `<span class="rthumb">${R_TIPOS[r.tipo] || "🐾"}</span>`}
+    <div style="min-width:0">
+      <div class="rhead"><b>${R_TIPOS[r.tipo] || ""} ${esc(r.tipo)}</b><span>${esc(r.nombre)} · ${ago(r.fecha)} · ${esc([r.ciudad, r.estado].filter(Boolean).join(", "))}</span></div>
+      <p class="rtxt">${esc(r.texto)}</p>
+      <div class="rmeta">
+        <span class="tag ${r.visible === "Sí" ? "new" : r.visible === "Revisión" ? "dup" : "nn"}">${r.visible === "Sí" ? "Publicado" : r.visible === "Revisión" ? "En revisión" : "Oculto"}</span>
+        ${r.denuncias ? `<span class="tag dup">🚩 ${r.denuncias} ${r.denuncias === 1 ? "denuncia" : "denuncias"}</span>` : ""}
+        ${r.situacion === "Resuelto" ? '<span class="tag new">✓ Resuelto</span>' : ""}
+        ${r.sensible ? '<span class="tag nn">Foto sensible</span>' : ""}
+        <span class="tag nn">❤️ ${r.reacciones.importa} · 👀 ${r.reacciones.visto} · 🙋 ${r.reacciones.ayudo}</span>
+        ${r.whatsapp ? `<span class="tag nn">WhatsApp +${esc(r.whatsapp)}</span>` : ""}
+      </div>
+      <div class="racts">
+        ${r.visible === "Sí" ? '<button class="hide" data-rset="Oculto">Ocultar del feed</button>' : '<button class="show" data-rset="Sí">' + (r.visible === "Revisión" ? "Está bien, volver a publicar" : "Publicar de nuevo") + "</button>"}
+        ${r.visible === "Revisión" ? '<button class="hide" data-rset="Oculto">Ocultar definitivamente</button>' : ""}
+        <a href="/reportar/?caso=${encodeURIComponent(r.id)}" target="_blank" rel="noopener">Ver en la página ↗</a>
+        ${r.whatsapp ? `<a href="https://wa.me/${esc(r.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
+      </div>
+      ${r.comentarios.length ? `<div class="rcoms">${r.comentarios.map(c => `<div class="rcom${c.visible === "Sí" ? "" : " off"}"><div><b>${esc(c.nombre)}</b> ${c.denuncias ? `🚩${c.denuncias} ` : ""}· ${esc(c.texto)}</div><button data-cset="${esc(c.id)}" data-v="${c.visible === "Sí" ? "Oculto" : "Sí"}">${c.visible === "Sí" ? "Ocultar" : "Mostrar"}</button></div>`).join("")}</div>` : ""}
+    </div>
+  </div>`).join("");
+}
+document.addEventListener("click", async e => {
+  const f = e.target.closest("[data-rf]");
+  if (f) { S.rFilter = f.dataset.rf; S._rTouched = true; renderReportes(); return; }
+  const t = e.target.closest("[data-rset],[data-cset]"); if (!t) return;
+  const card = t.closest("[data-rid]"), r = S.reportes.find(x => x.id === card.dataset.rid); if (!r) return;
+  t.disabled = true;
+  try {
+    if (t.dataset.rset) {
+      await api({action: "repSet", token: S.token, id: r.id, visible: t.dataset.rset});
+      r.visible = t.dataset.rset; if (r.visible === "Sí") r.denuncias = 0;
+      toast(r.visible === "Sí" ? "Publicado en el feed" : "Ocultado del feed");
+    } else {
+      await api({action: "comSet", token: S.token, id: t.dataset.cset, visible: t.dataset.v});
+      const c = r.comentarios.find(x => x.id === t.dataset.cset); if (c) { c.visible = t.dataset.v; if (c.visible === "Sí") c.denuncias = 0; }
+      toast(t.dataset.v === "Sí" ? "Comentario visible" : "Comentario oculto");
+    }
+    renderReportes();
+  } catch (err) { if (err.message !== "SESION") { toast(err.message, false); t.disabled = false; } }
+});
 
 /* ---------- inicio ---------- */
 S.token = loadSession();
