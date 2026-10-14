@@ -582,7 +582,7 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
     </div>
     <p class="warn" id="gfWarn" hidden></p>
     <button class="certbtn" id="gfGo" type="submit"><span>Guardar donación</span></button>
-    <p class="mnote">Cada donación recibe un número de recibo automático. Si es de $250 o más, el donante necesita el recibo por escrito para poder deducirla.</p>
+    <p class="mnote">Cada donación recibe un número de recibo automático con su fecha: MMDDAA-001, -002… según cuántas hubo ese día. Si es de $250 o más, el donante necesita el recibo por escrito para poder deducirla.</p>
   </form>
 </div>
 
@@ -934,7 +934,7 @@ setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "h
 /* =================== HORAS DE VOLUNTARIOS =================== */
 const VKEY = "pe-crm-view", CKEY = "pe-cert-cfg";
 const ORG = {legal: "HAPPILY PAWS FOUNDATION CORP", ein: "33-3752552", email: "info@proyectoempatados.com", web: "proyectoempatados.com"}; // Proyecto Empatados es el DBA
-const CFG_DEF = {direccion: "Miami, Florida", telefono: "", firma: "Isabella Barela", cargo: "Co-Founder & President", idioma: "en"};
+const CFG_DEF = {direccion: "Miami, Florida", telefono: "", firma: "María Isabela Mundo-Barela", cargo: "Co-Founder & President", idioma: "en"};
 Object.assign(ICONS, {
   clock:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>',
@@ -948,7 +948,13 @@ const normName = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").t
 const dOf = f => new Date(f + "T12:00:00"); // fecha "aaaa-mm-dd" sin saltos por zona horaria
 const todayISO = () => { const d = new Date(); return new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); };
 const plural = (n, a, b) => `${n} ${n === 1 ? a : b}`;
-function cfg() { try { return {...CFG_DEF, ...JSON.parse(localStorage.getItem(CKEY) || "{}")}; } catch (e) { return {...CFG_DEF}; } }
+function cfg() {
+  try {
+    const c = {...CFG_DEF, ...JSON.parse(localStorage.getItem(CKEY) || "{}")};
+    if (c.firma === "Isabella Barela") c.firma = CFG_DEF.firma; // nombre completo de quien firma
+    return c;
+  } catch (e) { return {...CFG_DEF}; }
+}
 function saveCfg(c) { try { localStorage.setItem(CKEY, JSON.stringify(c)); } catch (e) {} }
 
 // agrupa los registros por voluntario (mismo nombre sin importar acentos ni mayúsculas)
