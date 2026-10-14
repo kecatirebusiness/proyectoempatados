@@ -286,6 +286,26 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
 .ghost{width:100%;height:44px;margin-top:12px;border-radius:13px;border:1px dashed var(--line-2);background:transparent;color:var(--ink-2);font-weight:800;font-size:13px;transition:background .2s,border-color .2s}
 .ghost:hover{background:var(--surface-2);border-color:var(--olive)}
 
+/* donantes y donaciones */
+.gnew{width:100%;height:48px;margin-bottom:12px;border:0;border-radius:13px;background:var(--olive);color:var(--pink);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s var(--spring)}
+.gnew:active{transform:scale(.98)}
+.money{font:600 20px/1 "Fraunces",serif;color:var(--olive);font-variant-numeric:tabular-nums;white-space:nowrap}
+.av.sq{border-radius:13px}
+.gentries li{grid-template-columns:auto minmax(0,1fr) auto auto auto;gap:8px}
+.xbtn{height:30px;min-width:30px;padding:0 6px;border-radius:9px;border:0;background:transparent;color:var(--olive);display:grid;place-items:center;transition:background .2s}
+.xbtn:hover{background:rgba(80,77,19,.09)}
+.ychips{display:flex;flex-wrap:wrap;gap:8px}
+.ychips button{height:40px;padding:0 13px;border-radius:12px;border:1px solid var(--line-2);background:#fff;font-size:13px;font-weight:800;color:var(--ink);display:inline-flex;align-items:center;gap:7px;transition:border-color .2s,transform .2s var(--spring)}
+.ychips button:hover{border-color:var(--olive);transform:translateY(-1px)}
+.ychips button svg{width:16px;height:16px;color:var(--olive)}
+.ychips button span{color:var(--ink-3);font-weight:700}
+.pinfo{display:grid;gap:9px;font-size:14px}
+.pinfo div{display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px}
+.pinfo span{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.pinfo p{white-space:pre-wrap;word-wrap:break-word}
+.chk{grid-column:span 6;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink-2);cursor:pointer;padding:2px}
+.chk input{width:20px;height:20px;flex:none;accent-color:var(--olive)}
+
 /* moderación de reportes */
 .vbadge{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#B4475A;color:#fff;font-size:11px;font-weight:800;display:inline-grid;place-items:center}
 .rcontent{grid-template-columns:minmax(0,1fr)!important}
@@ -400,6 +420,7 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
     <div class="views" role="tablist">
       <button data-view="leads" class="on" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M17 4a4 4 0 0 1 0 8M22 21a7 7 0 0 0-4-6.3"/></svg>Leads</button>
       <button data-view="horas" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horas voluntarios</button>
+      <button data-view="donantes" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.4-9.2C1.2 7.4 3.4 4 7 4c2.1 0 3.6 1.1 5 2.9C13.4 5.1 14.9 4 17 4c3.6 0 5.8 3.4 4.4 6.8C19.5 15.4 12 20 12 20z"/></svg>Donantes</button>
       <button data-view="reportes" role="tab"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h11l-1 4h6l-2 6H8"/></svg>Reportes<i class="vbadge" id="rBadge" hidden></i></button>
     </div>
     <div class="greet"><p id="hello">Hola equipo</p><h1 id="title">Leads del <em>giveaway</em></h1></div>
@@ -466,6 +487,30 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
     </aside>
   </div>
 
+  <!-- donantes y donaciones -->
+  <div class="content" id="dContent" hidden>
+    <section class="panel">
+      <div class="toolbar">
+        <button class="gnew" id="donNew"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Nuevo donante</button>
+        <div class="search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="gq" type="search" placeholder="Buscar persona o empresa" autocomplete="off">
+        </div>
+        <div class="seg-wrap"><div class="seg" id="gSeg"></div></div>
+      </div>
+      <div class="listbar"><span id="gCount"></span><span class="acts">
+        <button class="tbtn" id="gSort"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/></svg><span id="gSortTxt">Mayor aporte</span></button>
+      </span></div>
+      <div class="list" id="gList"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
+    </section>
+
+    <aside class="detail" id="gDetail" role="dialog" aria-labelledby="gName">
+      <div class="grab"></div>
+      <div class="d-empty"><div class="ill">💛</div><b>Elige un donante</b><span>Verás cuánto ha donado y podrás descargar sus recibos para los taxes.</span></div>
+      <div class="d-scroll d-body" id="gBody"></div>
+    </aside>
+  </div>
+
   <!-- moderación de reportes -->
   <div class="content rcontent" id="rContent" hidden>
     <section class="panel">
@@ -500,6 +545,66 @@ button{cursor:pointer;-webkit-appearance:none;appearance:none}
     <p class="warn" id="cWarn" hidden></p>
     <button class="certbtn" id="cGo" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>Descargar PDF</span></button>
     <p class="mnote">Imprímela, fírmala a mano y entrégasela al voluntario. Las escuelas piden que las fechas y horas coincidan con el registro del estudiante.</p>
+  </form>
+</div>
+
+<!-- perfil de donante -->
+<div class="modal" id="dnModal" role="dialog" aria-labelledby="dnTitle">
+  <form class="mcard" id="dnForm" autocomplete="off">
+    <div class="mhead"><div><h3 id="dnTitle">Nuevo donante</h3><p>Persona o empresa que dona a Proyecto Empatados</p></div><button type="button" class="d-close" id="dnClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="hgrid" style="margin-top:16px">
+      <div class="f c6"><label for="dnTipo">Tipo</label><select id="dnTipo"><option value="Persona">Persona</option><option value="Empresa">Empresa u organización</option></select></div>
+      <div class="f c6"><label for="dnNombre" id="dnNombreL">Nombre y apellido</label><input id="dnNombre" maxlength="120" required></div>
+      <div class="f c6" id="dnContactoF" hidden><label for="dnContacto">Persona de contacto <i>(opcional)</i></label><input id="dnContacto" maxlength="120" placeholder="Quién lleva la donación en la empresa"></div>
+      <div class="f"><label for="dnEmail">Email <i>(opcional)</i></label><input id="dnEmail" type="email" maxlength="160" placeholder="correo@ejemplo.com"></div>
+      <div class="f"><label for="dnTel">Teléfono <i>(opcional)</i></label><input id="dnTel" type="tel" maxlength="30"></div>
+      <div class="f c6"><label for="dnDir">Dirección <i>(sale en el recibo)</i></label><input id="dnDir" maxlength="200" placeholder="Calle, ciudad, estado y código postal"></div>
+      <div class="f c6"><label for="dnNotas">Notas <i>(solo para el equipo)</i></label><input id="dnNotas" maxlength="1000"></div>
+    </div>
+    <button class="certbtn" id="dnGo" type="submit"><span>Guardar donante</span></button>
+  </form>
+</div>
+
+<!-- registrar donación -->
+<div class="modal" id="gfModal" role="dialog" aria-labelledby="gfTitle">
+  <form class="mcard" id="gfForm" autocomplete="off">
+    <div class="mhead"><div><h3 id="gfTitle">Registrar donación</h3><p id="gfSub"></p></div><button type="button" class="d-close" id="gfClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="hgrid" style="margin-top:16px">
+      <div class="f m3"><label for="gfTipo">Tipo</label><select id="gfTipo"><option value="Dinero">Dinero</option><option value="Especie">En especie</option></select></div>
+      <div class="f m3"><label for="gfFecha">Fecha</label><input id="gfFecha" type="date" required></div>
+      <div class="f m3"><label for="gfMonto" id="gfMontoL">Monto (USD)</label><input id="gfMonto" type="number" inputmode="decimal" min="0" step="0.01" placeholder="100"></div>
+      <div class="f m3" id="gfMetodoF"><label for="gfMetodo">Método</label><select id="gfMetodo"></select></div>
+      <div class="f c6"><label for="gfDesc" id="gfDescL">Nota</label><input id="gfDesc" maxlength="500"></div>
+      <div class="f c6"><label for="gfRef">Referencia <i>(# de cheque o confirmación, opcional)</i></label><input id="gfRef" maxlength="60"></div>
+      <label class="chk"><input type="checkbox" id="gfQpq">Recibió algo a cambio (cena, camiseta, entradas…)</label>
+      <div class="f m3" id="gfQvF" hidden><label for="gfQv">Valor de lo recibido</label><input id="gfQv" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></div>
+      <div class="f m3" id="gfQdF" hidden><label for="gfQd">Qué recibió</label><input id="gfQd" maxlength="200" placeholder="Ej. 2 entradas a la gala"></div>
+    </div>
+    <p class="warn" id="gfWarn" hidden></p>
+    <button class="certbtn" id="gfGo" type="submit"><span>Guardar donación</span></button>
+    <p class="mnote">Cada donación recibe un número de recibo automático. Si es de $250 o más, el donante necesita el recibo por escrito para poder deducirla.</p>
+  </form>
+</div>
+
+<!-- recibo de donación -->
+<div class="modal" id="rcModal" role="dialog" aria-labelledby="rcTitle">
+  <form class="mcard" id="rcForm">
+    <div class="mhead"><div><h3 id="rcTitle">Recibo de donación</h3><p id="rcSub"></p></div><button type="button" class="d-close" id="rcClose" aria-label="Cerrar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div class="msum"><div><span>En dinero</span><b id="rcCash">$0</b></div><div><span>Donaciones</span><b id="rcN">0</b></div><div><span>En especie</span><b id="rcKind">0</b></div></div>
+    <div class="hgrid">
+      <div class="f c6"><label for="rcIdioma">Idioma del recibo</label><select id="rcIdioma"><option value="en">English (recomendado para taxes en EE. UU.)</option><option value="es">Español</option></select></div>
+      <div class="f"><label for="rcFirma">Firma</label><input id="rcFirma" maxlength="80" placeholder="Nombre de quien firma"></div>
+      <div class="f"><label for="rcCargo">Cargo</label><input id="rcCargo" maxlength="80" placeholder="Ej. Co-Founder & President"></div>
+    </div>
+    <details><summary>Dirección y teléfono en el recibo</summary>
+      <div class="hgrid">
+        <div class="f c6"><label for="rcDir">Dirección</label><input id="rcDir" maxlength="140" placeholder="Miami, Florida"></div>
+        <div class="f c6"><label for="rcTel">Teléfono</label><input id="rcTel" maxlength="30" placeholder="(305) 000-0000"></div>
+      </div>
+    </details>
+    <p class="warn" id="rcWarn" hidden></p>
+    <button class="certbtn" id="rcGo" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>Descargar PDF</span></button>
+    <p class="mnote">Es la constancia escrita que pide el IRS: incluye el EIN, el monto, y si recibió algo a cambio. Envíasela al donante por email; él la guarda con sus taxes (no se manda al IRS).</p>
   </form>
 </div>
 
@@ -549,7 +654,7 @@ function toast(t, ok = true) {
 
 /* ---------- login ---------- */
 function showLogin(msg) {
-  S.token = null; closeDetail(); closeVol(); closeCert(); document.body.classList.remove("in-app");
+  S.token = null; closeDetail(); closeVol(); closeDonor(); closeCert(); document.querySelectorAll("#dnModal,#gfModal,#rcModal").forEach(m => m.classList.remove("on")); document.body.classList.remove("in-app");
   $("#app").hidden = true; $("#login").hidden = false;
   $("#lerr").textContent = msg || "";
   setTimeout(() => $("#pw").focus(), 300);
@@ -579,7 +684,7 @@ function enterApp() {
   $("#hello").textContent = (h < 12 ? "Buenos días" : h < 19 ? "Buenas tardes" : "Buenas noches") + ", equipo";
   S.firstPaint = true; S.seen = null; S.hLoaded = false;
   let v = "leads"; try { v = localStorage.getItem(VKEY) || "leads"; } catch (e) {}
-  setView(["horas", "reportes"].includes(v) ? v : "leads");
+  setView(["horas", "donantes", "reportes"].includes(v) ? v : "leads");
   load();
 }
 async function load(manual) {
@@ -623,9 +728,9 @@ function visible() {
     (!q || (l.nombre + " " + l.email).toLowerCase().includes(q) || (qd.length >= 3 && l.telefono.replace(/\D/g, "").includes(qd))));
   return S.sort === "nombre" ? v.sort((a, b) => a.nombre.localeCompare(b.nombre, "es")) : v.sort((a, b) => (b.fecha || "").localeCompare(a.fecha || ""));
 }
-function countUp(el, to) {
+function countUp(el, to, fmt) {
   const from = Number(el.dataset.v || 0); el.dataset.v = to;
-  const dec = !Number.isInteger(to), show = v => dec ? fmtH(v) : Math.round(v);
+  const dec = !Number.isInteger(to), show = fmt || (v => dec ? fmtH(v) : Math.round(v));
   if (reduce || from === to) { el.textContent = show(to); return; }
   const t0 = performance.now(), dur = 900;
   (function f(t) { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = p < 1 ? show(from + (to - from) * e) : show(to); if (p < 1) requestAnimationFrame(f); })(t0);
@@ -636,7 +741,7 @@ function render() {
   const L = S.leads, today = new Date().toDateString(), dups = dupMap();
   const latest = L.reduce((a, l) => (!a || (l.fecha || "") > a ? l.fecha : a), "");
   $("#last").textContent = L.length ? "Último registro " + ago(latest) : "Aún no hay registros";
-  if (S.view === "horas") return;
+  if (S.view !== "leads") return;
 
   const k = [
     ["Leads", L.length, ICONS.users, "en total"],
@@ -756,7 +861,7 @@ function closeDetail() {
 
 /* ---------- eventos ---------- */
 document.addEventListener("click", async e => {
-  if (e.target.closest("#hContent,#certModal,#rContent")) return; // horas y reportes tienen su propio manejador
+  if (e.target.closest("#hContent,#certModal,#rContent,#dContent,#dnModal,#gfModal,#rcModal")) return; // horas, donantes y reportes tienen su propio manejador
   const t = e.target.closest("[data-f],.lead,#dClose,[data-estado],#addNota,#otra,#customSave,#delLead");
   if (!t) return;
   if (t.dataset.f) { S.filter = t.dataset.f; S._reflow = true; render(); return; }
@@ -809,13 +914,13 @@ async function clasificar(l, nuevo) {
   catch (err) { if (err.message !== "SESION") { l.estado = antes; render(); paintDetail(l, true); toast(err.message, false); } }
 }
 document.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.id === "customIn") { e.preventDefault(); $("#customSave").click(); } });
-$("#scrim").onclick = () => { closeDetail(); closeVol(); };
+$("#scrim").onclick = () => { closeDetail(); closeVol(); closeDonor(); };
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape") { if ($("#certModal").classList.contains("on")) { closeCert(); return; } closeDetail(); closeVol(); }
-  if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName) && !$("#app").hidden) { e.preventDefault(); $(S.view === "horas" ? "#hq" : "#q").focus(); }
+  if (e.key === "Escape") { const m = document.querySelector(".modal.on"); if (m) { m.classList.remove("on"); return; } closeDetail(); closeVol(); closeDonor(); }
+  if (e.key === "/" && !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement.tagName) && !$("#app").hidden) { e.preventDefault(); $({horas: "#hq", donantes: "#gq"}[S.view] || "#q").focus(); }
 });
 $("#q").addEventListener("input", e => { S.q = e.target.value; S._reflow = true; render(); });
-$("#reload").onclick = () => S.view === "horas" ? loadHoras(true) : S.view === "reportes" ? loadReportes(true) : load(true);
+$("#reload").onclick = () => S.view === "horas" ? loadHoras(true) : S.view === "donantes" ? loadDonors(true) : S.view === "reportes" ? loadReportes(true) : load(true);
 $("#sort").onclick = () => { S.sort = S.sort === "recientes" ? "nombre" : "recientes"; $("#sortTxt").textContent = S.sort === "recientes" ? "Recientes" : "A–Z"; S._reflow = true; render(); };
 $("#copy").onclick = () => {
   const em = [...new Set(visible().map(l => l.email))];
@@ -824,7 +929,7 @@ $("#copy").onclick = () => {
 };
 addEventListener("scroll", () => $("#topbar").classList.toggle("scrolled", scrollY > 8), {passive:true});
 if (matchMedia("(pointer:coarse)").matches) $("#kbd").hidden = true;
-setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "horas") loadHoras(); if (S.view === "reportes") loadReportes(); } }, 60000);
+setInterval(() => { if (S.token && !document.hidden) { load(); if (S.view === "horas") loadHoras(); if (S.view === "donantes") loadDonors(); if (S.view === "reportes") loadReportes(); } }, 60000);
 
 /* =================== HORAS DE VOLUNTARIOS =================== */
 const VKEY = "pe-crm-view", CKEY = "pe-cert-cfg";
@@ -866,11 +971,12 @@ const volByKey = k => volunteers().find(v => v.k === k);
 function setView(v) {
   S.view = v; try { localStorage.setItem(VKEY, v); } catch (e) {}
   document.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("on", b.dataset.view === v));
-  closeDetail(); closeVol();
+  closeDetail(); closeVol(); closeDonor();
   $("#kpis").innerHTML = "";
-  $("#lContent").hidden = v !== "leads"; $("#hContent").hidden = v !== "horas"; $("#rContent").hidden = v !== "reportes"; $("#pipe").hidden = v !== "leads";
-  $("#title").innerHTML = {leads: "Leads del <em>giveaway</em>", horas: "Horas de <em>voluntarios</em>", reportes: "Reportes de <em>la comunidad</em>"}[v];
+  $("#lContent").hidden = v !== "leads"; $("#hContent").hidden = v !== "horas"; $("#dContent").hidden = v !== "donantes"; $("#rContent").hidden = v !== "reportes"; $("#pipe").hidden = v !== "leads";
+  $("#title").innerHTML = {leads: "Leads del <em>giveaway</em>", horas: "Horas de <em>voluntarios</em>", donantes: "Donantes y <em>donaciones</em>", reportes: "Reportes de <em>la comunidad</em>"}[v];
   if (v === "horas") { if (S.hLoaded) renderHoras(); loadHoras(); }
+  else if (v === "donantes") { if (S.gLoaded) renderDonors(); loadDonors(); }
   else if (v === "reportes") { if (S.rLoaded) renderReportes(); loadReportes(); }
   else if (S.seen) { S.firstPaint = true; render(); }
 }
@@ -1242,6 +1348,446 @@ async function certPDF(nombre, items, o) {
     doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUT);
     doc.text(`${ORG.legal} ${t.dba} Proyecto Empatados  ·  ${t.ein} ${ORG.ein}`, M, H - 32);
     doc.text(`${t.vid}: ${vid}  ·  ${t.page(i, n)}`, W - M, H - 32, {align: "right"});
+  }
+  return doc;
+}
+
+/* =================== DONANTES Y DONACIONES =================== */
+Object.assign(ICONS, {
+  heart:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.4-9.2C1.2 7.4 3.4 4 7 4c2.1 0 3.6 1.1 5 2.9C13.4 5.1 14.9 4 17 4c3.6 0 5.8 3.4 4.4 6.8C19.5 15.4 12 20 12 20z"/></svg>',
+  trash:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>'
+});
+Object.assign(S, {donantes: [], gifts: [], gLoaded: false, gOpen: null, gq: "", gFilter: "Todos", gSort: "monto"});
+const METODOS = ["Zelle", "Efectivo", "Cheque", "Tarjeta", "PayPal", "Transferencia", "Otro"];
+const MKEY = "pe-don-metodo";
+const usd = n => (Number(n) || 0).toLocaleString("en-US", {style: "currency", currency: "USD"}); // siempre con centavos (recibos)
+const usdS = n => { n = Math.round((Number(n) || 0) * 100) / 100; return n.toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: Number.isInteger(n) ? 0 : 2}); };
+const usd0 = n => (Number(n) || 0).toLocaleString("en-US", {style: "currency", currency: "USD", maximumFractionDigits: 0});
+const cashOf = G => G.reduce((a, g) => a + (g.tipo === "Dinero" ? g.monto : 0), 0);
+const byFecha = (a, b) => a.fecha.localeCompare(b.fecha) || a.recibo.localeCompare(b.recibo);
+const giftLabel = g => g.tipo === "Especie" ? "En especie" : g.metodo || "Dinero";
+// cada donante con sus donaciones y su total en dinero
+function donors() {
+  return S.donantes.map(dn => {
+    const G = S.gifts.filter(g => g.donante === dn.id);
+    return {...dn, G, total: cashOf(G), last: G.reduce((m, g) => g.fecha > m ? g.fecha : m, "")};
+  });
+}
+const donByKey = id => donors().find(x => x.id === id);
+
+async function loadDonors(manual) {
+  const rb = $("#reload"); rb.classList.add("spinning");
+  try {
+    const d = await api({action: "donors", token: S.token});
+    if (!Array.isArray(d.donantes)) throw new Error("NOAPI");
+    S.donantes = d.donantes; S.gifts = d.donaciones; S.gLoaded = true; renderDonors();
+    if (manual) toast("Todo al día");
+  } catch (err) {
+    if (err.message === "SESION") return;
+    const old = err.message === "NOAPI" || err.message === "datos inválidos";
+    $("#gList").innerHTML = `<div class="empty"><div class="ill">⚠️</div><b>No se pudieron cargar los donantes</b>${old ? "Falta publicar la nueva versión del Apps Script (Implementar → Administrar implementaciones → Nueva versión)." : esc(err.message)}</div>`;
+  } finally { setTimeout(() => rb.classList.remove("spinning"), 400); }
+}
+
+function renderDonors() {
+  if (S.view !== "donantes") return;
+  const D = donors(), yr = todayISO().slice(0, 4), mes = todayISO().slice(0, 7), G = S.gifts;
+  const k = [
+    ["Recaudado " + yr, cashOf(G.filter(g => g.fecha.startsWith(yr))), ICONS.heart, "en dinero este año", usd0],
+    ["Donantes", D.length, ICONS.users, "personas y empresas"],
+    ["Donaciones", G.filter(g => g.fecha.startsWith(yr)).length, ICONS.cal, "este año"],
+    ["Este mes", cashOf(G.filter(g => g.fecha.startsWith(mes))), ICONS.sun, "recaudado", usd0]
+  ];
+  if (!$("#kpis").children.length) $("#kpis").innerHTML = k.map((x, i) => `<div class="kpi" style="animation-delay:${.05 + i*.06}s"><span>${x[2]}${x[0]}</span><b class="num" data-v="0">0</b><em>${x[3]}</em></div>`).join("");
+  [...$("#kpis").children].forEach((el, i) => countUp(el.querySelector("b"), k[i][1], k[i][4]));
+
+  const cnt = f => f === "Todos" ? D.length : D.filter(x => x.tipo === f).length;
+  $("#gSeg").innerHTML = [["Todos", "Todos"], ["Persona", "Personas"], ["Empresa", "Empresas"]].map(([f, l]) => `<button data-gf="${f}" class="${S.gFilter === f ? "on" : ""}" style="${S.gFilter === f ? "background:var(--olive);border-radius:10px" : ""}">${l}<i class="num">${cnt(f)}</i></button>`).join("");
+  const q = normName(S.gq);
+  const list = D.filter(x => (S.gFilter === "Todos" || x.tipo === S.gFilter) && (!q || normName([x.nombre, x.contacto, x.email, x.telefono].join(" ")).includes(q)))
+    .sort((a, b) => S.gSort === "monto" ? b.total - a.total : S.gSort === "recientes" ? (b.last || b.creado).localeCompare(a.last || a.creado) : a.nombre.localeCompare(b.nombre, "es"));
+  $("#gCount").textContent = plural(list.length, "donante", "donantes");
+  if (!list.length) {
+    $("#gList").innerHTML = `<div class="empty"><div class="ill">${D.length ? "🔎" : "💛"}</div><b>${D.length ? "Sin resultados" : "Aún no hay donantes"}</b>${D.length ? "Prueba con otra búsqueda o filtro." : "Crea el primer perfil con «Nuevo donante»."}</div>`;
+  } else {
+    $("#gList").innerHTML = list.map((x, i) => `<button class="lead grow${S.gOpen === x.id ? " sel" : ""}" data-g="${esc(x.id)}" style="animation-delay:${Math.min(i, 14) * .03}s">
+      <span class="av${x.tipo === "Empresa" ? " sq" : ""}" style="background:${avColor(x.email || x.nombre)}">${esc(initials(x.nombre))}</span>
+      <span class="who"><b><span class="nm">${esc(x.nombre)}</span>${x.tipo === "Empresa" ? '<span class="tag nn">EMPRESA</span>' : ""}</b><span>${x.G.length ? `${plural(x.G.length, "donación", "donaciones")} · última ${dOf(x.last).toLocaleDateString("es", {day: "numeric", month: "short", year: "numeric"})}` : "Sin donaciones todavía"}</span></span>
+      <span class="right"><span class="money">${usdS(x.total)}</span></span>
+    </button>`).join("");
+  }
+  if (S.gOpen) { const x = donByKey(S.gOpen); x ? paintDonor(x, true) : closeDonor(); }
+}
+
+function openDonor(id) {
+  const x = donByKey(id); if (!x) return;
+  S.gOpen = id;
+  document.querySelectorAll(".grow").forEach(b => b.classList.toggle("sel", b.dataset.g === id));
+  paintDonor(x);
+  $("#gDetail").classList.add("on", "has");
+  if (!isDesk()) { $("#scrim").classList.add("on"); document.body.style.overflow = "hidden"; }
+  $("#gBody").scrollTop = 0;
+}
+function closeDonor() {
+  S.gOpen = null; $("#gDetail").classList.remove("on", "has");
+  if (!$("#detail").classList.contains("on") && !$("#hDetail").classList.contains("on")) { $("#scrim").classList.remove("on"); document.body.style.overflow = ""; }
+  document.querySelectorAll(".grow.sel").forEach(b => b.classList.remove("sel"));
+}
+function paintDonor(x, quiet) {
+  const G = [...x.G].sort(byFecha).reverse(), yr = todayISO().slice(0, 4);
+  const years = [...new Set(G.map(g => g.fecha.slice(0, 4)))].sort().reverse();
+  const tel = x.telefono.replace(/[^\d+]/g, ""), wa = x.telefono.replace(/\D/g, "");
+  const info = [["Contacto", x.contacto], ["Dirección", x.direccion], ["Notas", x.notas], ["Perfil creado", x.creado ? new Date(x.creado).toLocaleDateString("es", {day: "numeric", month: "short", year: "numeric"}) : ""]].filter(r => r[1]);
+  $("#gBody").innerHTML = `<div class="${quiet ? "" : "d-stagger"}">
+    <div class="d-head">
+      <span class="av${x.tipo === "Empresa" ? " sq" : ""}" style="background:${avColor(x.email || x.nombre)}">${esc(initials(x.nombre))}</span>
+      <div style="min-width:0;padding-right:40px"><h2 id="gName">${esc(x.nombre)}</h2><p><span>${x.tipo}</span>${x.email ? `<span>${esc(x.email)}</span>` : ""}${x.telefono ? `<span>${esc(x.telefono)}</span>` : ""}</p></div>
+      <button class="d-close" id="gClose" aria-label="Cerrar">${ICONS.x}</button>
+    </div>
+    <div class="actions">
+      <a class="wa ${wa ? "" : "off"}" href="https://wa.me/${wa}" target="_blank" rel="noopener">${ICONS.wa}WhatsApp</a>
+      <a class="${tel ? "" : "off"}" href="tel:${esc(tel)}">${ICONS.call}Llamar</a>
+      <a class="${x.email ? "" : "off"}" href="mailto:${encodeURIComponent(x.email)}">${ICONS.mail}Email</a>
+    </div>
+    <div class="msum"><div><span>Total donado</span><b>${usdS(x.total)}</b></div><div><span>En ${yr}</span><b>${usdS(cashOf(G.filter(g => g.fecha.startsWith(yr))))}</b></div><div><span>Donaciones</span><b>${G.length}</b></div></div>
+    <button class="certbtn" id="gAdd" style="margin-top:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Registrar donación</button>
+    <p class="sec"><span>Donaciones</span><span>${G.length || ""}</span></p>
+    ${G.length ? `<ul class="entries gentries">${G.map((g, i) => { const d = dOf(g.fecha); return `<li style="animation-delay:${Math.min(i, 10) * .03}s">
+      <span class="d">${d.toLocaleDateString("es", {month: "short"}).replace(".", "")}<b>${d.getDate()}</b>${d.getFullYear() !== new Date().getFullYear() ? d.getFullYear() : ""}</span>
+      <span class="m"><b>${esc(giftLabel(g))}${g.qpq ? " · recibió algo" : ""}</b><span>${esc([g.descripcion, "Recibo " + g.recibo].filter(Boolean).join(" · "))}</span></span>
+      <span class="h">${g.tipo === "Dinero" ? usdS(g.monto) : "Especie"}</span>
+      <button class="xbtn" data-rec="${esc(g.id)}" aria-label="Descargar recibo" title="Recibo en PDF">${ICONS.doc}</button>
+      <button class="xdel" data-gdel="${esc(g.id)}" aria-label="Eliminar donación">${ICONS.x}</button></li>`; }).join("")}</ul>` : `<p class="hint" style="margin:0">Todavía no tiene donaciones registradas.</p>`}
+    ${years.length ? `<p class="sec"><span>Resumen anual para taxes</span></p>
+    <div class="ychips">${years.map(y => `<button data-anual="${y}">${ICONS.doc}${y}<span>${usdS(cashOf(G.filter(g => g.fecha.startsWith(y))))}</span></button>`).join("")}</div>
+    <p class="hint">Un solo PDF con todas sus donaciones del año. Ideal para enviarlo en enero.</p>` : ""}
+    <p class="sec"><span>Perfil</span></p>
+    ${info.length ? `<div class="pinfo">${info.map(([a, b]) => `<div><span>${a}</span><p>${esc(b)}</p></div>`).join("")}</div>` : ""}
+    <button class="ghost" id="dnEdit">Editar perfil</button>
+    <div class="danger-zone"><button class="del" id="dnDel">${ICONS.trash}<span>Eliminar donante</span></button><p class="del-hint" id="dnHint"></p></div>
+  </div>`;
+}
+
+/* eventos de la vista de donantes */
+document.addEventListener("click", async e => {
+  const t = e.target.closest("#dContent .grow,#gClose,#donNew,#gAdd,#dnEdit,#dnDel,[data-rec],[data-anual],[data-gdel],[data-gf],#dnClose,#gfClose,#rcClose");
+  if (!t) { if (/^(dn|gf|rc)Modal$/.test(e.target.id)) e.target.classList.remove("on"); return; }
+  if (t.dataset.gf) { S.gFilter = t.dataset.gf; renderDonors(); return; }
+  if (t.classList.contains("grow")) { openDonor(t.dataset.g); return; }
+  if (t.id === "gClose") { closeDonor(); return; }
+  if (t.id === "donNew") { openDn(null); return; }
+  if (/^(dn|gf|rc)Close$/.test(t.id)) { t.closest(".modal").classList.remove("on"); return; }
+  const x = donByKey(S.gOpen); if (!x) return;
+  if (t.id === "gAdd") { openGf(x); return; }
+  if (t.id === "dnEdit") { openDn(x); return; }
+  if (t.dataset.rec) { const g = x.G.find(g => g.id === t.dataset.rec); if (g) openRec(x, [g], null); return; }
+  if (t.dataset.anual) { openRec(x, x.G.filter(g => g.fecha.startsWith(t.dataset.anual)), t.dataset.anual); return; }
+  if (t.dataset.gdel) {
+    if (!t.classList.contains("armed")) {
+      t.classList.add("armed"); t.textContent = "Eliminar";
+      clearTimeout(t._t); t._t = setTimeout(() => { if (document.body.contains(t)) { t.classList.remove("armed"); t.innerHTML = ICONS.x; } }, 4000);
+      return;
+    }
+    clearTimeout(t._t); t.disabled = true; t.textContent = "…";
+    try {
+      await api({action: "giftDel", token: S.token, id: t.dataset.gdel});
+      S.gifts = S.gifts.filter(g => g.id !== t.dataset.gdel);
+      renderDonors(); toast("Donación eliminada");
+    } catch (err) { if (err.message !== "SESION") { toast(err.message, false); t.disabled = false; t.classList.remove("armed"); t.innerHTML = ICONS.x; } }
+    return;
+  }
+  if (t.id === "dnDel") {
+    if (x.G.length) { $("#dnHint").textContent = "Tiene donaciones registradas: elimínalas primero para poder borrar el perfil."; return; }
+    if (!t.classList.contains("armed")) {
+      t.classList.add("armed"); t.querySelector("span").textContent = "Sí, eliminar a " + x.nombre.split(/\s+/)[0];
+      $("#dnHint").textContent = "Toca otra vez para confirmar. Quedará en la pestaña «Donantes eliminados» de la hoja.";
+      clearTimeout(t._t); t._t = setTimeout(() => { if (document.body.contains(t)) { t.classList.remove("armed"); t.querySelector("span").textContent = "Eliminar donante"; $("#dnHint").textContent = ""; } }, 5000);
+      return;
+    }
+    clearTimeout(t._t); t.disabled = true; t.querySelector("span").textContent = "Eliminando…";
+    try {
+      await api({action: "donorDel", token: S.token, id: x.id});
+      S.donantes = S.donantes.filter(d => d.id !== x.id);
+      closeDonor(); renderDonors(); toast(x.nombre + " eliminado");
+    } catch (err) { if (err.message !== "SESION") { toast(err.message, false); t.disabled = false; t.classList.remove("armed"); t.querySelector("span").textContent = "Eliminar donante"; $("#dnHint").textContent = ""; } }
+  }
+});
+$("#gq").addEventListener("input", e => { S.gq = e.target.value; renderDonors(); });
+$("#gSort").onclick = () => {
+  S.gSort = {monto: "recientes", recientes: "nombre", nombre: "monto"}[S.gSort];
+  $("#gSortTxt").textContent = {monto: "Mayor aporte", recientes: "Recientes", nombre: "A–Z"}[S.gSort];
+  renderDonors();
+};
+
+/* ---------- perfil del donante ---------- */
+let dnEditing = null;
+function openDn(x) {
+  dnEditing = x ? x.id : null;
+  $("#dnTitle").textContent = x ? "Editar donante" : "Nuevo donante";
+  $("#dnTipo").value = x ? x.tipo : "Persona";
+  [["#dnNombre", "nombre"], ["#dnContacto", "contacto"], ["#dnEmail", "email"], ["#dnTel", "telefono"], ["#dnDir", "direccion"], ["#dnNotas", "notas"]].forEach(([s, k]) => $(s).value = x ? x[k] : "");
+  dnTipoSync();
+  $("#dnModal").classList.add("on");
+  setTimeout(() => $("#dnNombre").focus(), 250);
+}
+function dnTipoSync() {
+  const em = $("#dnTipo").value === "Empresa";
+  $("#dnContactoF").hidden = !em;
+  $("#dnNombreL").textContent = em ? "Nombre de la empresa" : "Nombre y apellido";
+}
+$("#dnTipo").addEventListener("change", dnTipoSync);
+$("#dnForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const b = $("#dnGo"), data = {id: dnEditing, tipo: $("#dnTipo").value, nombre: $("#dnNombre").value, contacto: $("#dnContacto").value, email: $("#dnEmail").value, telefono: $("#dnTel").value, direccion: $("#dnDir").value, notas: $("#dnNotas").value};
+  b.disabled = true; b.querySelector("span").textContent = "Guardando…";
+  try {
+    const d = await api({action: "donorSave", token: S.token, ...data});
+    const i = S.donantes.findIndex(x => x.id === d.donante.id);
+    if (i >= 0) S.donantes[i] = d.donante; else S.donantes.push(d.donante);
+    $("#dnModal").classList.remove("on");
+    renderDonors(); openDonor(d.donante.id);
+    toast(i >= 0 ? "Perfil actualizado" : d.donante.nombre + " agregado");
+  } catch (err) { if (err.message !== "SESION") toast(err.message === "datos inválidos" ? "Falta publicar la nueva versión del Apps Script" : err.message, false); }
+  finally { b.disabled = false; b.querySelector("span").textContent = "Guardar donante"; }
+});
+
+/* ---------- registrar donación ---------- */
+let gfFor = null;
+$("#gfMetodo").innerHTML = METODOS.map(m => `<option>${m}</option>`).join("");
+function openGf(x) {
+  gfFor = x.id;
+  $("#gfSub").textContent = x.nombre;
+  $("#gfTipo").value = "Dinero"; $("#gfFecha").value = todayISO();
+  let m = "Zelle"; try { m = localStorage.getItem(MKEY) || m; } catch (e) {}
+  $("#gfMetodo").value = METODOS.includes(m) ? m : "Zelle";
+  ["#gfMonto", "#gfRef", "#gfDesc", "#gfQv", "#gfQd"].forEach(s => $(s).value = "");
+  $("#gfQpq").checked = false;
+  gfSync();
+  $("#gfModal").classList.add("on");
+  setTimeout(() => $("#gfMonto").focus(), 250);
+}
+function gfSync() {
+  const es = $("#gfTipo").value === "Especie", q = $("#gfQpq").checked;
+  $("#gfMetodoF").hidden = es;
+  $("#gfMontoL").innerHTML = es ? "Valor estimado <i>(opcional · no sale en el recibo)</i>" : "Monto (USD)";
+  $("#gfMonto").required = !es;
+  $("#gfDescL").innerHTML = es ? "Qué donó <i>(sale en el recibo)</i>" : "Nota o destino <i>(opcional, sale en el recibo)</i>";
+  $("#gfDesc").required = es;
+  $("#gfDesc").placeholder = es ? "Ej. 10 sacos de comida para perros de 15 kg" : "Ej. Jornada de esterilización de octubre";
+  $("#gfQvF").hidden = $("#gfQdF").hidden = !q; $("#gfQd").required = q;
+  const m = Number($("#gfMonto").value), v = Number($("#gfQv").value), w = [];
+  if (q && !es && m && v >= m) w.push("Lo que recibió vale lo mismo o más que lo que donó: esa donación no sería deducible.");
+  $("#gfWarn").hidden = !w.length; $("#gfWarn").textContent = w.join(" ");
+}
+["#gfTipo", "#gfQpq", "#gfMonto", "#gfQv"].forEach(s => $(s).addEventListener("input", gfSync));
+$("#gfForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const b = $("#gfGo"), data = {donante: gfFor, tipo: $("#gfTipo").value, fecha: $("#gfFecha").value, monto: $("#gfMonto").value, metodo: $("#gfMetodo").value,
+    referencia: $("#gfRef").value, descripcion: $("#gfDesc").value, qpq: $("#gfQpq").checked, qpqValor: $("#gfQv").value, qpqDetalle: $("#gfQd").value};
+  b.disabled = true; b.querySelector("span").textContent = "Guardando…";
+  try {
+    const d = await api({action: "giftAdd", token: S.token, ...data});
+    S.gifts.push(d.donacion);
+    if (data.tipo === "Dinero") try { localStorage.setItem(MKEY, data.metodo); } catch (e) {}
+    $("#gfModal").classList.remove("on");
+    renderDonors();
+    const x = donByKey(gfFor);
+    toast(`${d.donacion.tipo === "Dinero" ? usdS(d.donacion.monto) : "Donación en especie"} · recibo ${d.donacion.recibo}`);
+    if (x) openRec(x, [d.donacion], null); // ofrece el recibo de una vez
+  } catch (err) { if (err.message !== "SESION") toast(err.message === "datos inválidos" ? "Falta publicar la nueva versión del Apps Script" : err.message, false); }
+  finally { b.disabled = false; b.querySelector("span").textContent = "Guardar donación"; }
+});
+
+/* ---------- recibo (una donación) o resumen anual ---------- */
+let rec = null;
+function openRec(x, gifts, anual) {
+  rec = {x, gifts: [...gifts].sort(byFecha), anual};
+  const c = cfg();
+  $("#rcTitle").textContent = anual ? `Resumen anual ${anual}` : "Recibo de donación";
+  $("#rcSub").textContent = x.nombre + (anual ? "" : " · " + gifts[0].recibo);
+  $("#rcCash").textContent = usdS(cashOf(gifts)); $("#rcN").textContent = gifts.length; $("#rcKind").textContent = gifts.filter(g => g.tipo === "Especie").length;
+  $("#rcIdioma").value = c.idioma; $("#rcFirma").value = c.firma; $("#rcCargo").value = c.cargo;
+  $("#rcDir").value = c.direccion; $("#rcTel").value = c.telefono;
+  recWarn();
+  $("#rcModal").classList.add("on");
+}
+function recWarn() {
+  const w = [];
+  if (!$("#rcFirma").value.trim()) w.push("Falta el nombre de quien firma.");
+  if (rec && !rec.x.direccion) w.push("El perfil no tiene dirección: el recibo es válido igual, pero se ve más completo con ella.");
+  $("#rcWarn").hidden = !w.length; $("#rcWarn").textContent = w.join(" ");
+}
+$("#rcFirma").addEventListener("input", recWarn);
+$("#rcForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!rec || !rec.gifts.length) return;
+  const o = {idioma: $("#rcIdioma").value, firma: $("#rcFirma").value.trim(), cargo: $("#rcCargo").value.trim(), direccion: $("#rcDir").value.trim(), telefono: $("#rcTel").value.trim()};
+  saveCfg(o);
+  const b = $("#rcGo"); b.disabled = true; b.querySelector("span").textContent = "Generando…";
+  try {
+    const doc = await recPDF(rec.x, rec.gifts, {...o, anual: rec.anual});
+    const slug = normName(rec.x.nombre).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const es = o.idioma === "es";
+    doc.save(rec.anual ? `${es ? "Resumen-anual-donaciones" : "Year-end-giving-statement"}-${rec.anual}-${slug}.pdf` : `${es ? "Recibo-donacion" : "Donation-receipt"}-${rec.gifts[0].recibo}-${slug}.pdf`);
+    toast("Recibo descargado"); $("#rcModal").classList.remove("on");
+  } catch (err) { toast(err.message || "No se pudo generar el PDF", false); }
+  finally { b.disabled = false; b.querySelector("span").textContent = "Descargar PDF"; }
+});
+
+// Constancia escrita que pide el IRS (IRC §170(f)(8) y §6115): nombre y EIN de la organización, fecha y monto
+// de cada aporte en dinero, descripción (sin valor) de lo donado en especie, y si el donante recibió algo a cambio.
+const REC_TXT = {
+  en: {...CERT_TXT.en,
+    title: "Donation Receipt", annual: y => `${y} Year-End Giving Statement`,
+    no: "Receipt No.", sno: "Statement No.", from: "Received from", attn: "Attn:",
+    thanks: "Thank you for your generous contribution to Proyecto Empatados. Your support helps us connect people, resources and initiatives for animal welfare in Venezuela and Latin America. Please keep this letter as the written acknowledgment of your contribution for your tax records.",
+    thanksY: y => `Thank you for your generous support of Proyecto Empatados during ${y}. Below is a summary of the contributions we received from you between January 1 and December 31, ${y}. Please keep this statement as the written acknowledgment of your contributions for your tax records.`,
+    cols: ["Date", "Receipt No.", "Description", "Amount"],
+    cash: (m, r) => { const p = [{Efectivo: "cash", Cheque: "check", Tarjeta: "card", Transferencia: "bank transfer", Otro: ""}[m] ?? m, r && "#" + r].filter(Boolean).join(" "); return `Monetary contribution${p ? ` (${p})` : ""}`; },
+    kind: d => `In-kind donation: ${d}`, kindAmt: "Non-cash*",
+    total: "Total monetary contributions",
+    none: many => `No goods or services were provided in exchange for ${many ? "these contributions" : "this contribution"}.`,
+    noneRest: "No goods or services were provided in exchange for any other contribution listed above.",
+    goods: (d, what, val, ded) => `In exchange for your contribution on ${d}, you received ${what}, with an estimated fair market value of ${val}. The amount of your contribution that is deductible for federal income tax purposes is limited to the excess of your contribution over the value of the goods or services provided${ded ? ` (estimated deductible amount: ${ded})` : ""}.`,
+    kindNote: "* Proyecto Empatados acknowledges receipt of the non-cash items described above but does not assign them a value. Determining the fair market value of donated property is the donor's responsibility; non-cash gifts totaling more than $500 may require IRS Form 8283.",
+    status: `${ORG.legal}, d/b/a Proyecto Empatados, is a tax-exempt organization under Section 501(c)(3) of the Internal Revenue Code (EIN ${ORG.ein}). Contributions are tax-deductible to the extent allowed by law.`,
+    contact: (e, t) => `Questions about this receipt? Contact us at ${e}${t ? ` or ${t}` : ""}.`,
+    sincerely: "With gratitude,"
+  },
+  es: {...CERT_TXT.es,
+    title: "Recibo de donación", annual: y => `Resumen anual de donaciones ${y}`,
+    no: "Recibo No.", sno: "Resumen No.", from: "Recibido de", attn: "Atención:",
+    thanks: "Gracias por su generosa donación a Proyecto Empatados. Su apoyo nos ayuda a conectar personas, recursos e iniciativas por el bienestar animal en Venezuela y Latinoamérica. Conserve esta carta como constancia escrita de su donación para su declaración de impuestos.",
+    thanksY: y => `Gracias por su generoso apoyo a Proyecto Empatados durante ${y}. A continuación encontrará el resumen de las donaciones que recibimos de usted entre el 1 de enero y el 31 de diciembre de ${y}. Conserve este resumen como constancia escrita de sus donaciones para su declaración de impuestos.`,
+    cols: ["Fecha", "Recibo No.", "Descripción", "Monto"],
+    cash: (m, r) => { const p = [m === "Otro" ? "" : m, r && "#" + r].filter(Boolean).join(" "); return `Donación monetaria${p ? ` (${p})` : ""}`; },
+    kind: d => `Donación en especie: ${d}`, kindAmt: "En especie*",
+    total: "Total de donaciones monetarias",
+    none: many => `No se entregaron bienes ni servicios a cambio de ${many ? "estas donaciones" : "esta donación"}.`,
+    noneRest: "No se entregaron bienes ni servicios a cambio de ninguna otra donación de la lista.",
+    goods: (d, what, val, ded) => `A cambio de su donación del ${d}, usted recibió ${what}, con un valor estimado de ${val}. El monto deducible de su donación para el impuesto federal sobre la renta se limita a la diferencia entre lo donado y el valor de los bienes o servicios recibidos${ded ? ` (monto deducible estimado: ${ded})` : ""}.`,
+    kindNote: "* Proyecto Empatados confirma haber recibido los artículos en especie descritos, pero no les asigna un valor. Determinar el valor justo de mercado de lo donado es responsabilidad del donante; las donaciones en especie que en total superen $500 pueden requerir el Formulario 8283 del IRS.",
+    status: `${ORG.legal}, DBA Proyecto Empatados, es una organización exenta de impuestos según la Sección 501(c)(3) del Código de Rentas Internas de EE. UU. (EIN ${ORG.ein}). Las donaciones son deducibles de impuestos en la medida que lo permita la ley.`,
+    contact: (e, t) => `¿Preguntas sobre este recibo? Escríbanos a ${e}${t ? ` o llámenos al ${t}` : ""}.`,
+    sincerely: "Con gratitud,"
+  }
+};
+
+async function recPDF(x, gifts, o) {
+  const [jsPDF, logo] = await Promise.all([getJsPDF(), getLogo()]);
+  const t = REC_TXT[o.idioma] || REC_TXT.en;
+  const doc = new jsPDF({unit: "pt", format: "letter"});
+  const W = 612, H = 792, M = 54, CW = W - 2 * M;
+  const OL = [80, 77, 19], PK = [242, 167, 181], RO = [201, 106, 128], BL = [255, 222, 228], ZB = [255, 246, 248], INK = [46, 44, 10], GR = [110, 107, 39], MUT = [150, 147, 110];
+  const rows = [...gifts].sort(byFecha), total = cashOf(rows), title = o.anual ? t.annual(o.anual) : t.title;
+  let num = rows[0].recibo;
+  if (o.anual) { let h = 0; for (const c of x.id + o.anual + rows.map(g => g.recibo).join()) h = (h * 31 + c.charCodeAt(0)) >>> 0; num = `S-${o.anual}-${h.toString(36).toUpperCase().padStart(6, "0").slice(-6)}`; }
+  const nlab = o.anual ? t.sno : t.no;
+  doc.setProperties({title: `${title} – ${x.nombre}`, author: "Proyecto Empatados", creator: "Proyecto Empatados CRM"});
+
+  const header = full => {
+    doc.setFillColor(...OL); doc.rect(0, 0, W, 9, "F");
+    doc.setFillColor(...PK); doc.rect(0, 9, W, 3, "F");
+    if (!full) {
+      if (logo) doc.addImage(logo, "PNG", M, 26, 42, 37, "logo", "FAST");
+      doc.setFont("times", "bold"); doc.setFontSize(13); doc.setTextColor(...OL); doc.text("Proyecto Empatados", M + (logo ? 52 : 0), 44);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...GR); doc.text(`${title} · ${x.nombre}`, M + (logo ? 52 : 0), 57);
+      doc.setDrawColor(...PK); doc.setLineWidth(1); doc.line(M, 74, W - M, 74);
+      return 74;
+    }
+    if (logo) doc.addImage(logo, "PNG", M, 30, 100, 88, "logo", "FAST");
+    let y = 52;
+    doc.setFont("times", "bold"); doc.setFontSize(21); doc.setTextColor(...OL); doc.text("Proyecto Empatados", W - M, y, {align: "right"});
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...GR);
+    [`${ORG.legal} ${t.dba} Proyecto Empatados`, `${t.np}  ·  ${t.ein} ${ORG.ein}`, o.direccion, [ORG.email, o.telefono].filter(Boolean).join("  ·  "), ORG.web]
+      .filter(Boolean).forEach(l => { y += 14; doc.text(l, W - M, y, {align: "right"}); });
+    doc.setDrawColor(...PK); doc.setLineWidth(1.2); doc.line(M, 134, W - M, 134);
+    return 134;
+  };
+
+  let y = header(true);
+  const FS = 10.5, BOTTOM = H - 70;
+  const newPage = () => { doc.addPage(); y = header(false) + 18; };
+  const para = (txt, gap, fs = FS, color = INK) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(fs); doc.setTextColor(...color);
+    const lh = fs * 1.45, L = doc.splitTextToSize(txt, CW);
+    if (y + gap + L.length * lh > BOTTOM) newPage();
+    doc.setFont("helvetica", "normal"); doc.setFontSize(fs); doc.setTextColor(...color);
+    y += gap + lh * .75; doc.text(L, M, y, {lineHeightFactor: 1.45}); y += (L.length - 1) * lh;
+  };
+
+  // fecha, número y título
+  doc.setFont("helvetica", "normal"); doc.setFontSize(FS); doc.setTextColor(...INK);
+  y += 28; doc.text(t.long(new Date()), M, y);
+  doc.setFont("helvetica", "bold"); doc.setTextColor(...OL); doc.text(`${nlab} ${num}`, W - M, y, {align: "right"});
+  y += 36; doc.setFont("times", "bold"); doc.setFontSize(19); doc.setTextColor(...OL); doc.text(title, W / 2, y, {align: "center"});
+
+  // donante
+  y += 32; doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...RO); doc.text(t.from.toUpperCase(), M, y, {charSpace: .6});
+  y += 17; doc.setFont("times", "bold"); doc.setFontSize(14); doc.setTextColor(...OL); doc.text(x.nombre, M, y);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...GR);
+  [x.tipo === "Empresa" && x.contacto ? `${t.attn} ${x.contacto}` : "", ...(x.direccion ? doc.splitTextToSize(x.direccion, CW * .6) : []), x.email]
+    .filter(Boolean).forEach(l => { y += 13; doc.text(l, M, y); });
+  para(o.anual ? t.thanksY(o.anual) : t.thanks, 16);
+
+  // tabla de donaciones
+  const C = [{w: 82}, {w: 84}, {w: CW - 82 - 84 - 84}, {w: 84, r: true}];
+  const cellX = (i, x0) => C[i].r ? x0 + C[i].w - 9 : x0 + 9;
+  const thead = () => {
+    doc.setFillColor(...OL); doc.rect(M, y, CW, 22, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...BL);
+    let x0 = M; t.cols.forEach((c, i) => { doc.text(c.toUpperCase(), cellX(i, x0), y + 14.5, {align: C[i].r ? "right" : "left", charSpace: .5}); x0 += C[i].w; });
+    y += 22;
+  };
+  y += 20; if (y + 60 > BOTTOM) newPage(); thead();
+  rows.forEach((g, idx) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    const desc = g.tipo === "Especie" ? t.kind(g.descripcion) : t.cash(g.metodo, g.referencia) + (g.descripcion ? ` — ${g.descripcion}` : "");
+    const cells = [t.short(dOf(g.fecha)), g.recibo, doc.splitTextToSize(desc, C[2].w - 18), g.tipo === "Dinero" ? usd(g.monto) : t.kindAmt];
+    const rh = 10 + cells[2].length * 12.4;
+    if (y + rh > BOTTOM) { newPage(); thead(); doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); }
+    if (idx % 2 === 0) { doc.setFillColor(...ZB); doc.rect(M, y, CW, rh, "F"); }
+    doc.setTextColor(...INK);
+    let x0 = M; cells.forEach((c, i) => { doc.text(c, cellX(i, x0), y + 16, {align: C[i].r ? "right" : "left", lineHeightFactor: 1.3}); x0 += C[i].w; });
+    y += rh;
+    doc.setDrawColor(242, 224, 228); doc.setLineWidth(.5); doc.line(M, y, W - M, y);
+  });
+  if (rows.some(g => g.tipo === "Dinero")) {
+    if (y + 26 > BOTTOM) newPage();
+    doc.setFillColor(...BL); doc.rect(M, y, CW, 26, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...OL);
+    doc.text(t.total, M + 9, y + 17); doc.text(usd(total), W - M - 9, y + 17, {align: "right"});
+    y += 26;
+  }
+
+  // declaraciones que exige el IRS
+  const qpq = rows.filter(g => g.qpq);
+  if (!qpq.length) para(t.none(rows.length > 1), 22);
+  else {
+    qpq.forEach((g, i) => para(t.goods(t.long(dOf(g.fecha)), g.qpqDetalle, usd(g.qpqValor), g.tipo === "Dinero" ? usd(Math.max(0, g.monto - g.qpqValor)) : ""), i ? 8 : 22));
+    if (qpq.length < rows.length) para(t.noneRest, 8);
+  }
+  if (rows.some(g => g.tipo === "Especie")) para(t.kindNote, 8, 9, GR);
+  para(t.status, 10);
+  para(t.contact(ORG.email, o.telefono), 8);
+
+  // firma
+  if (y + 115 > H - 52) newPage();
+  doc.setFont("helvetica", "normal"); doc.setFontSize(FS); doc.setTextColor(...INK);
+  y += 30; doc.text(t.sincerely, M, y);
+  y += 46; doc.setDrawColor(...INK); doc.setLineWidth(.7); doc.line(M, y, M + 230, y); doc.line(W - M - 150, y, W - M, y);
+  y += 15; doc.setFont("helvetica", "bold"); doc.setFontSize(10.5); doc.setTextColor(...INK); doc.text(o.firma || "", M, y);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...GR); doc.text(t.date, W - M - 150, y);
+  y += 13; doc.text([o.cargo, "Proyecto Empatados"].filter(Boolean).join(", "), M, y);
+
+  // pie en todas las páginas
+  const n = doc.getNumberOfPages();
+  for (let i = 1; i <= n; i++) {
+    doc.setPage(i);
+    doc.setDrawColor(...PK); doc.setLineWidth(.8); doc.line(M, H - 46, W - M, H - 46);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUT);
+    doc.text(`${ORG.legal} ${t.dba} Proyecto Empatados  ·  ${t.ein} ${ORG.ein}`, M, H - 32);
+    doc.text(`${nlab} ${num}  ·  ${t.page(i, n)}`, W - M, H - 32, {align: "right"});
   }
   return doc;
 }
